@@ -13,9 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const token_1 = require("../config/token");
+const auth_1 = require("../middleware/auth");
 const Users_1 = __importDefault(require("../models/Users"));
 const router = (0, express_1.Router)();
-router.post("/", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/register", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const newUser = yield Users_1.default.create(Object.assign({}, req.body));
         res.status(201).send(newUser);
@@ -24,7 +26,30 @@ router.post("/", (req, res, next) => __awaiter(void 0, void 0, void 0, function*
         console.log(error);
     }
 }));
-router.get("/", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/login", (req, res) => {
+    const { email, password } = req.body;
+    Users_1.default.findOne({ where: { email } }).then((user) => {
+        if (!user)
+            return res.status(401).send({
+                message: "invalid credentials",
+            });
+        user.validatePassword(password).then((passwordMatches) => {
+            if (!passwordMatches)
+                return res.status(401).send({
+                    message: "invalid credentials",
+                });
+            const payload = {
+                email: user.email,
+                fullName: user.fullName,
+                //admin: user.admin,
+            };
+            const token = (0, token_1.generateToken)(payload);
+            res.cookie("token", token, { httpOnly: true });
+            res.send(payload);
+        });
+    });
+});
+router.get("/", auth_1.validateAuth, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield Users_1.default.findAll();
         res.status(200).send(users);

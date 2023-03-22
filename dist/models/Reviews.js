@@ -9,13 +9,16 @@ class Review extends sequelize_1.Model {
 }
 exports.default = Review;
 Review.init({
-    id: {
-        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
-        autoIncrement: true,
-        primaryKey: true,
+    text: {
+        type: new sequelize_1.DataTypes.TEXT(),
+        allowNull: true,
     },
-    name: {
-        type: new sequelize_1.DataTypes.STRING(128),
+    stars: {
+        type: new sequelize_1.DataTypes.FLOAT(),
         allowNull: false,
+        validate: {
+            max: 5,
+            min: 0,
+        },
     },
-}, { sequelize: db_1.default, tableName: "review" });
+}, { sequelize: db_1.default, tableName: "reviews" });

@@ -6,27 +6,30 @@ import {
   DataTypes,
 } from "sequelize";
 
-import DataBase from '../db';
+import DataBase from "../db";
 
 export default class Review extends Model<
   InferAttributes<Review>,
   InferCreationAttributes<Review>
 > {
-  declare id: CreationOptional<number>;
-  declare name: string;
+  declare text: string;
+  declare stars: number;
 }
 
 Review.init(
   {
-    id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
-      primaryKey: true,
+    text: {
+      type: new DataTypes.TEXT(),
+      allowNull: true,
     },
-    name: {
-      type: new DataTypes.STRING(128),
+    stars: {
+      type: new DataTypes.FLOAT(),
       allowNull: false,
+      validate: {
+        max: 5,
+        min: 0,
+      },
     },
   },
-  { sequelize: DataBase, tableName: "review" }
+  { sequelize: DataBase, tableName: "reviews" }
 );
