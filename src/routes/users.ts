@@ -5,6 +5,8 @@ import User from "../models/Users";
 const router = Router();
 
 router.post("/register", async (req, res, next) => {
+  console.log("entrooooooooo");
+
   try {
     const newUser = await User.create({ ...req.body });
     res.status(201).send(newUser);
@@ -29,8 +31,8 @@ router.post("/login", (req, res) => {
 
       const payload = {
         email: user.email,
-        fullName: user.fullName,
-        //admin: user.admin,
+        name: user.name,
+        lastName: user.lastName,
       };
       const token = generateToken(payload);
       res.cookie("token", token, { httpOnly: true });
@@ -39,7 +41,9 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.get("/", validateAuth, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
+  console.log("entrooooooo");
+
   try {
     const users = await User.findAll();
     res.status(200).send(users);

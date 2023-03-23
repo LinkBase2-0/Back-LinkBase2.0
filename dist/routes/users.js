@@ -14,10 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const token_1 = require("../config/token");
-const auth_1 = require("../middleware/auth");
 const Users_1 = __importDefault(require("../models/Users"));
 const router = (0, express_1.Router)();
 router.post("/register", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("entrooooooooo");
     try {
         const newUser = yield Users_1.default.create(Object.assign({}, req.body));
         res.status(201).send(newUser);
@@ -40,7 +40,8 @@ router.post("/login", (req, res) => {
                 });
             const payload = {
                 email: user.email,
-                fullName: user.fullName,
+                name: user.name,
+                lastName: user.lastName,
                 //admin: user.admin,
             };
             const token = (0, token_1.generateToken)(payload);
@@ -49,7 +50,8 @@ router.post("/login", (req, res) => {
         });
     });
 });
-router.get("/", auth_1.validateAuth, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("entrooooooo");
     try {
         const users = yield Users_1.default.findAll();
         res.status(200).send(users);
