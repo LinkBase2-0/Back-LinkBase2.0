@@ -10,13 +10,13 @@ const cors_1 = __importDefault(require("cors"));
 const db_1 = __importDefault(require("./db"));
 const routes_1 = __importDefault(require("./routes"));
 const app = (0, express_1.default)();
-const PORT = 3001;
+const PORT = 3000;
 app.use(express_1.default.json());
 app.use((0, morgan_1.default)('tiny'));
 app.use((0, cookie_parser_1.default)());
 app.use((0, cors_1.default)());
 app.use("/", routes_1.default);
-db_1.default.sync({ force: true }).then(() => {
+db_1.default.sync({ force: false }).then(() => {
     console.log("db connected");
     app.listen(PORT, () => {
         console.log(`Server listening at port ${PORT}`);

@@ -10,7 +10,7 @@ import router from "./routes";
 import {Categorie, User, Review, Provider } from './models/index'
 
 const app = express();
-const PORT = 3001;
+const PORT = 3000;
 
 app.use(express.json());
 app.use(morgan('tiny'))
@@ -19,7 +19,7 @@ app.use(cors());
 
 app.use("/", router);
 
-DataBase.sync({ force: true }).then(() => {
+DataBase.sync({ force: false }).then(() => {
   console.log("db connected");
   app.listen(PORT, () => {
     console.log(`Server listening at port ${PORT}`);
