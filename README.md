@@ -22,7 +22,7 @@ Para instalar el Backend de LinkBase, siga estos pasos:
 
 Funcionalidades
 
-La aplicación tiene las siguientes funcionalidades:
+El objetivo es que la aplicación tenga las siguientes funcionalidades:
 
     La aplicación tiene una base de datos completa de proveedores, incluyendo información de contacto y ubicación en el mapa.
     Los usuarios pueden buscar proveedores por nombre, servicio o etiquetas.
@@ -32,14 +32,6 @@ La aplicación tiene las siguientes funcionalidades:
     Los usuarios pueden cargar y aprobar nuevos proveedores con campos de formulario obligatorios.
     Los usuarios pueden editar/eliminar comentarios y calificaciones de proveedores.
 
-Contribuir
-
-Si desea contribuir al proyecto, puede hacer lo siguiente:
-
-    Fork del repositorio.
-    Cree una rama para su contribución.
-    Realice su contribución en la rama creada.
-    Envíe un pull request a la rama principal.
 
 Autores
 
@@ -48,7 +40,3 @@ Autores
     Marcelo Garcia    
     Tomas Carranza
     Marcos Bolonese
-
-Licencia
-
-Este proyecto está licenciado bajo la Licencia MIT - vea el archivo LICENSE.md para más detalles.
