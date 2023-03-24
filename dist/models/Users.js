@@ -15,7 +15,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const db_1 = __importDefault(require("../db"));
+const Reviews_1 = __importDefault(require("./Reviews"));
 class User extends sequelize_1.Model {
+    static associate() {
+        User.hasMany(Reviews_1.default, { as: "reviews" });
+    }
+    addReview(review) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.addReviews(review);
+        });
+    }
 }
 exports.default = User;
 User.init({
@@ -53,7 +62,7 @@ User.init({
     },
     isAdmin: {
         type: new sequelize_1.DataTypes.BOOLEAN(),
-        defaultValue: false
+        defaultValue: false,
     },
 }, { sequelize: db_1.default, tableName: "users" });
 User.beforeCreate((user) => __awaiter(void 0, void 0, void 0, function* () {

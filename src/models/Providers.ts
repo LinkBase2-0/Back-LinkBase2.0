@@ -7,6 +7,7 @@ import {
 
 import DataBase from "../db";
 import Categorie from "./Categories";
+import Review from "./Reviews";
 
 export default class Provider extends Model<
   InferAttributes<Provider>,
@@ -23,14 +24,19 @@ export default class Provider extends Model<
 
   public static associate() {
     Provider.belongsToMany(Categorie, {
-      through: 'CategorieProvider',
-      foreignKey: 'ProviderId',
-      as: 'categories',
+      through: "CategorieProvider",
+      foreignKey: "ProviderId",
+      as: "categories",
     });
+    Provider.hasMany(Review, { as: "reviews" });
   }
 
   public async addCategory(category: Categorie): Promise<void> {
     await (this as any).addCategories(category);
+  }
+
+  public async addReview(review: Review): Promise<void> {
+    await (this as any).addReviews(review);
   }
 }
 

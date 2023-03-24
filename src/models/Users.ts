@@ -9,6 +9,7 @@ import {
 import bcrypt from "bcrypt";
 
 import DataBase from "../db";
+import Review from "./Reviews";
 
 export default class User extends Model<
   InferAttributes<User>,
@@ -24,6 +25,14 @@ export default class User extends Model<
   declare isAdmin: boolean;
   declare hash: (password: string, salt: string) => Promise<String>;
   declare validatePassword: (password: string) => Promise<Boolean>;
+
+  public static associate() {
+    User.hasMany(Review, { as: "reviews" });
+  }
+
+  public async addReview(review: Review): Promise<void> {
+    await (this as any).addReviews(review);
+  }
 }
 
 User.init(
@@ -62,7 +71,7 @@ User.init(
     },
     isAdmin: {
       type: new DataTypes.BOOLEAN(),
-      defaultValue: false
+      defaultValue: false,
     },
   },
   { sequelize: DataBase, tableName: "users" }

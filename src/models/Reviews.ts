@@ -7,6 +7,8 @@ import {
 } from "sequelize";
 
 import DataBase from "../db";
+import Provider from "./Providers";
+import User from "./Users";
 
 export default class Review extends Model<
   InferAttributes<Review>,
@@ -14,6 +16,11 @@ export default class Review extends Model<
 > {
   declare text: string;
   declare stars: number;
+
+  public static associate() {
+    Review.belongsTo(User);
+    Review.belongsTo(Provider);
+  }
 }
 
 Review.init(

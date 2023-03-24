@@ -1,22 +1,24 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import morgan from 'morgan'
+import morgan from "morgan";
 import cors from "cors";
 
 import DataBase from "./db";
 
 import router from "./routes";
 
-import {Categorie, User, Review, Provider } from './models/index'
+import { Categorie, User, Review, Provider } from "./models/index";
 
 Provider.associate();
 Categorie.associate();
+User.associate();
+Review.associate();
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
-app.use(morgan('tiny'))
+app.use(morgan("tiny"));
 app.use(cookieParser());
 app.use(cors());
 
