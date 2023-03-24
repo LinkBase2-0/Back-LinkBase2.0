@@ -75,10 +75,4 @@ router.get("/filter/:categorieName", async (req, res, next) => {
   }
 });
 
-// El código que proporcionas para la ruta que busca los proveedores de una categoría parece correcto. Lo que hace es buscar una categoría por su nombre y luego incluir los proveedores asociados a ella.
-
-// Al usar el método findOne de Sequelize, estás buscando una única categoría en función del nombre que recibes en la solicitud. Después, con la opción include del método, estás diciendo a Sequelize que incluya los proveedores asociados a la categoría encontrada.
-
-// En resumen, este código debería buscar la categoría por su nombre y devolver los proveedores asociados a ella. Si todo está bien configurado en tus modelos y asociaciones, debería funcionar correctamente.
-
 export default router;
