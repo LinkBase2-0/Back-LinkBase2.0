@@ -2,11 +2,11 @@ import {
   Model,
   InferCreationAttributes,
   InferAttributes,
-  CreationOptional,
   DataTypes,
 } from "sequelize";
 
 import DataBase from "../db";
+import Categorie from "./Categories";
 
 export default class Provider extends Model<
   InferAttributes<Provider>,
@@ -18,6 +18,20 @@ export default class Provider extends Model<
   declare latitude: number;
   declare longitude: number;
   declare cp: number;
+
+  public readonly categories?: Categorie[];
+
+  public static associate() {
+    Provider.belongsToMany(Categorie, {
+      through: 'CategorieProvider',
+      foreignKey: 'ProviderId',
+      as: 'categories',
+    });
+  }
+
+  public async addCategory(category: Categorie): Promise<void> {
+    await (this as any).addCategories(category);
+  }
 }
 
 Provider.init(

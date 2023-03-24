@@ -9,6 +9,9 @@ import router from "./routes";
 
 import {Categorie, User, Review, Provider } from './models/index'
 
+Provider.associate();
+Categorie.associate();
+
 const app = express();
 const PORT = 3000;
 
