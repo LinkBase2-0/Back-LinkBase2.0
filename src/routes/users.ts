@@ -32,8 +32,7 @@ router.post("/login", (req, res) => {
 
       const payload = {
         email: user.email,
-        name: user.name,
-        lastName: user.lastName,
+        fullName: user.fullName
       };
       const token = generateToken(payload);
       res.cookie("token", token, { httpOnly: true });
@@ -47,20 +46,22 @@ router.post("/logout", async (req, res, next) => {
   res.sendStatus(204);
 });
 
-router.get("/", async (req, res, next) => {
-  try {
-    const users = await User.findAll();
-    res.status(200).send(users);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
 router.get("/:email", async (req, res, next) => {
   const { email } = req.params;
   try {
     const user = await User.findOne({ where: { email } });
     res.status(200).send(user);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// ----- ADMIN ------
+
+router.get("/", async (req, res, next) => {
+  try {
+    const users = await User.findAll();
+    res.status(200).send(users);
   } catch (error) {
     console.log(error);
   }

@@ -39,8 +39,7 @@ router.post("/login", (req, res) => {
                 });
             const payload = {
                 email: user.email,
-                name: user.name,
-                lastName: user.lastName,
+                fullName: user.fullName
             };
             const token = (0, token_1.generateToken)(payload);
             res.cookie("token", token, { httpOnly: true });
@@ -52,20 +51,21 @@ router.post("/logout", (req, res, next) => __awaiter(void 0, void 0, void 0, fun
     res.clearCookie("token");
     res.sendStatus(204);
 }));
-router.get("/", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const users = yield Users_1.default.findAll();
-        res.status(200).send(users);
-    }
-    catch (error) {
-        console.log(error);
-    }
-}));
 router.get("/:email", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.params;
     try {
         const user = yield Users_1.default.findOne({ where: { email } });
         res.status(200).send(user);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}));
+// ----- ADMIN ------
+router.get("/", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const users = yield Users_1.default.findAll();
+        res.status(200).send(users);
     }
     catch (error) {
         console.log(error);

@@ -24,12 +24,10 @@ export default class Categorie extends Model<
     });
   }
 
-  // para agregar un solo proveedor
   public async addProvider(provider: Provider): Promise<void> {
     await (this as any).addProvider(provider);
   }
 
-  // para agregar varios proveedores
   public async addProviders(providers: Provider[]): Promise<void> {
     for (const provider of providers) {
       await this.addProvider(provider);

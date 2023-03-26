@@ -28,14 +28,6 @@ class User extends sequelize_1.Model {
 }
 exports.default = User;
 User.init({
-    name: {
-        type: new sequelize_1.DataTypes.STRING(128),
-        allowNull: false,
-    },
-    lastName: {
-        type: new sequelize_1.DataTypes.STRING(128),
-        allowNull: false,
-    },
     fullName: {
         type: new sequelize_1.DataTypes.STRING(128),
         allowNull: true,
@@ -48,9 +40,9 @@ User.init({
             isEmail: true,
         },
     },
-    adress: {
+    address: {
         type: new sequelize_1.DataTypes.STRING(128),
-        allowNull: false,
+        allowNull: true,
     },
     password: {
         type: new sequelize_1.DataTypes.STRING(128),

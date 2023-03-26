@@ -8,6 +8,7 @@ import DataBase from "./db";
 import router from "./routes";
 
 import { Categorie, User, Review, Provider } from "./models/index";
+import { Optional } from "sequelize";
 
 Provider.associate();
 Categorie.associate();
@@ -24,7 +25,7 @@ app.use(cors());
 
 app.use("/", router);
 
-DataBase.sync({ force: false }).then(() => {
+DataBase.sync({ force: true }).then(() => {
   console.log("db connected");
   app.listen(PORT, () => {
     console.log(`Server listening at port ${PORT}`);

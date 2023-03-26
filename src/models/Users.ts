@@ -15,13 +15,11 @@ export default class User extends Model<
   InferAttributes<User>,
   InferCreationAttributes<User>
 > {
-  declare name: string;
   declare email: string;
   declare password: string;
   declare salt: string;
-  declare lastName: string;
   declare fullName: string;
-  declare adress: string;
+  declare address: string;
   declare isAdmin: boolean;
   declare hash: (password: string, salt: string) => Promise<String>;
   declare validatePassword: (password: string) => Promise<Boolean>;
@@ -37,14 +35,6 @@ export default class User extends Model<
 
 User.init(
   {
-    name: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
-    },
-    lastName: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
-    },
     fullName: {
       type: new DataTypes.STRING(128),
       allowNull: true,
@@ -57,9 +47,9 @@ User.init(
         isEmail: true,
       },
     },
-    adress: {
+    address: {
       type: new DataTypes.STRING(128),
-      allowNull: false,
+      allowNull: true,
     },
     password: {
       type: new DataTypes.STRING(128),
