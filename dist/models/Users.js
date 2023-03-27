@@ -16,13 +16,20 @@ const sequelize_1 = require("sequelize");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const db_1 = __importDefault(require("../db"));
 const Reviews_1 = __importDefault(require("./Reviews"));
+const Company_1 = __importDefault(require("./Company"));
 class User extends sequelize_1.Model {
     static associate() {
         User.hasMany(Reviews_1.default, { as: "reviews" });
+        User.belongsTo(Company_1.default);
     }
     addReview(review) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.addReviews(review);
+        });
+    }
+    addCompany(company) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.addCompanies(company);
         });
     }
 }
@@ -39,10 +46,6 @@ User.init({
         validate: {
             isEmail: true,
         },
-    },
-    address: {
-        type: new sequelize_1.DataTypes.STRING(128),
-        allowNull: true,
     },
     password: {
         type: new sequelize_1.DataTypes.STRING(128),

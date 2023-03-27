@@ -21,8 +21,8 @@ export default class Provider extends Model<
   declare isPending: boolean;
   declare time: string;
   declare address: string;
-  declare latitude: number;
-  declare longitude: number;
+  declare latitude: string;
+  declare longitude: string;
 
   public readonly categories?: Categorie[];
 
@@ -59,7 +59,7 @@ Provider.init(
       },
     },
     phone: {
-      type: new DataTypes.INTEGER(),
+      type: new DataTypes.BIGINT(),
       allowNull: false,
     },
     web: {
@@ -83,11 +83,11 @@ Provider.init(
       allowNull: false,
     },
     latitude: {
-      type: new DataTypes.FLOAT(),
+      type: new DataTypes.STRING(128),
       allowNull: false,
     },
     longitude: {
-      type: new DataTypes.FLOAT(),
+      type: new DataTypes.STRING(128),
       allowNull: false,
     },
   
