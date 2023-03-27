@@ -5,14 +5,20 @@ import { Categorie, Provider } from "../models";
 const router = Router();
 
 router.post("/", async (req, res, next) => {
+  console.log("entroooooooo");
+  
   const { provider } = req.body;
-  const { categorie } = req.body;
+  const { categories } = req.body;
   try {
     const newProvider = await Provider.create(provider);
-    const category = await Categorie.findOrCreate({
-      where: { name: categorie },
-    });
-    await newProvider.addCategory(category[0]);
+    categories.map(
+      (categorie: string) => {
+        Categorie.findOrCreate({
+          where: { name: categorie },
+        }).then((category) => newProvider.addCategory(category[0]));
+      }
+    );
+    console.log(newProvider);
     res.status(201).send(newProvider);
   } catch (error) {
     console.log(error);

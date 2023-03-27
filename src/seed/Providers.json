@@ -1,0 +1,183 @@
+{
+  "providers": [
+    {
+      "provider": {
+        "name": "ABRA PAMPA S.R.L.",
+        "email": "abrapampa@gmail.com",
+        "phone": 2346429328,
+        "web": "",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/13a_logo.jpg",
+        "isPending": true,
+        "time": "",
+        "address": "C 238, B7240 Lobos, Provincia de Buenos Aires",
+        "latitude": "35°10'53.2 S",
+        "longitude": "59°04'22.9 W"
+      },
+      "categories": ["agroquimicos", "quimico industrial"]
+    },
+    {
+      "provider": {
+        "name": "PRONEXO S.R.L.",
+        "email": "contaduria@pro-nexo.com",
+        "phone": 5491131327433,
+        "web": "https://www.pro-nexo.com/",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/33_logo.jpg",
+        "isPending": false,
+        "time": "",
+        "address": "C. 18 1699-1601, Navarro, Provincia de Buenos Aires",
+        "latitude": "35°00'06.2 S ",
+        "longitude": "59°15'31.3 W"
+      },
+      "categories": ["molienda", "harinas", "venta de maquinaria"]
+    },
+    {
+      "provider": {
+        "name": "INDIGAMA S.R.L.",
+        "email": "preventa-chivilcoy@hotmail.com",
+        "phone": 542346308483,
+        "web": "",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/05_logo.jpg",
+        "isPending": true,
+        "time": "",
+        "address": "Mercedes, Provincia de Buenos Aires",
+        "latitude": "34°39'55.3 S",
+        "longitude": "59°25'38.8 W"
+      },
+      "categories": ["bebidas alcoholicas", "gaseosas"]
+    },
+    {
+      "provider": {
+        "name": "Chivil Oil S.R.L.",
+        "email": "chiviloil@hotmail.com",
+        "phone": 5493465655887,
+        "web": "https://www.chiviloil.com/",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/45_logo.jpg",
+        "isPending": false,
+        "time": "",
+        "address": "Calle 6 S3, Chivilcoy, Provincia de Buenos Aires",
+        "latitude": "34°55'39 S",
+        "longitude": "59°59'03. W"
+      },
+      "categories": [
+        "produccion de expeller",
+        "produccion de aceite de soja",
+        "balanceado para animales"
+      ]
+    },
+    {
+      "provider": {
+        "name": "INPACK S.A",
+        "email": "inpack@inpack.com.ar",
+        "phone": 542346308422,
+        "web": "http://www.inpack.com.ar/",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/29_logo.jpg",
+        "isPending": false,
+        "time": "",
+        "address": "Belgrano, Rawson, Provincia de Buenos Aires",
+        "latitude": "34°36'23.6 S",
+        "longitude": " 60°03'42.4 W"
+      },
+      "categories": [
+        "insumos para industrias alimetarias",
+        "gaseosas",
+        "bebidas alcoholicas",
+        "venta de maquinaria"
+      ]
+    },
+    {
+      "provider": {
+        "name": "Distribuidora Libertad S.A",
+        "email": "distrilibertad@gmail.com",
+        "phone": 2346584600,
+        "web": "",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/51_logo.jpg",
+        "isPending": false,
+        "time": "Lunes a Viernes de 08 a 17 hs",
+        "address": "Junín, Provincia de Buenos Aires",
+        "latitude": "34°34'46.9 S",
+        "longitude": "60°58'40.5 W"
+      },
+      "categories": [
+        "balanceado para animales",
+        "pet shop",
+        "cerrajeria",
+        "veterinaria",
+        "accesorios para animales"
+      ]
+    },
+    {
+      "provider": {
+        "name": "Arluchi S.A.",
+        "email": "andrei.lagranha@suelasids.com",
+        "phone": 5492346696172,
+        "web": "https://suelasids.com/",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/19_logo.jpg",
+        "isPending": true,
+        "time": "Lunes a Viernes de 08 a 17 hs",
+        "address": "Gral. Villegas, Provincia de Buenos Aires",
+        "latitude": "35°01'32.2 S",
+        "longitude": "63°00'08.5 W"
+      },
+      "categories": ["suelas para calzado", "textil"]
+    },
+    {
+      "provider": {
+        "name": "Aserradero El Polen S.A.",
+        "email": "aserraderoelpolen@hotmail.com",
+        "phone": 5492346689027,
+        "web": "",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/Logos_empresas.jpg",
+        "isPending": false,
+        "time": "Lunes a Viernes de 08 a 19 hs",
+        "address": "C. Int. Poretti 914, Villa María, Córdoba",
+        "latitude": "32°23'35.0 S",
+        "longitude": "63°14'10.8 W"
+      },
+      "categories": ["pallets", "cajones", "irantes", "parrillas"]
+    },
+    {
+      "provider": {
+        "name": "ANGEL MANUEL ALVAREZ SA",
+        "email": "administracion@angelalvarez.com.ar",
+        "phone": 3414628500,
+        "web": "www.angelalvarez.com.ar",
+        "photoURL": "https://hormigonelaborado.com/wp-content/uploads/2020/10/logo-angel-alvarez-2020-2.png",
+        "isPending": false,
+        "time": "",
+        "address": "S2001CGD Rosario, Santa Fe, Argentina",
+        "latitude": "32°58'26.2 S",
+        "longitude": "60°44'03.8 W"
+      },
+      "categories": [
+        "corralon",
+        "losas",
+        "arena",
+        "cemento",
+        "hierros",
+        "ladrillos",
+        "refractarios",
+        "tanques de plasticos"
+      ]
+    },
+    {
+      "provider": {
+        "name": " DM DISTRIBUIDORA",
+        "email": "dmdistribuidora@gmail.com.ar",
+        "phone": 3414623481,
+        "web": "https://www.dmdistribuidora.com/",
+        "photoURL": "https://www.dmdistribuidora.com/v10/images/logo/logo.png",
+        "isPending": false,
+        "time": "",
+        "address": "Av. Presidente J.Perón (ex Godoy) 8459 (S2010ACI) Rosario, Santa Fe, Argentina",
+        "latitude": "32°68'36.2 S",
+        "longitude": "60°54'33.8 W"
+      },
+      "categories": [
+        "importacion",
+        "exportacion",
+        "autopartes",
+        "accesorios de vehiculo"
+      ]
+    }
+  ]
+}
