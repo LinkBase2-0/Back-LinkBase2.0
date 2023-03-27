@@ -15,10 +15,14 @@ export default class Provider extends Model<
 > {
   declare name: string;
   declare email: string;
+  declare phone: number;
+  declare web: string;
+  declare photoURL: string;
+  declare isPending: boolean;
+  declare time: string;
   declare address: string;
   declare latitude: number;
   declare longitude: number;
-  declare cp: number;
 
   public readonly categories?: Categorie[];
 
@@ -54,6 +58,26 @@ Provider.init(
         isEmail: true,
       },
     },
+    phone: {
+      type: new DataTypes.INTEGER(),
+      allowNull: false,
+    },
+    web: {
+      type: new DataTypes.STRING(128),
+      allowNull: true,
+    },
+    photoURL: {
+      type: new DataTypes.STRING(128),
+      allowNull: true,
+    },
+    isPending: {
+      type: new DataTypes.BOOLEAN,
+      defaultValue:true,
+    },
+    time: {
+      type: new DataTypes.STRING(128),
+      allowNull: true,
+    },
     address: {
       type: new DataTypes.STRING(128),
       allowNull: false,
@@ -66,10 +90,7 @@ Provider.init(
       type: new DataTypes.FLOAT(),
       allowNull: false,
     },
-    cp: {
-      type: new DataTypes.INTEGER(),
-      allowNull: false,
-    },
+  
   },
   { sequelize: DataBase, tableName: "providers" }
 );

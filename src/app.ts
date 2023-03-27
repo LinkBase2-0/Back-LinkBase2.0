@@ -7,13 +7,14 @@ import DataBase from "./db";
 
 import router from "./routes";
 
-import { Categorie, User, Review, Provider } from "./models/index";
+import { Categorie, User, Review, Provider, Company } from "./models/index";
 import { Optional } from "sequelize";
 
 Provider.associate();
 Categorie.associate();
 User.associate();
 Review.associate();
+Company.associate();
 
 const app = express();
 const PORT = 3000;

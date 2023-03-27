@@ -10,6 +10,7 @@ import bcrypt from "bcrypt";
 
 import DataBase from "../db";
 import Review from "./Reviews";
+import Company from "./Company";
 
 export default class User extends Model<
   InferAttributes<User>,
@@ -19,7 +20,6 @@ export default class User extends Model<
   declare password: string;
   declare salt: string;
   declare fullName: string;
-  declare address: string;
   declare rol: boolean;
   declare charge: string;
   declare hash: (password: string, salt: string) => Promise<String>;
@@ -27,10 +27,15 @@ export default class User extends Model<
 
   public static associate() {
     User.hasMany(Review, { as: "reviews" });
+    User.belongsTo(Company)
   }
 
   public async addReview(review: Review): Promise<void> {
     await (this as any).addReviews(review);
+  }
+
+  public async addCompany(company: Company): Promise<void> {
+    await (this as any).addCompanies(company);
   }
 }
 
@@ -47,10 +52,6 @@ User.init(
       validate: {
         isEmail: true,
       },
-    },
-    address: {
-      type: new DataTypes.STRING(128),
-      allowNull: true,
     },
     password: {
       type: new DataTypes.STRING(128),

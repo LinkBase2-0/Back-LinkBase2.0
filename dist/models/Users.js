@@ -56,6 +56,10 @@ User.init({
         type: new sequelize_1.DataTypes.ENUM("admin", "client", "superAdmin"),
         defaultValue: "client",
     },
+    charge: {
+        type: new sequelize_1.DataTypes.STRING(128),
+        allowNull: false,
+    },
 }, { sequelize: db_1.default, tableName: "users" });
 User.beforeCreate((user) => __awaiter(void 0, void 0, void 0, function* () {
     const salt = yield bcrypt_1.default.genSaltSync(9);
