@@ -52,9 +52,9 @@ User.init({
         type: new sequelize_1.DataTypes.STRING(128),
         allowNull: true,
     },
-    isAdmin: {
-        type: new sequelize_1.DataTypes.BOOLEAN(),
-        defaultValue: false,
+    rol: {
+        type: new sequelize_1.DataTypes.ENUM("admin", "client", "superAdmin"),
+        defaultValue: "client",
     },
 }, { sequelize: db_1.default, tableName: "users" });
 User.beforeCreate((user) => __awaiter(void 0, void 0, void 0, function* () {

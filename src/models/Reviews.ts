@@ -27,11 +27,11 @@ Review.init(
   {
     text: {
       type: new DataTypes.TEXT(),
-      allowNull: true,
+      allowNull: false,
     },
     stars: {
       type: new DataTypes.FLOAT(),
-      allowNull: false,
+      allowNull: true,
       validate: {
         max: 5,
         min: 0,

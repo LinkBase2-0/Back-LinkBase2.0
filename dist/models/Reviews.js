@@ -17,11 +17,11 @@ exports.default = Review;
 Review.init({
     text: {
         type: new sequelize_1.DataTypes.TEXT(),
-        allowNull: true,
+        allowNull: false,
     },
     stars: {
         type: new sequelize_1.DataTypes.FLOAT(),
-        allowNull: false,
+        allowNull: true,
         validate: {
             max: 5,
             min: 0,

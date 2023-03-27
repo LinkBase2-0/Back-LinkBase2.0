@@ -15,7 +15,7 @@ export default class Provider extends Model<
 > {
   declare name: string;
   declare email: string;
-  declare adress: string;
+  declare address: string;
   declare latitude: number;
   declare longitude: number;
   declare cp: number;
@@ -54,7 +54,7 @@ Provider.init(
         isEmail: true,
       },
     },
-    adress: {
+    address: {
       type: new DataTypes.STRING(128),
       allowNull: false,
     },

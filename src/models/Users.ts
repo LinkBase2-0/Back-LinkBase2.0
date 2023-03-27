@@ -20,7 +20,8 @@ export default class User extends Model<
   declare salt: string;
   declare fullName: string;
   declare address: string;
-  declare isAdmin: boolean;
+  declare rol: boolean;
+  declare charge: string;
   declare hash: (password: string, salt: string) => Promise<String>;
   declare validatePassword: (password: string) => Promise<Boolean>;
 
@@ -59,9 +60,13 @@ User.init(
       type: new DataTypes.STRING(128),
       allowNull: true,
     },
-    isAdmin: {
-      type: new DataTypes.BOOLEAN(),
-      defaultValue: false,
+    rol: {
+      type: new DataTypes.ENUM("admin", "client", "superAdmin"),
+      defaultValue: "client",
+    },
+    charge: {
+      type: new DataTypes.STRING(128),
+      allowNull: false,
     },
   },
   { sequelize: DataBase, tableName: "users" }
