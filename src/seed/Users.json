@@ -1,0 +1,53 @@
+[
+  {
+    "fullName": "tomas",
+    "email": "tomas@gmail.com",
+    "password": "password123",
+    "rol": "superAdmin"
+  },
+  {
+    "fullName": "marcos",
+    "email": "marcos@gmail.com",
+    "password": "password123"
+  },
+  {
+    "fullName": "nico",
+    "email": "nico@gmail.com",
+    "adress": "address3",
+    "password": "password123",
+    "rol": "client"
+  },
+  {
+    "fullName": "matias",
+    "email": "matias@gmail.com",
+    "adress": "address4",
+    "password": "password123"
+  },
+  {
+    "fullName": "julian",
+    "email": "julian@gmail.com",
+    "adress": "address5",
+    "password": "password123",
+    "rol": "client"
+  },
+  {
+    "fullName": "pedro",
+    "email": "pedro@gmail.com",
+    "password": "password123"
+  },
+  {
+    "fullName": "leandro",
+    "email": "leandro@gmail.com",
+    "password": "password123"
+  },
+  {
+    "fullName": "martin",
+    "email": "martin@gmail.com",
+    "password": "password123"
+  },
+  {
+    "fullName": "franciso",
+    "email": "franciso@gmail.com",
+    "password": "password123"
+  }
+]

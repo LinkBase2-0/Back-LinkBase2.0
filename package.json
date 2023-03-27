@@ -5,7 +5,8 @@
     "main": "./src/app.ts",
     "scripts": {
         "start": "npm run server",
-        "server": "tsc && nodemon dist/app.js"
+        "server": "tsc && nodemon dist/app.js",
+        "seed": "node seed/data.ts"
     },
     "repository": {
         "type": "git",
