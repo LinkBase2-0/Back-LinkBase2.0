@@ -17,7 +17,6 @@ const token_1 = require("../config/token");
 const Users_1 = __importDefault(require("../models/Users"));
 const router = (0, express_1.Router)();
 router.post("/register", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("entrooooooooo");
     try {
         const newUser = yield Users_1.default.create(Object.assign({}, req.body));
         res.status(201).send(newUser);
@@ -40,9 +39,7 @@ router.post("/login", (req, res) => {
                 });
             const payload = {
                 email: user.email,
-                name: user.name,
-                lastName: user.lastName,
-                //admin: user.admin,
+                fullName: user.fullName
             };
             const token = (0, token_1.generateToken)(payload);
             res.cookie("token", token, { httpOnly: true });
@@ -50,11 +47,49 @@ router.post("/login", (req, res) => {
         });
     });
 });
+router.post("/logout", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    res.clearCookie("token");
+    res.sendStatus(204);
+}));
+router.get("/:email", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email } = req.params;
+    try {
+        const user = yield Users_1.default.findOne({ where: { email } });
+        res.status(200).send(user);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}));
+// ----- ADMIN ------
 router.get("/", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("entrooooooo");
     try {
         const users = yield Users_1.default.findAll();
         res.status(200).send(users);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}));
+router.put("/:email", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email } = req.params;
+    try {
+        const userUpdated = yield Users_1.default.update(req.body, {
+            where: { email },
+            returning: true,
+        });
+        res.status(200).send(userUpdated[1][0]);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}));
+router.delete("/:email", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email } = req.params;
+    try {
+        const userToDelete = yield Users_1.default.findOne({ where: { email } });
+        const userDeleted = yield Users_1.default.destroy({ where: { email } });
+        res.status(200).send(userToDelete);
     }
     catch (error) {
         console.log(error);

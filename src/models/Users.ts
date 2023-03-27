@@ -9,33 +9,33 @@ import {
 import bcrypt from "bcrypt";
 
 import DataBase from "../db";
+import Review from "./Reviews";
 
 export default class User extends Model<
   InferAttributes<User>,
   InferCreationAttributes<User>
 > {
-  declare name: string;
   declare email: string;
   declare password: string;
   declare salt: string;
-  declare lastName: string;
   declare fullName: string;
-  declare adress: string;
-  declare isAdmin: boolean;
+  declare address: string;
+  declare rol: boolean;
+  declare charge: string;
   declare hash: (password: string, salt: string) => Promise<String>;
   declare validatePassword: (password: string) => Promise<Boolean>;
+
+  public static associate() {
+    User.hasMany(Review, { as: "reviews" });
+  }
+
+  public async addReview(review: Review): Promise<void> {
+    await (this as any).addReviews(review);
+  }
 }
 
 User.init(
   {
-    name: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
-    },
-    lastName: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
-    },
     fullName: {
       type: new DataTypes.STRING(128),
       allowNull: true,
@@ -48,9 +48,9 @@ User.init(
         isEmail: true,
       },
     },
-    adress: {
+    address: {
       type: new DataTypes.STRING(128),
-      allowNull: false,
+      allowNull: true,
     },
     password: {
       type: new DataTypes.STRING(128),
@@ -60,9 +60,13 @@ User.init(
       type: new DataTypes.STRING(128),
       allowNull: true,
     },
-    isAdmin: {
-      type: new DataTypes.BOOLEAN(),
-      defaultValue: false
+    rol: {
+      type: new DataTypes.ENUM("admin", "client", "superAdmin"),
+      defaultValue: "client",
+    },
+    charge: {
+      type: new DataTypes.STRING(128),
+      allowNull: false,
     },
   },
   { sequelize: DataBase, tableName: "users" }

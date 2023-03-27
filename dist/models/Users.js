@@ -15,18 +15,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const db_1 = __importDefault(require("../db"));
+const Reviews_1 = __importDefault(require("./Reviews"));
 class User extends sequelize_1.Model {
+    static associate() {
+        User.hasMany(Reviews_1.default, { as: "reviews" });
+    }
+    addReview(review) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.addReviews(review);
+        });
+    }
 }
 exports.default = User;
 User.init({
-    name: {
-        type: new sequelize_1.DataTypes.STRING(128),
-        allowNull: false,
-    },
-    lastName: {
-        type: new sequelize_1.DataTypes.STRING(128),
-        allowNull: false,
-    },
     fullName: {
         type: new sequelize_1.DataTypes.STRING(128),
         allowNull: true,
@@ -39,9 +40,9 @@ User.init({
             isEmail: true,
         },
     },
-    adress: {
+    address: {
         type: new sequelize_1.DataTypes.STRING(128),
-        allowNull: false,
+        allowNull: true,
     },
     password: {
         type: new sequelize_1.DataTypes.STRING(128),
@@ -51,9 +52,9 @@ User.init({
         type: new sequelize_1.DataTypes.STRING(128),
         allowNull: true,
     },
-    isAdmin: {
-        type: new sequelize_1.DataTypes.BOOLEAN(),
-        defaultValue: false
+    rol: {
+        type: new sequelize_1.DataTypes.ENUM("admin", "client", "superAdmin"),
+        defaultValue: "client",
     },
 }, { sequelize: db_1.default, tableName: "users" });
 User.beforeCreate((user) => __awaiter(void 0, void 0, void 0, function* () {
