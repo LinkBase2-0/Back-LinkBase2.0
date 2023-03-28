@@ -9,13 +9,11 @@ router.post("/", async (req, res, next) => {
   const { categories } = req.body;
   try {
     const newProvider = await Provider.create(provider);
-    categories.map(
-      (categorie: string) => {
-        Categorie.findOrCreate({
-          where: { name: categorie },
-        }).then((category) => newProvider.addCategory(category[0]));
-      }
-    );
+    categories.map((categorie: string) => {
+      Categorie.findOrCreate({
+        where: { name: categorie },
+      }).then((category) => newProvider.addCategory(category[0]));
+    });
     res.status(201).send(newProvider);
   } catch (error) {
     console.log(error);
@@ -59,6 +57,24 @@ router.get("/:name", async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     const providers = await Provider.findAll();
+    res.status(200).send(providers);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/pendingF", async (req, res, next) => {
+  try {
+    const providers = await Provider.findAll({ where: { isPending: false } });
+    res.status(200).send(providers);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/pendingT", async (req, res, next) => {
+  try {
+    const providers = await Provider.findAll({ where: { isPending: true } });
     res.status(200).send(providers);
   } catch (error) {
     console.log(error);

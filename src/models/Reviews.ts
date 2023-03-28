@@ -16,6 +16,7 @@ export default class Review extends Model<
 > {
   declare text: string;
   declare stars: number;
+  declare id: number;
 
   public static associate() {
     Review.belongsTo(User);
@@ -25,13 +26,19 @@ export default class Review extends Model<
 
 Review.init(
   {
+    id: {
+      type: new DataTypes.INTEGER(),
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     text: {
       type: new DataTypes.TEXT(),
-      allowNull: false,
+      allowNull: true,
     },
     stars: {
-      type: new DataTypes.FLOAT(),
-      allowNull: true,
+      type: new DataTypes.INTEGER(),
+      allowNull: false,
       validate: {
         max: 5,
         min: 0,

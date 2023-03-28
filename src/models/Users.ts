@@ -22,12 +22,13 @@ export default class User extends Model<
   declare fullName: string;
   declare rol: boolean;
   declare charge: string;
+  declare isPending: string;
   declare hash: (password: string, salt: string) => Promise<String>;
   declare validatePassword: (password: string) => Promise<Boolean>;
 
   public static associate() {
     User.hasMany(Review, { as: "reviews" });
-    User.belongsTo(Company)
+    User.belongsTo(Company);
   }
 
   public async addReview(review: Review): Promise<void> {
@@ -68,6 +69,10 @@ User.init(
     charge: {
       type: new DataTypes.STRING(128),
       allowNull: false,
+    },
+    isPending: {
+      type: new DataTypes.BOOLEAN(),
+      defaultValue: true,
     },
   },
   { sequelize: DataBase, tableName: "users" }

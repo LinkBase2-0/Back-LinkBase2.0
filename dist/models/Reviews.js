@@ -15,13 +15,19 @@ class Review extends sequelize_1.Model {
 }
 exports.default = Review;
 Review.init({
+    id: {
+        type: new sequelize_1.DataTypes.INTEGER(),
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+    },
     text: {
         type: new sequelize_1.DataTypes.TEXT(),
-        allowNull: false,
+        allowNull: true,
     },
     stars: {
-        type: new sequelize_1.DataTypes.FLOAT(),
-        allowNull: true,
+        type: new sequelize_1.DataTypes.INTEGER(),
+        allowNull: false,
         validate: {
             max: 5,
             min: 0,
