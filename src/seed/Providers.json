@@ -100,7 +100,7 @@
       "categories": [
         "balanceado para animales",
         "pet shop",
-        "cerrajeria",
+        "forrajeria",
         "veterinaria",
         "accesorios para animales"
       ]
@@ -133,7 +133,7 @@
         "latitude": "32°23'35.0 S",
         "longitude": "63°14'10.8 W"
       },
-      "categories": ["pallets", "cajones", "irantes", "parrillas"]
+      "categories": ["pallets", "cajones", "tirantes", "parrillas"]
     },
     {
       "provider": {

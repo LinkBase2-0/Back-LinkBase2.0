@@ -7,3 +7,4 @@ const DataBase = new Sequelize("linkBase", "", "", {
 });
 
 export default DataBase;
+ 
