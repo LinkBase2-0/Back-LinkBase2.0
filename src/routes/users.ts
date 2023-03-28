@@ -7,6 +7,50 @@ import User from "../models/Users";
 
 const router = Router();
 
+/**
+* @openapi
+* /users/register:
+*    post:
+*      tags:
+*      - users
+*      summary: Create new user on te db
+*  
+*      requestBody:
+*        content:
+*          application/json:
+*            schema:
+*              $ref: '#/components/schemas/bodyUsersRegisterPost'
+*        required: true
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/bodyUsersRegisterPost'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/       
 router.post("/register", async (req, res, next) => {
   try {
     const newUser = await User.create({ ...req.body });
@@ -46,6 +90,9 @@ router.post("/logout", async (req, res, next) => {
   res.sendStatus(204);
 });
 
+
+
+
 router.get("/:email", async (req, res, next) => {
   const { email } = req.params;
   try {
@@ -57,6 +104,8 @@ router.get("/:email", async (req, res, next) => {
 });
 
 // ----- ADMIN ------
+
+
 
 router.get("/", async (req, res, next) => {
   try {

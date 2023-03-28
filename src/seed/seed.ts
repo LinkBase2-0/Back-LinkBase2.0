@@ -8,6 +8,7 @@ import { companies } from "./Companies.json";
 import { categories } from "./Categories.json";
 import { reviews } from "./Reviews.json";
 
+
 // const arr = [1, 2, 3, 4];
 // arr.map((e) => {
 //   if (e === 1) {

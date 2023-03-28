@@ -9,6 +9,7 @@ import router from "./routes";
 
 import { Categorie, User, Review, Provider, Company } from "./models/index";
 import { Optional } from "sequelize";
+import swaggerDocs from "./swagger/swagger";
 
 Provider.associate();
 Categorie.associate();
@@ -30,5 +31,6 @@ DataBase.sync({ force: true }).then(() => {
   console.log("db connected");
   app.listen(PORT, () => {
     console.log(`Server listening at port ${PORT}`);
+    swaggerDocs(app,PORT)
   });
 }); 

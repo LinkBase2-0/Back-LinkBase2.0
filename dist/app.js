@@ -10,6 +10,7 @@ const cors_1 = __importDefault(require("cors"));
 const db_1 = __importDefault(require("./db"));
 const routes_1 = __importDefault(require("./routes"));
 const index_1 = require("./models/index");
+const swagger_1 = __importDefault(require("./swagger/swagger"));
 index_1.Provider.associate();
 index_1.Categorie.associate();
 index_1.User.associate();
@@ -26,5 +27,6 @@ db_1.default.sync({ force: true }).then(() => {
     console.log("db connected");
     app.listen(PORT, () => {
         console.log(`Server listening at port ${PORT}`);
+        (0, swagger_1.default)(app, PORT);
     });
 });
