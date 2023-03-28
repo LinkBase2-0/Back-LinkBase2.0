@@ -1,38 +1,36 @@
 import {
-    Model,
-    InferCreationAttributes,
-    InferAttributes,
-    DataTypes,
-  } from "sequelize";
-  
-  import DataBase from "../db";
-  import User from "./Users";
-  
-  export default class Company extends Model<
-    InferAttributes<Company>,
-    InferCreationAttributes<Company>
-  > {
-    declare name: string;
-  
-    public readonly user?: User[];
-  
-    public static associate() {
-        Company.hasMany(User);
-    }
-  
-    public async addUser(user: User): Promise<void> {
-      await (this as any).addUsers(user);
-    }
-  
+  Model,
+  InferCreationAttributes,
+  InferAttributes,
+  DataTypes,
+} from "sequelize";
+
+import DataBase from "../db";
+import User from "./Users";
+
+export default class Company extends Model<
+  InferAttributes<Company>,
+  InferCreationAttributes<Company>
+> {
+  declare name: string;
+
+  public readonly user?: User[];
+
+  public static associate() {
+    Company.hasMany(User, { as: "users" });
   }
-  
-  Company.init(
-    {
-      name: {
-        type: new DataTypes.STRING(128),
-        allowNull: false,
-      },
+
+  public async addUser(user: User): Promise<void> {
+    await (this as any).addUsers(user);
+  }
+}
+
+Company.init(
+  {
+    name: {
+      type: new DataTypes.STRING(128),
+      allowNull: false,
     },
-    { sequelize: DataBase, tableName: "categories" }
-  );
-  
+  },
+  { sequelize: DataBase, tableName: "companies" }
+);

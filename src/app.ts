@@ -26,7 +26,7 @@ app.use(cors());
 
 app.use("/", router);
 
-DataBase.sync({ force: false }).then(() => {
+DataBase.sync({ force: true }).then(() => {
   console.log("db connected");
   app.listen(PORT, () => {
     console.log(`Server listening at port ${PORT}`);

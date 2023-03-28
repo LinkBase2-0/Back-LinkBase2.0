@@ -63,6 +63,10 @@ User.init({
         type: new sequelize_1.DataTypes.STRING(128),
         allowNull: false,
     },
+    isPending: {
+        type: new sequelize_1.DataTypes.BOOLEAN(),
+        defaultValue: true,
+    },
 }, { sequelize: db_1.default, tableName: "users" });
 User.beforeCreate((user) => __awaiter(void 0, void 0, void 0, function* () {
     const salt = yield bcrypt_1.default.genSaltSync(9);

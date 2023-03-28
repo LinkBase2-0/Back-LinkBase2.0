@@ -6,7 +6,8 @@
     "scripts": {
         "start": "npm run server",
         "server": "tsc && nodemon dist/app.js",
-        "seed": "node dist/seed/seed.js"
+        "seed": "node dist/seed/seed.js",
+        "deletedb" : "node dist/seed/deleteSeed.js"
     },
     "repository": {
         "type": "git",

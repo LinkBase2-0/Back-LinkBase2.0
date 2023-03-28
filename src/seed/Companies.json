@@ -1,25 +1,76 @@
 {
   "companies": [
     {
-      "name": "Loma negra"
+      "user": {
+        "email": "nico@gmail.com"
+      },
+      "company": {
+        "name": "Agrotv"
+      }
     },
     {
-      "name": "Siderurgia"
+      "user": {
+        "email": "marcos@gmail.com"
+      },
+      "company": {
+        "name": "Metalurgica Guemes"
+      }
     },
     {
-      "name": "Madrero"
+      "user": {
+        "email": "matias@gmail.com"
+      },
+      "company": {
+        "name": "Paqueta"
+      }
     },
     {
-      "name": "Pintureria"
+      "user": {
+        "email": "julian@gmail.com"
+      },
+      "company": {
+        "name": "Testmic"
+      }
     },
     {
-      "name": "Ferreteria"
+      "user": {
+        "email": "pedro@gmail.com"
+      },
+      "company": {
+        "name": "Metalurgica Guemes"
+      }
     },
     {
-      "name": "Todo limpio"
+      "user": {
+        "email": "leandro@gmail.com"
+      },
+      "company": {
+        "name": "Agrotv"
+      }
     },
     {
-      "name": "Inter-revoluc"
+      "user": {
+        "email": "julieta@gmail.com"
+      },
+      "company": {
+        "name": "Paqueta"
+      }
+    },
+    {
+      "user": {
+        "email": "francisco@gmail.com"
+      },
+      "company": {
+        "name": "Testmic"
+      }
+    },
+    {
+      "user": {
+        "email": "martin@gmail.com"
+      },
+      "company": {
+        "name": "Testmic"
+      }
     }
   ]
 }
