@@ -18,7 +18,9 @@ Para instalar el Backend de LinkBase, siga estos pasos:
 
     Clonar el repositorio.
     En la raíz del proyecto, ejecute el comando npm install para instalar las dependencias del proyecto.
+    Crear una base de dato de nombre linkBase
     Ejecute el comando npm start para iniciar la aplicación.
+    Ejecute el comando npm run seed para sedear la base de datos
 
 Funcionalidades
 
