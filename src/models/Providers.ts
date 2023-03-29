@@ -7,6 +7,7 @@ import {
 
 import DataBase from "../db";
 import Services from "./Services";
+import Categories from "./Categories";
 import Review from "./Reviews";
 
 export default class Provider extends Model<
@@ -25,6 +26,7 @@ export default class Provider extends Model<
   declare longitude: string;
 
   public readonly services?: Services[];
+  public readonly categories?: Categories[];
 
   public static associate() {
     Provider.belongsToMany(Services, {
@@ -32,11 +34,19 @@ export default class Provider extends Model<
       foreignKey: "ProviderId",
       as: "services",
     });
+    Provider.belongsToMany(Categories, {
+      through: "CategoryProvider",
+      foreignKey: "ProviderId",
+      as: "categories",
+    });
     Provider.hasMany(Review, { as: "reviews" });
   }
 
   public async addService(service: Services): Promise<void> {
     await (this as any).addServices(service);
+  }
+  public async addCategorie(category: Categories ): Promise<void> {
+    await (this as any).addCategories(category);
   }
 
   public async addReview(review: Review): Promise<void> {
