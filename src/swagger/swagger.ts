@@ -8,9 +8,9 @@ const options: swaggerJSDoc.Options = {
         info:{
             title: 'LinkBase',
             version: '2.0',
-            description:"Para instalar el Backend de LinkBase, siga estos pasos: 1)Clonar el repositorio. 2)En la raíz del proyecto, ejecute el comando npm install para instalar las dependencias del proyecto. 3)Crear una base de dato de nombre linkBase. 4)Ejecute el comando npm start para iniciar la aplicación. 5)Ejecute el comando npm run deletedb para borrar la db y npm run seed para sedear la base de datos"
+            description:"Para instalar el Backend de LinkBase, siga estos pasos:<br/><br/> <b/> <br/> 1)Clonar el repositorio. <br/> 2)En la raíz del proyecto, ejecute el comando npm install para instalar las dependencias del proyecto.<br/> 3)Crear una base de dato de nombre linkBase.<br/> 4)Ejecute el comando npm start para iniciar la aplicación.<br/> 5)Ejecute el comando npm run deletedb para borrar la db y npm run seed para sedear la base de datos"
         },
-       
+        
     },
     apis:['./src/routes/*.ts', './src/models/*.ts' ]
 }
