@@ -1,19 +1,33 @@
 import { Router } from "express";
 
-import { Services, Provider } from "../models";
+import { Services, Provider,Categories } from "../models";
 
 const router = Router();
 
 router.post("/", async (req, res, next) => {
   const { provider } = req.body;
   const { services } = req.body;
+  const {categories} = req.body;
   try {
     const newProvider = await Provider.create(provider);
+
     services.map((service: string) => {
       Services.findOrCreate({
         where: { name: service },
-      }).then((service) => newProvider.addService(service[0]));
+      }).then((service) => {
+        newProvider.addService(service[0])
+      } );
     });
+
+    categories.map(async (categoryName: string) => {
+      const category = await Categories.findOne({
+        where: { name: categoryName },
+      })
+      category && await newProvider.addCategorie(category)
+    });
+
+
+
     res.status(201).send(newProvider);
   } catch (error) {
     console.log(error);

@@ -4,8 +4,9 @@ import Provider from "./Providers";
 import Review from "./Reviews";
 import User from "./Users";
 import Company from "./Company";
+import Categories from "./Categories";
 
-export { Services, Provider, Review, User, Company };
+export { Services, Provider, Review, User, Company, Categories };
 
 
 /**

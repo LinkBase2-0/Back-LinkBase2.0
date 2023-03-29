@@ -1,25 +1,22 @@
 {
   "categories": [
     {
-      "name": "corralon"
+      "name": "Material de construccion"
     },
     {
-      "name": "autopartes"
+      "name": "Profesionales"
     },
     {
-      "name": "plastico"
+      "name": "Insumos"
     },
     {
-      "name": "siderurgia"
+      "name": "Maquinaria"
     },
     {
-      "name": "instruidor de aceite"
+      "name": "Repuestos"
     },
     {
-      "name": "harinas"
-    },
-    {
-      "name": "distribuidora de"
+      "name": "Servicios"
     }
   ]
 }

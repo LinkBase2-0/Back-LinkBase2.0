@@ -13,7 +13,8 @@
         "latitude": "35°10'53.2 S",
         "longitude": "59°04'22.9 W"
       },
-      "services": ["agroquimicos", "quimico industrial"]
+      "services": ["agroquimicos", "quimico industrial"],
+      "categories":["Insumos"]
     },
     {
       "provider": {
@@ -28,7 +29,8 @@
         "latitude": "35°00'06.2 S ",
         "longitude": "59°15'31.3 W"
       },
-      "services": ["molienda", "harinas", "venta de maquinaria"]
+      "services": ["molienda", "harinas", "venta de maquinaria"],
+      "categories":["Insumos", "Maquinaria"]
     },
     {
       "provider": {
@@ -43,7 +45,8 @@
         "latitude": "34°39'55.3 S",
         "longitude": "59°25'38.8 W"
       },
-      "services": ["bebidas alcoholicas", "gaseosas"]
+      "services": ["bebidas alcoholicas", "gaseosas"],
+      "categories":["Insumos"]
     },
     {
       "provider": {
@@ -62,7 +65,8 @@
         "produccion de expeller",
         "produccion de aceite de soja",
         "balanceado para animales"
-      ]
+      ],
+      "categories":["Insumos"]
     },
     {
       "provider": {
@@ -82,7 +86,8 @@
         "gaseosas",
         "bebidas alcoholicas",
         "venta de maquinaria"
-      ]
+      ],
+      "categories":["Insumos", "Repuestos", "Maquinaria"]
     },
     {
       "provider": {
@@ -103,7 +108,8 @@
         "forrajeria",
         "veterinaria",
         "accesorios para animales"
-      ]
+      ],
+      "categories":["Insumos", "Repuestos"]
     },
     {
       "provider": {
@@ -118,7 +124,8 @@
         "latitude": "35°01'32.2 S",
         "longitude": "63°00'08.5 W"
       },
-      "services": ["suelas para calzado", "textil"]
+      "services": ["suelas para calzado", "textil"],
+      "categories":["Insumos", "Repuestos"]
     },
     {
       "provider": {
@@ -133,7 +140,8 @@
         "latitude": "32°23'35.0 S",
         "longitude": "63°14'10.8 W"
       },
-      "services": ["pallets", "cajones", "tirantes", "parrillas"]
+      "services": ["pallets", "cajones", "tirantes", "parrillas"],
+      "categories":["Insumos", "Material de construccion"]
     },
     {
       "provider": {
@@ -157,7 +165,8 @@
         "ladrillos",
         "refractarios",
         "tanques de plasticos"
-      ]
+      ],
+      "categories":[ "Material de construccion"]
     },
     {
       "provider": {
@@ -177,7 +186,9 @@
         "exportacion",
         "autopartes",
         "accesorios de vehiculo"
-      ]
+      ],
+      "categories":["Insumos", "Repuestos", "Maquinaria"]
+      
     }
   ]
 }
