@@ -188,7 +188,91 @@
         "accesorios de vehiculo"
       ],
       "categories":["Insumos", "Repuestos", "Maquinaria"]
-      
+    },
+    {
+      "provider": {
+        "name": "CHAVEZ Y ASOCIADO",
+        "email": "chavez@gmail.com.ar",
+        "phone": 541143100100,
+        "web": "https://www.marval.com/",
+        "photoURL": "https://imgs.search.brave.com/WRYyt8u8u2xa32tkkbhED1qzqWlFEaKFxXocgZ1ZmxI/rs:fit:699:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5M/bWpZS056XzhuQjhm/cnN0ZlM4X1JnSGFG/QiZwaWQ9QXBp",
+        "isPending": false,
+        "time": "09 a 14 hs",
+        "address": "Dirección: 40 Dorrego 1325, Balcarce, Buenos Aires, Argentina",
+        "latitude": "34°35'12.8 S",
+        "longitude": "58°26'43.7 W"
+      },
+      "services": [
+        "consultas",
+        "litigios",
+        "derecho comercial",
+        "Tramites judiciales",
+        "Accidente de trabajo"
+      ],
+      "categories":["Servicios"]
+    },
+    {
+      "provider": {
+        "name": " EL CONDOR E.T.S.A",
+        "email": "condor@gmail.com.ar",
+        "phone": 541143156987,
+        "web": "https://condorestrella.com.ar/",
+        "photoURL": "https://condorestrella.com.ar/assets/img/logo.jpg",
+        "isPending": false,
+        "time": "00 a 24 hs",
+        "address": "B1902CJS, C. 4 453, B1902CJS La Plata, Provincia de Buenos Aires",
+        "latitude": "34°54'20.9 S",
+        "longitude": "57°57'14.4 W"
+      },
+      "services": [
+        "fletes",
+        "encomiendas",
+        "transporte de pasajeros"
+      ],
+      "categories":["Servicios"]
+    },
+    {
+      "provider": {
+        "name": "Unicad Solution",
+        "email": "unicad@gmail.com.ar",
+        "phone": 541143236987,
+        "web": "https://unicad-solutions.com/",
+        "photoURL": "https://unicad-solutions.com/imgs/cubo.png",
+        "isPending": false,
+        "time": "00 a 24 hs",
+        "address": "B1902CJS, C. 4 453, B1902CJS La Plata, Provincia de Buenos Aires",
+        "latitude": "34°54'20.9 S",
+        "longitude": "57°57'14.4 W"
+      },
+      "services": [
+        "ingenieros civiles",
+        "ingenieros mecanicos",
+        "ingenieros electromecanicos",
+        "calculos",
+        "diseño",
+        "planos"
+      ],
+      "categories":["Servicios", "Profesionales"]
+    },
+    {
+      "provider": {
+        "name": "Plataforma5",
+        "email": "contacto@plataforma5.la",
+        "phone": 541143231234,
+        "web": "https://www.plataforma5.la/",
+        "photoURL": "https://www.plataforma5.la/static/media/P5Desktop.d1842dd2bff00677295cd7d28a29e60c.svg",
+        "isPending": false,
+        "time": "00 a 24 hs",
+        "address": "Ciudad de Buenos aires",
+        "latitude": "34°54'20.9 S",
+        "longitude": "57°57'14.4 W"
+      },
+      "services": [
+        "developers",
+        "los mejores developers",
+        "personas copadas que resuelven problemas"
+      ],
+      "categories":[ "Profesionales"]
     }
   ]
 }
