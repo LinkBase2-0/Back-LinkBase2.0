@@ -7,12 +7,12 @@ import DataBase from "./db";
 
 import router from "./routes";
 
-import { Categorie, User, Review, Provider, Company } from "./models/index";
+import { Services, User, Review, Provider, Company } from "./models/index";
 import { Optional } from "sequelize";
 import swaggerDocs from "./swagger/swagger";
 
 Provider.associate();
-Categorie.associate();
+Services.associate();
 User.associate();
 Review.associate();
 Company.associate();

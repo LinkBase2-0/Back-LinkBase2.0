@@ -3,58 +3,67 @@ import { Router } from "express";
 import { generateToken } from "../config/token";
 import { validateAuth } from "../middleware/auth";
 
-import User from "../models/Users";
+import { User, Company } from "../models";
 
 const router = Router();
 
 /**
-* @openapi
-* /users/register:
-*    post:
-*      tags:
-*      - users
-*      summary: Create new user on te db
-*  
-*      requestBody:
-*        content:
-*          application/json:
-*            schema:
-*              $ref: '#/components/schemas/bodyUsersRegisterPost'
-*        required: true
-*      responses:
-*        200:
-*          description: (OK) Created
-*          content:
-*            application/json:
-*              schema:
-*                $ref: '#/components/schemas/bodyUsersRegisterPost'
-*        400:
-*          $ref: '#/components/responses/BadRequest'
-*        401:
-*          $ref: '#/components/responses/Unauthorized' 
-*        404:
-*          $ref: '#/components/responses/NotFound'
-*        500:
-*          $ref: '#/components/responses/ServerError'
-* components:
-*       responses:
-*          
-*          Unauthorized:
-*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
-*          
-*          NotFound:
-*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
-*          
-*          BadRequest:
-*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
-*            
-*          ServerError:
-*            description: Error en servidor
-*/       
+ * @openapi
+ * /users/register:
+ *    post:
+ *      tags:
+ *      - users
+ *      summary: Create new user on te db
+ *
+ *      requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/bodyUsersRegisterPost'
+ *        required: true
+ *      responses:
+ *        200:
+ *          description: (OK) Created
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/bodyUsersRegisterPost'
+ *        400:
+ *          $ref: '#/components/responses/BadRequest'
+ *        401:
+ *          $ref: '#/components/responses/Unauthorized'
+ *        404:
+ *          $ref: '#/components/responses/NotFound'
+ *        500:
+ *          $ref: '#/components/responses/ServerError'
+ * components:
+ *       responses:
+ *
+ *          Unauthorized:
+ *            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+ *
+ *          NotFound:
+ *            description: (NotFound) No se encontrÃ³ informaciÃ³n
+ *
+ *          BadRequest:
+ *            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+ *
+ *          ServerError:
+ *            description: Error en servidor
+ */
 router.post("/register", async (req, res, next) => {
+  const user = req.body.user;
+  const name = req.body.company?.name
   try {
-    const newUser = await User.create({ ...req.body });
-    res.status(201).send(newUser);
+    if (name) {
+      const newCompany = await Company.findOrCreate({ where: { name } });
+      const newUser = await User.create(user);
+      await newCompany[0].addUser(newUser);
+      res.status(201).send(newUser);
+    } else {
+      const newUser = await User.create(user);
+      res.status(201).send(newUser);
+    }
   } catch (error) {
     console.log(error);
   }
@@ -76,7 +85,7 @@ router.post("/login", (req, res) => {
 
       const payload = {
         email: user.email,
-        fullName: user.fullName
+        fullName: user.fullName,
       };
       const token = generateToken(payload);
       res.cookie("token", token, { httpOnly: true });
@@ -90,9 +99,6 @@ router.post("/logout", async (req, res, next) => {
   res.sendStatus(204);
 });
 
-
-
-
 router.get("/:email", async (req, res, next) => {
   const { email } = req.params;
   try {
@@ -104,8 +110,6 @@ router.get("/:email", async (req, res, next) => {
 });
 
 // ----- ADMIN ------
-
-
 
 router.get("/", async (req, res, next) => {
   try {

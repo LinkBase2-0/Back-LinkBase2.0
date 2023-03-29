@@ -1,18 +1,18 @@
 import { Router } from "express";
 
-import { Categorie, Provider } from "../models";
+import { Services, Provider } from "../models";
 
 const router = Router();
 
 router.post("/", async (req, res, next) => {
   const { provider } = req.body;
-  const { categories } = req.body;
+  const { services } = req.body;
   try {
     const newProvider = await Provider.create(provider);
-    categories.map((categorie: string) => {
-      Categorie.findOrCreate({
-        where: { name: categorie },
-      }).then((category) => newProvider.addCategory(category[0]));
+    services.map((service: string) => {
+      Services.findOrCreate({
+        where: { name: service },
+      }).then((service) => newProvider.addService(service[0]));
     });
     res.status(201).send(newProvider);
   } catch (error) {
@@ -81,10 +81,10 @@ router.get("/pendingT", async (req, res, next) => {
   }
 });
 
-router.get("/filter/:categorieName", async (req, res, next) => {
-  const name = req.params.categorieName;
+router.get("/filter/:serviceName", async (req, res, next) => {
+  const name = req.params.serviceName;
   try {
-    const providers = await Categorie.findOne({
+    const providers = await Services.findOne({
       where: { name },
       include: { model: Provider, as: "providers" },
     });

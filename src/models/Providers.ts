@@ -6,7 +6,7 @@ import {
 } from "sequelize";
 
 import DataBase from "../db";
-import Categorie from "./Categories";
+import Services from "./Services";
 import Review from "./Reviews";
 
 export default class Provider extends Model<
@@ -24,19 +24,19 @@ export default class Provider extends Model<
   declare latitude: string;
   declare longitude: string;
 
-  public readonly categories?: Categorie[];
+  public readonly services?: Services[];
 
   public static associate() {
-    Provider.belongsToMany(Categorie, {
-      through: "CategorieProvider",
+    Provider.belongsToMany(Services, {
+      through: "ServiceProvider",
       foreignKey: "ProviderId",
-      as: "categories",
+      as: "services",
     });
     Provider.hasMany(Review, { as: "reviews" });
   }
 
-  public async addCategory(category: Categorie): Promise<void> {
-    await (this as any).addCategories(category);
+  public async addService(service: Services): Promise<void> {
+    await (this as any).addServices(service);
   }
 
   public async addReview(review: Review): Promise<void> {

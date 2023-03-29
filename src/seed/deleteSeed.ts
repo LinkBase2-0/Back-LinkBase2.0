@@ -1,13 +1,13 @@
-import { Categorie, Company, Provider, Review, User } from "../models";
+import { Services, Company, Provider, Review, User } from "../models";
 
 Provider.findAll().then((arrayProviders) => {
   arrayProviders.forEach((provider) => {
     Provider.destroy({ where: { email: provider.email } });
   });
 });
-Categorie.findAll().then((arrayCategories) => {
-  arrayCategories.forEach((categorie) => {
-    Categorie.destroy({ where: { name: categorie.name } });
+Services.findAll().then((arrayServices) => {
+  arrayServices.forEach((services) => {
+    Services.destroy({ where: { name: services.name } });
   });
 });
 User.findAll().then((arrayUsers) => {

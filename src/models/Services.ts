@@ -8,18 +8,18 @@ import {
 import DataBase from "../db";
 import Provider from "./Providers";
 
-export default class Categorie extends Model<
-  InferAttributes<Categorie>,
-  InferCreationAttributes<Categorie>
+export default class Services extends Model<
+  InferAttributes<Services>,
+  InferCreationAttributes<Services>
 > {
   declare name: string;
 
   public readonly providers?: Provider[];
 
   public static associate() {
-    Categorie.belongsToMany(Provider, {
-      through: 'CategorieProvider',
-      foreignKey: 'CategorieId',
+    Services.belongsToMany(Provider, {
+      through: 'ServiceProvider',
+      foreignKey: 'ServiceId',
       as: 'providers',
     });
   }
@@ -35,12 +35,12 @@ export default class Categorie extends Model<
   }
 }
 
-Categorie.init(
+Services.init(
   {
     name: {
       type: new DataTypes.STRING(128),
       allowNull: false,
     },
   },
-  { sequelize: DataBase, tableName: "categories" }
+  { sequelize: DataBase, tableName: "Services" }
 );
