@@ -4,6 +4,52 @@ import { Services, Provider,Categories } from "../models";
 
 const router = Router();
 
+
+
+/**
+* @openapi
+* /providers:
+*    post:
+*      tags:
+*      - providers
+*      summary: To create a new provider
+*  
+*      requestBody:
+*        content:
+*          application/json:
+*            schema:
+*              $ref: '#/components/schemas/bodyProvidersPost'
+*        required: true
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/bodyProvidersPost'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/ 
 router.post("/", async (req, res, next) => {
   const { provider } = req.body;
   const { services } = req.body;
@@ -34,6 +80,55 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+
+
+
+
+
+/**
+* @openapi
+* /providers/{name}:
+*    put:
+*      tags:
+*      - providers
+*      summary: To update a new provider
+*      parameters:
+*      - name: name
+*        in: path
+*        required: true
+*        schema:
+*          type: string  
+*  
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/bodyProvidersPost'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/ 
 router.put("/:name", async (req, res, next) => {
   const { name } = req.params;
   try {
@@ -47,6 +142,52 @@ router.put("/:name", async (req, res, next) => {
   }
 });
 
+
+
+/**
+* @openapi
+* /providers/{name}:
+*    put:
+*      tags:
+*      - providers
+*      summary: To update a new provider
+*      parameters:
+*      - name: name
+*        in: path
+*        required: true
+*        schema:
+*          type: string  
+*  
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/bodyProvidersPost'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/ 
 router.delete("/:name", async (req, res, next) => {
   const { name } = req.params;
   try {
@@ -58,6 +199,52 @@ router.delete("/:name", async (req, res, next) => {
   }
 });
 
+
+
+/**
+* @openapi
+* /providers/{name}:
+*    get:
+*      tags:
+*      - providers
+*      summary: To get one provider
+*      parameters:
+*      - name: name
+*        in: path
+*        required: true
+*        schema:
+*          type: string  
+*  
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/bodyProvidersPost'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/ 
 router.get("/:name", async (req, res, next) => {
   const { name } = req.params;
   try {
@@ -68,6 +255,47 @@ router.get("/:name", async (req, res, next) => {
   }
 });
 
+
+
+
+/**
+* @openapi
+* /providers:
+*    get:
+*      tags:
+*      - providers
+*      summary: To get all providers
+*  
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/bodyProvidersPost'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/ 
 router.get("/", async (req, res, next) => {
   try {
     const providers = await Provider.findAll();
@@ -95,8 +323,54 @@ router.get("/pendingT", async (req, res, next) => {
   }
 });
 
-router.get("/filter/:serviceName", async (req, res, next) => {
-  const name = req.params.serviceName;
+
+
+/**
+* @openapi
+* /providers/filter/{categorieName}:
+*    get:
+*      tags:
+*      - providers
+*      summary: To get all the providers of a certain categorie
+*      parameters:
+*      - name: categorieName
+*        in: path
+*        required: true
+*        schema:
+*          type: string  
+*  
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/bodyProvidersPost'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/ 
+router.get("/filter/:categorieName", async (req, res, next) => {
+  const name = req.params.categorieName;
   try {
     const providers = await Services.findOne({
       where: { name },
