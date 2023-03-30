@@ -251,6 +251,12 @@ router.get("/", async (req, res, next) => {
 *        schema:
 *          type: string 
 *  
+*      requestBody:
+*        content:
+*          application/json:
+*            schema:
+*              $ref: '#/components/schemas/bodyUsersRegisterPost'
+*        required: true
 *      responses:
 *        200:
 *          description: (OK) Created
