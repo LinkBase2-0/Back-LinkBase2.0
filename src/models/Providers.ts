@@ -9,6 +9,7 @@ import DataBase from "../db";
 import Services from "./Services";
 import Categories from "./Categories";
 import Review from "./Reviews";
+import User from "./Users";
 
 export default class Provider extends Model<
   InferAttributes<Provider>,
@@ -40,11 +41,17 @@ export default class Provider extends Model<
       as: "categories",
     });
     Provider.hasMany(Review, { as: "reviews" });
+    Provider.belongsTo(User)
   }
 
   public async addService(service: Services): Promise<void> {
     await (this as any).addServices(service);
   }
+
+  public async setTo(user: User): Promise<void> {
+    await (this as any).setUser(user);
+  }
+
   public async addCategorie(category: Categories ): Promise<void> {
     await (this as any).addCategories(category);
   }

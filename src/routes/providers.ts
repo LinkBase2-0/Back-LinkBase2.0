@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { Services, Provider,Categories } from "../models";
+import { Services, Provider,Categories, User } from "../models";
 
 const router = Router();
 
@@ -54,6 +54,7 @@ router.post("/", async (req, res, next) => {
   const { provider } = req.body;
   const { services } = req.body;
   const {categories} = req.body;
+  const {user} = req.body
   try {
     const newProvider = await Provider.create(provider);
 
@@ -72,7 +73,8 @@ router.post("/", async (req, res, next) => {
       category && await newProvider.addCategorie(category)
     });
 
-
+    User.findOne({where:{email: user.email}})
+    .then(user => user && newProvider.setTo(user)) 
 
     res.status(201).send(newProvider);
   } catch (error) {
