@@ -225,7 +225,7 @@
         "email": "chavez@gmail.com.ar",
         "phone": 541143100100,
         "web": "https://www.marval.com/",
-        "photoURL": "https://imgs.search.brave.com/WRYyt8u8u2xa32tkkbhED1qzqWlFEaKFxXocgZ1ZmxI/rs:fit:699:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5M/bWpZS056XzhuQjhm/cnN0ZlM4X1JnSGFG/QiZwaWQ9QXBp",
+        "photoURL": "https://www.facebook.com/profile.php?id=100069549560457&__tn__=%3C",
         "isPending": false,
         "time": "09 a 14 hs",
         "address": "Dirección: 40 Dorrego 1325, Balcarce, Buenos Aires, Argentina",
@@ -239,7 +239,10 @@
         "Tramites judiciales",
         "Accidente de trabajo"
       ],
-      "categories":["Servicios"]
+      "categories":["Servicios"],
+      "user" : {
+        "email" : "tomas@gmail.com"
+      }
     },
     {
       "provider": {
@@ -259,7 +262,10 @@
         "encomiendas",
         "transporte de pasajeros"
       ],
-      "categories":["Servicios"]
+      "categories":["Servicios"],
+      "user" : {
+        "email" : "tomas@gmail.com"
+      }
     },
     {
       "provider": {
@@ -282,7 +288,10 @@
         "diseño",
         "planos"
       ],
-      "categories":["Servicios", "Profesionales"]
+      "categories":["Servicios", "Profesionales"],
+      "user" : {
+        "email" : "tomas@gmail.com"
+      }
     },
     {
       "provider": {
@@ -302,8 +311,7 @@
         "los mejores developers",
         "personas copadas que resuelven problemas"
       ],
-      "categories":[ "Profesionales"]
-      "categories":["Insumos", "Repuestos", "Maquinaria"],
+      "categories":[ "Profesionales"],
       "user" : {
         "email" : "tomas@gmail.com"
       }
