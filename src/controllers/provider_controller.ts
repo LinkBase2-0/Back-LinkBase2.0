@@ -7,6 +7,8 @@ import {
   getProviders,
   filterByCategorie,
   filterByService,
+  getProvidersF,
+  getProvidersT,
 } from "../services/provider_service";
 
 export const provider_create_post = async (req: Request, res: Response) => {
@@ -61,5 +63,15 @@ export const provider_filter_by_service = async (
 ) => {
   const name = req.params.serviceName;
   const providers = await filterByService(name);
+  return res.status(200).send(providers);
+};
+
+export const provider_pending_false = async (req: Request, res: Response) => {
+  const providers = await getProvidersF();
+  return res.status(200).send(providers);
+};
+
+export const provider_pending_true = async (req: Request, res: Response) => {
+  const providers = await getProvidersT();
   return res.status(200).send(providers);
 };

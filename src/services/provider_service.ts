@@ -97,3 +97,21 @@ export const filterByService = async (name: string) => {
     console.log(error);
   }
 };
+
+export const getProvidersF = async () => {
+  try {
+    const providers = await Provider.findAll({ where: { isPending: false } });
+    return providers;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getProvidersT = async () => {
+  try {
+    const providers = await Provider.findAll({ where: { isPending: true } });
+    return providers;
+  } catch (error) {
+    console.log(error);
+  }
+};

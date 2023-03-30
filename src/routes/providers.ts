@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import { Services, Provider,Categories, User } from "../models";
 
-import {provider_create_post, provider_update, provider_delete, provider_get_one, provider_get_all, provider_filter_by_categorie, provider_filter_by_service} from "../controllers/provider_controller"
+import {provider_create_post, provider_update, provider_delete, provider_get_one, provider_get_all, provider_filter_by_categorie, provider_filter_by_service, provider_pending_false, provider_pending_true} from "../controllers/provider_controller"
 
 const router = Router();
 
@@ -236,24 +236,87 @@ router.get("/:name", provider_get_one)
 router.get("/", provider_get_all)
 
 
-router.get("/pendingF", async (req, res, next) => {
-  try {
-    const providers = await Provider.findAll({ where: { isPending: false } });
-    res.status(200).send(providers);
-  } catch (error) {
-    console.log(error);
-  }
-});
 
-router.get("/pendingT", async (req, res, next) => {
-  try {
-    const providers = await Provider.findAll({ where: { isPending: true } });
-    res.status(200).send(providers);
-  } catch (error) {
-    console.log(error);
-  }
-});
+/**
+* @openapi
+* /providers/pendingF:
+*    get:
+*      tags:
+*      - providers
+*      summary: To get all providers with pending false
+*  
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/bodyProvidersPost'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/ 
+router.get("/pendingF", provider_pending_false)
 
+
+/**
+* @openapi
+* /providers/pendingT:
+*    get:
+*      tags:
+*      - providers
+*      summary: To get all providers with pending true
+*  
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/bodyProvidersPost'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/ 
+router.get("/pendingT", provider_pending_true)
 
 /**
 * @openapi
