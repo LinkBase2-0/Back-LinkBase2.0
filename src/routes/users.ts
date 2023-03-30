@@ -1,9 +1,7 @@
 import { Router } from "express";
-
 import { generateToken } from "../config/token";
-import { validateAuth } from "../middleware/auth";
-
-import { User, Company } from "../models";
+import { User } from "../models";
+import {user_create_post} from "../controllers/user_controller"
 
 const router = Router();
 
@@ -51,23 +49,7 @@ const router = Router();
  *          ServerError:
  *            description: Error en servidor
  */
-router.post("/register", async (req, res, next) => {
-  const user = req.body.user;
-  const name = req.body.company?.name
-  try {
-    if (name) {
-      const newCompany = await Company.findOrCreate({ where: { name } });
-      const newUser = await User.create(user);
-      await newCompany[0].addUser(newUser);
-      res.status(201).send(newUser);
-    } else {
-      const newUser = await User.create(user);
-      res.status(201).send(newUser);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-});
+router.post("/register", user_create_post );
 
 
 
