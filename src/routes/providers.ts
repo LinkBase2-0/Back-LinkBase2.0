@@ -331,7 +331,7 @@ router.get("/pendingT", async (req, res, next) => {
 *    get:
 *      tags:
 *      - providers
-*      summary: To get all the providers of a certain categorie
+*      summary: To get all the providers of a certain service
 *      parameters:
 *      - name: categorieName
 *        in: path

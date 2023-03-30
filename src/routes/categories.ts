@@ -1,23 +1,24 @@
 import { Router } from "express";
+import { Categories, Provider } from "../models";
 
-import { Company, User } from "../models";
 
 const router = Router();
 
 
+
 /**
 * @openapi
-* /companies:
+* /categories:
 *    post:
 *      tags:
-*      - companies
-*      summary: To create a new companie
+*      - categories
+*      summary: To create a new categorie
 *  
 *      requestBody:
 *        content:
 *          application/json:
 *            schema:
-*              $ref: '#/components/schemas/bodyCompanyPost'
+*              $ref: '#/components/schemas/bodyCategoriesPost'
 *        required: true
 *      responses:
 *        200:
@@ -25,7 +26,7 @@ const router = Router();
 *          content:
 *            application/json:
 *              schema:
-*                $ref: '#/components/schemas/bodyCompanyPost'
+*                $ref: '#/components/schemas/bodyCategoriesPost'
 *        400:
 *          $ref: '#/components/responses/BadRequest'
 *        401:
@@ -49,30 +50,25 @@ const router = Router();
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.post("/", async (req, res) => {
-  const { email } = req.body.user;
-  const { name } = req.body.company;
-  try {
-    const newCompany = await Company.findOrCreate({ where: { name } });
-    const user: any = await User.findOne({ where: { email } });
-    await newCompany[0].addUser(user);
-    res.status(200).send(newCompany[0]);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
+router.post("/", async (req, res, next) => {
+    try {
+      const newCategory = await Categories.create(req.body);
+      res.status(201).send(newCategory);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
 
 /**
 * @openapi
-* /companies/{name}:
+* /categories/filter/{categoryName}:
 *    get:
 *      tags:
-*      - companies
-*      summary: To get all user from one companie
+*      - categories
+*      summary: To get all the providers of a certain categorie
 *      parameters:
-*      - name: name
+*      - name: categoryName
 *        in: path
 *        required: true
 *        schema:
@@ -84,7 +80,7 @@ router.post("/", async (req, res) => {
 *          content:
 *            application/json:
 *              schema:
-*                $ref: '#/components/schemas/bodyCompanyPost'
+*                $ref: '#/components/schemas/bodyCategoriesPost'
 *        400:
 *          $ref: '#/components/responses/BadRequest'
 *        401:
@@ -107,29 +103,29 @@ router.post("/", async (req, res) => {
 *            
 *          ServerError:
 *            description: Error en servidor
-*/ 
-router.get("/:name", async (req, res) => {
-  const { name } = req.params;
-  try {
-    const users = await Company.findOne({
-      where: { name },
-      include: { model: User, as: "users" },
-    });
-    res.status(200).send(users);
-  } catch (error) {
-    console.log(error);
-  }
+*/   
+router.get("/filter/:categoryName", async (req, res, next) => {
+    const name = req.params.categoryName;
+    try {
+        const providers = await Categories.findOne({
+            where: { name },
+            include: { model: Provider, as: "providers" },
+        });
+        res.status(200).send(providers?.providers);
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 
 
 /**
 * @openapi
-* /companies:
+* /categories:
 *    get:
 *      tags:
-*      - companies
-*      summary: To get all companies
+*      - categories
+*      summary: To get all categories
 *  
 *      responses:
 *        200:
@@ -137,7 +133,7 @@ router.get("/:name", async (req, res) => {
 *          content:
 *            application/json:
 *              schema:
-*                $ref: '#/components/schemas/bodyCompanyPost'
+*                $ref: '#/components/schemas/bodyCategoriesPost'
 *        400:
 *          $ref: '#/components/responses/BadRequest'
 *        401:
@@ -161,13 +157,13 @@ router.get("/:name", async (req, res) => {
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/", async (req, res) => {
-  try {
-    const companies = await Company.findAll();
-    res.status(200).send(companies);
-  } catch (error) {
-    console.log(error);
-  }
+router.get("/", async (req, res, next) => {
+    try {
+        const categories = await Categories.findAll();
+        res.status(200).send(categories);
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 export default router;

@@ -8,17 +8,17 @@ const router = Router();
 
 /**
 * @openapi
-* /categories:
+* /services:
 *    post:
 *      tags:
-*      - categories
-*      summary: To create a new categorie
+*      - services
+*      summary: To create a new service
 *  
 *      requestBody:
 *        content:
 *          application/json:
 *            schema:
-*              $ref: '#/components/schemas/bodyCategoriesPost'
+*              $ref: '#/components/schemas/bodyServicesPost'
 *        required: true
 *      responses:
 *        200:
@@ -26,7 +26,7 @@ const router = Router();
 *          content:
 *            application/json:
 *              schema:
-*                $ref: '#/components/schemas/bodyCategoriesPost'
+*                $ref: '#/components/schemas/bodyServicesPost'
 *        400:
 *          $ref: '#/components/responses/BadRequest'
 *        401:
@@ -63,11 +63,11 @@ router.post("/", async (req, res, next) => {
 
 /**
 * @openapi
-* /categories/{name}:
+* /services/{name}:
 *    delete:
 *      tags:
-*      - categories
-*      summary: To delete one categorie
+*      - services
+*      summary: To delete one service
 *      parameters:
 *      - name: name
 *        in: path
@@ -81,7 +81,7 @@ router.post("/", async (req, res, next) => {
 *          content:
 *            application/json:
 *              schema:
-*                $ref: '#/components/schemas/bodyCategoriesPost'
+*                $ref: '#/components/schemas/bodyServicesPost'
 *        400:
 *          $ref: '#/components/responses/BadRequest'
 *        401:
@@ -121,11 +121,11 @@ router.delete("/:name", async (req, res, next) => {
 
 /**
 * @openapi
-* /categories/{name}:
+* /services/{name}:
 *    put:
 *      tags:
-*      - categories
-*      summary: To update one categorie
+*      - services
+*      summary: To update one service
 *      parameters:
 *      - name: name
 *        in: path
@@ -139,7 +139,7 @@ router.delete("/:name", async (req, res, next) => {
 *          content:
 *            application/json:
 *              schema:
-*                $ref: '#/components/schemas/bodyCategoriesPost'
+*                $ref: '#/components/schemas/bodyServicesPost'
 *        400:
 *          $ref: '#/components/responses/BadRequest'
 *        401:
@@ -181,11 +181,11 @@ router.put("/:name", async (req, res, next) => {
 
 /**
 * @openapi
-* /categories:
+* /services:
 *    get:
 *      tags:
-*      - categories
-*      summary: To get all categories
+*      - services
+*      summary: To get all services
 *
 *      responses:
 *        200:
@@ -193,7 +193,7 @@ router.put("/:name", async (req, res, next) => {
 *          content:
 *            application/json:
 *              schema:
-*                $ref: '#/components/schemas/bodyCategoriesPost'
+*                $ref: '#/components/schemas/bodyServicesPost'
 *        400:
 *          $ref: '#/components/responses/BadRequest'
 *        401:
