@@ -74,6 +74,10 @@ export { Services, Provider, Review, User, Company, Categories };
 *                  type: string   
 *          services:
 *             type: enum
+*             description: Array of strings
+*          categories:
+*             type: enum
+*             description: Array of strings
 *
 *
 *     bodyReviewsPost:
@@ -98,6 +102,11 @@ export { Services, Provider, Review, User, Company, Categories };
 *                 type: string
 *
 *     bodyCategoriesPost:
+*       type: object
+*       properties:
+*         name:
+*           type: string
+*     bodyServicesPost:
 *       type: object
 *       properties:
 *         name:

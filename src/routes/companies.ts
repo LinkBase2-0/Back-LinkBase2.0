@@ -128,7 +128,7 @@ router.get("/:name", async (req, res) => {
 * /companies:
 *    get:
 *      tags:
-*      - reviews
+*      - companies
 *      summary: To get all companies
 *  
 *      responses:
