@@ -60,64 +60,6 @@ router.post("/", async (req, res, next) => {
   });
 
 
-/**
-* @openapi
-* /categories/filter/{categoryName}:
-*    get:
-*      tags:
-*      - categories
-*      summary: To get all the providers of a certain categorie
-*      parameters:
-*      - name: categoryName
-*        in: path
-*        required: true
-*        schema:
-*          type: string  
-*
-*      responses:
-*        200:
-*          description: (OK) Created
-*          content:
-*            application/json:
-*              schema:
-*                $ref: '#/components/schemas/bodyCategoriesPost'
-*        400:
-*          $ref: '#/components/responses/BadRequest'
-*        401:
-*          $ref: '#/components/responses/Unauthorized' 
-*        404:
-*          $ref: '#/components/responses/NotFound'
-*        500:
-*          $ref: '#/components/responses/ServerError'
-* components:
-*       responses:
-*          
-*          Unauthorized:
-*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
-*          
-*          NotFound:
-*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
-*          
-*          BadRequest:
-*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
-*            
-*          ServerError:
-*            description: Error en servidor
-*/   
-router.get("/filter/:categoryName", async (req, res, next) => {
-    const name = req.params.categoryName;
-    try {
-        const providers = await Categories.findOne({
-            where: { name },
-            include: { model: Provider, as: "providers" },
-        });
-        res.status(200).send(providers?.providers);
-    } catch (error) {
-        console.log(error);
-    }
-});
-
-
 
 /**
 * @openapi
