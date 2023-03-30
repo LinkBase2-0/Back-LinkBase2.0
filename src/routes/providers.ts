@@ -2,8 +2,9 @@ import { Router } from "express";
 
 import { Services, Provider,Categories, User } from "../models";
 
-const router = Router();
+import {provider_create_post, provider_update, provider_delete, provider_get_one, provider_get_all, provider_filter_by_categorie, provider_filter_by_service} from "../controllers/provider_controller"
 
+const router = Router();
 
 
 /**
@@ -50,41 +51,7 @@ const router = Router();
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.post("/", async (req, res, next) => {
-  const { provider } = req.body;
-  const { services } = req.body;
-  const {categories} = req.body;
-  const {user} = req.body
-  try {
-    const newProvider = await Provider.create(provider);
-
-    services.map((service: string) => {
-      Services.findOrCreate({
-        where: { name: service },
-      }).then((service) => {
-        newProvider.addService(service[0])
-      } );
-    });
-
-    categories.map(async (categoryName: string) => {
-      const category = await Categories.findOne({
-        where: { name: categoryName },
-      })
-      category && await newProvider.addCategorie(category)
-    });
-
-    User.findOne({where:{email: user.email}})
-    .then(user => user && newProvider.setTo(user)) 
-
-    res.status(201).send(newProvider);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-
-
-
+router.post("/", provider_create_post )
 
 
 /**
@@ -93,7 +60,7 @@ router.post("/", async (req, res, next) => {
 *    put:
 *      tags:
 *      - providers
-*      summary: To update a new provider
+*      summary: To update a provider
 *      parameters:
 *      - name: name
 *        in: path
@@ -131,28 +98,16 @@ router.post("/", async (req, res, next) => {
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.put("/:name", async (req, res, next) => {
-  const { name } = req.params;
-  try {
-    const providerUpdated = await Provider.update(req.body, {
-      where: { name },
-      returning: true,
-    });
-    res.status(200).send(providerUpdated[1][0]);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
+router.put("/:name", provider_update)
 
 
 /**
 * @openapi
 * /providers/{name}:
-*    put:
+*    delete:
 *      tags:
 *      - providers
-*      summary: To update a new provider
+*      summary: To delete a provider
 *      parameters:
 *      - name: name
 *        in: path
@@ -190,17 +145,7 @@ router.put("/:name", async (req, res, next) => {
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.delete("/:name", async (req, res, next) => {
-  const { name } = req.params;
-  try {
-    const providerToDelete = await Provider.findOne({ where: { name } });
-    const providerDeleted = await Provider.destroy({ where: { name } });
-    res.status(200).send(providerToDelete);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
+router.delete("/:name", provider_delete)
 
 
 /**
@@ -247,17 +192,7 @@ router.delete("/:name", async (req, res, next) => {
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/:name", async (req, res, next) => {
-  const { name } = req.params;
-  try {
-    const provider = await Provider.findOne({ where: { name } });
-    res.status(200).send(provider);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-
+router.get("/:name", provider_get_one)
 
 
 /**
@@ -298,14 +233,8 @@ router.get("/:name", async (req, res, next) => {
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/", async (req, res, next) => {
-  try {
-    const providers = await Provider.findAll();
-    res.status(200).send(providers);
-  } catch (error) {
-    console.log(error);
-  }
-});
+router.get("/", provider_get_all)
+
 
 router.get("/pendingF", async (req, res, next) => {
   try {
@@ -326,11 +255,9 @@ router.get("/pendingT", async (req, res, next) => {
 });
 
 
-
-
 /**
 * @openapi
-* /providers/filter/{categorieName}:
+* /providers/filterByCategorie/{categorieName}:
 *    get:
 *      tags:
 *      - providers
@@ -372,25 +299,12 @@ router.get("/pendingT", async (req, res, next) => {
 *          ServerError:
 *            description: Error en servidor
 */   
-router.get("/filter/:categorieName", async (req, res, next) => {
-  const name = req.params.categorieName;
-  try {
-      const providers = await Categories.findOne({
-          where: { name },
-          include: { model: Provider, as: "providers" },
-      });
-      res.status(200).send(providers?.providers);
-  } catch (error) {
-      console.log(error);
-  }
-});
-
-
+router.get("/filterByCategorie/:categorieName", provider_filter_by_categorie)
 
 
 /**
 * @openapi
-* /providers/filter/{serviceName}:
+* /providers/filterByService/{serviceName}:
 *    get:
 *      tags:
 *      - providers
@@ -432,17 +346,6 @@ router.get("/filter/:categorieName", async (req, res, next) => {
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/filter/:serviceName", async (req, res, next) => {
-  const name = req.params.serviceName;
-  try {
-    const providers = await Services.findOne({
-      where: { name },
-      include: { model: Provider, as: "providers" },
-    });
-    res.status(200).send(providers?.providers);
-  } catch (error) {
-    console.log(error);
-  }
-});
+router.get("/filterByService/:serviceName", provider_filter_by_service)
 
 export default router;

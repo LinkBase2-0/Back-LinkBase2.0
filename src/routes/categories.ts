@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { categorie_create, categorie_get_all } from "../controllers/categorie_controller";
 import { Categories, Provider } from "../models";
 
 
@@ -50,14 +51,7 @@ const router = Router();
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.post("/", async (req, res, next) => {
-    try {
-      const newCategory = await Categories.create(req.body);
-      res.status(201).send(newCategory);
-    } catch (error) {
-      console.log(error);
-    }
-  });
+router.post("/", categorie_create)
 
 
 
@@ -99,13 +93,6 @@ router.post("/", async (req, res, next) => {
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/", async (req, res, next) => {
-    try {
-        const categories = await Categories.findAll();
-        res.status(200).send(categories);
-    } catch (error) {
-        console.log(error);
-    }
-});
+router.get("/", categorie_get_all)
 
 export default router;

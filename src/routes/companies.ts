@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { company_create, company_get_all, company_get_users_of_company } from "../controllers/company_controller";
 
 import { Company, User } from "../models";
 
@@ -49,19 +50,7 @@ const router = Router();
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.post("/", async (req, res) => {
-  const { email } = req.body.user;
-  const { name } = req.body.company;
-  try {
-    const newCompany = await Company.findOrCreate({ where: { name } });
-    const user: any = await User.findOne({ where: { email } });
-    await newCompany[0].addUser(user);
-    res.status(200).send(newCompany[0]);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
+router.post("/", company_create)
 
 
 /**
@@ -70,7 +59,7 @@ router.post("/", async (req, res) => {
 *    get:
 *      tags:
 *      - companies
-*      summary: To get all user from one companie
+*      summary: To get all users from one companie
 *      parameters:
 *      - name: name
 *        in: path
@@ -108,19 +97,7 @@ router.post("/", async (req, res) => {
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/:name", async (req, res) => {
-  const { name } = req.params;
-  try {
-    const users = await Company.findOne({
-      where: { name },
-      include: { model: User, as: "users" },
-    });
-    res.status(200).send(users);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
+router.get("/:name", company_get_users_of_company)
 
 
 /**
@@ -161,13 +138,6 @@ router.get("/:name", async (req, res) => {
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/", async (req, res) => {
-  try {
-    const companies = await Company.findAll();
-    res.status(200).send(companies);
-  } catch (error) {
-    console.log(error);
-  }
-});
+router.get("/", company_get_all)
 
 export default router;
