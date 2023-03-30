@@ -78,6 +78,11 @@ export { Services, Provider, Review, User, Company, Categories };
 *          categories:
 *             type: enum
 *             description: Array of strings
+*          user:
+*             type: object
+*             properties:
+*                email:
+*                    type: string
 *
 *
 *     bodyReviewsPost:

@@ -11,6 +11,7 @@ import bcrypt from "bcrypt";
 import DataBase from "../db";
 import Review from "./Reviews";
 import Company from "./Company";
+import Provider from "./Providers";
 
 export default class User extends Model<
   InferAttributes<User>,
@@ -29,6 +30,8 @@ export default class User extends Model<
   public static associate() {
     User.hasMany(Review, { as: "reviews" });
     User.belongsTo(Company);
+    User.belongsTo(Provider)
+    User.belongsTo(Provider)
   }
 
   public async addReview(review: Review): Promise<void> {

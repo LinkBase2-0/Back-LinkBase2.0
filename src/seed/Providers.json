@@ -14,7 +14,10 @@
         "longitude": "59°04'22.9 W"
       },
       "services": ["agroquimicos", "quimico industrial"],
-      "categories":["Insumos"]
+      "categories":["Insumos"],
+      "user" : {
+        "email" : "tomas@gmail.com"
+      }
     },
     {
       "provider": {
@@ -30,7 +33,10 @@
         "longitude": "59°15'31.3 W"
       },
       "services": ["molienda", "harinas", "venta de maquinaria"],
-      "categories":["Insumos", "Maquinaria"]
+      "categories":["Insumos", "Maquinaria"],
+      "user" : {
+        "email" : "tomas@gmail.com"
+      }
     },
     {
       "provider": {
@@ -46,7 +52,10 @@
         "longitude": "59°25'38.8 W"
       },
       "services": ["bebidas alcoholicas", "gaseosas"],
-      "categories":["Insumos"]
+      "categories":["Insumos"],
+      "user" : {
+        "email" : "tomas@gmail.com"
+      }
     },
     {
       "provider": {
@@ -66,7 +75,10 @@
         "produccion de aceite de soja",
         "balanceado para animales"
       ],
-      "categories":["Insumos"]
+      "categories":["Insumos"],
+      "user" : {
+        "email" : "tomas@gmail.com"
+      }
     },
     {
       "provider": {
@@ -87,7 +99,10 @@
         "bebidas alcoholicas",
         "venta de maquinaria"
       ],
-      "categories":["Insumos", "Repuestos", "Maquinaria"]
+      "categories":["Insumos", "Repuestos", "Maquinaria"],
+      "user" : {
+        "email" : "tomas@gmail.com"
+      }
     },
     {
       "provider": {
@@ -109,7 +124,10 @@
         "veterinaria",
         "accesorios para animales"
       ],
-      "categories":["Insumos", "Repuestos"]
+      "categories":["Insumos", "Repuestos"],
+      "user" : {
+        "email" : "tomas@gmail.com"
+      }
     },
     {
       "provider": {
@@ -125,7 +143,10 @@
         "longitude": "63°00'08.5 W"
       },
       "services": ["suelas para calzado", "textil"],
-      "categories":["Insumos", "Repuestos"]
+      "categories":["Insumos", "Repuestos"],
+      "user" : {
+        "email" : "tomas@gmail.com"
+      }
     },
     {
       "provider": {
@@ -141,7 +162,10 @@
         "longitude": "63°14'10.8 W"
       },
       "services": ["pallets", "cajones", "tirantes", "parrillas"],
-      "categories":["Insumos", "Material de construccion"]
+      "categories":["Insumos", "Material de construccion"],
+      "user" : {
+        "email" : "tomas@gmail.com"
+      }
     },
     {
       "provider": {
@@ -166,7 +190,10 @@
         "refractarios",
         "tanques de plasticos"
       ],
-      "categories":[ "Material de construccion"]
+      "categories":[ "Material de construccion"],
+      "user" : {
+        "email" : "tomas@gmail.com"
+      }
     },
     {
       "provider": {
@@ -187,7 +214,10 @@
         "autopartes",
         "accesorios de vehiculo"
       ],
-      "categories":["Insumos", "Repuestos", "Maquinaria"]
+      "categories":["Insumos", "Repuestos", "Maquinaria"],
+      "user" : {
+        "email" : "tomas@gmail.com"
+      }
       
     }
   ]
