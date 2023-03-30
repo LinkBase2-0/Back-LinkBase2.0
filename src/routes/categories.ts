@@ -1,24 +1,25 @@
 import { Router } from "express";
-import { company_create, company_get_all, company_get_users_of_company } from "../controllers/company_controller";
+import { categorie_create, categorie_get_all } from "../controllers/categorie_controller";
+import { Categories, Provider } from "../models";
 
-import { Company, User } from "../models";
 
 const router = Router();
 
 
+
 /**
 * @openapi
-* /companies:
+* /categories:
 *    post:
 *      tags:
-*      - companies
-*      summary: To create a new companie
+*      - categories
+*      summary: To create a new categorie
 *  
 *      requestBody:
 *        content:
 *          application/json:
 *            schema:
-*              $ref: '#/components/schemas/bodyCompanyPost'
+*              $ref: '#/components/schemas/bodyCategoriesPost'
 *        required: true
 *      responses:
 *        200:
@@ -26,7 +27,7 @@ const router = Router();
 *          content:
 *            application/json:
 *              schema:
-*                $ref: '#/components/schemas/bodyCompanyPost'
+*                $ref: '#/components/schemas/bodyCategoriesPost'
 *        400:
 *          $ref: '#/components/responses/BadRequest'
 *        401:
@@ -50,63 +51,17 @@ const router = Router();
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.post("/", company_create)
+router.post("/", categorie_create)
 
-
-/**
-* @openapi
-* /companies/{name}:
-*    get:
-*      tags:
-*      - companies
-*      summary: To get all users from one companie
-*      parameters:
-*      - name: name
-*        in: path
-*        required: true
-*        schema:
-*          type: string  
-*
-*      responses:
-*        200:
-*          description: (OK) Created
-*          content:
-*            application/json:
-*              schema:
-*                $ref: '#/components/schemas/bodyCompanyPost'
-*        400:
-*          $ref: '#/components/responses/BadRequest'
-*        401:
-*          $ref: '#/components/responses/Unauthorized' 
-*        404:
-*          $ref: '#/components/responses/NotFound'
-*        500:
-*          $ref: '#/components/responses/ServerError'
-* components:
-*       responses:
-*          
-*          Unauthorized:
-*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
-*          
-*          NotFound:
-*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
-*          
-*          BadRequest:
-*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
-*            
-*          ServerError:
-*            description: Error en servidor
-*/ 
-router.get("/:name", company_get_users_of_company)
 
 
 /**
 * @openapi
-* /companies:
+* /categories:
 *    get:
 *      tags:
-*      - companies
-*      summary: To get all companies
+*      - categories
+*      summary: To get all categories
 *  
 *      responses:
 *        200:
@@ -114,7 +69,7 @@ router.get("/:name", company_get_users_of_company)
 *          content:
 *            application/json:
 *              schema:
-*                $ref: '#/components/schemas/bodyCompanyPost'
+*                $ref: '#/components/schemas/bodyCategoriesPost'
 *        400:
 *          $ref: '#/components/responses/BadRequest'
 *        401:
@@ -138,6 +93,6 @@ router.get("/:name", company_get_users_of_company)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/", company_get_all)
+router.get("/", categorie_get_all)
 
 export default router;

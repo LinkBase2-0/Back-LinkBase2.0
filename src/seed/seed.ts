@@ -45,7 +45,7 @@ const setCategory = () => {
     categories
       .reduce(
         (p, x) =>
-          p.then(() => axios.post("http://localhost:3001/category/", x)),
+          p.then(() => axios.post("http://localhost:3001/categories/", x)),
         Promise.resolve()
       )
       .then((res) => resolve(res));

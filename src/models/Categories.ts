@@ -25,14 +25,14 @@ import {
     }
   
     public async addProvider(provider: Provider): Promise<void> {
-      await (this as any).addProvider(provider);
+      await (this as any).addProviders(provider);
     }
   
-    public async addProviders(providers: Provider[]): Promise<void> {
-      for (const provider of providers) {
-        await this.addProvider(provider);
-      }
-    }
+    // public async addProviders(providers: Provider[]): Promise<void> {
+    //   for (const provider of providers) {
+    //     await this.addProvider(provider);
+    //   }
+    // }
   }
   
   Categories.init(

@@ -1,9 +1,11 @@
 import { Router } from "express";
-
-import { generateToken } from "../config/token";
-import { validateAuth } from "../middleware/auth";
-
-import { User, Company } from "../models";
+import { User } from "../models";
+import {
+  user_create_post, user_login_post,
+  user_logout_post, get_user_byEmail,
+  get_all_user, put_user_byEmail,
+  delete_user,
+} from "../controllers/user_controller"
 
 const router = Router();
 
@@ -51,97 +53,248 @@ const router = Router();
  *          ServerError:
  *            description: Error en servidor
  */
-router.post("/register", async (req, res, next) => {
-  const user = req.body.user;
-  const name = req.body.company?.name
-  try {
-    if (name) {
-      const newCompany = await Company.findOrCreate({ where: { name } });
-      const newUser = await User.create(user);
-      await newCompany[0].addUser(newUser);
-      res.status(201).send(newUser);
-    } else {
-      const newUser = await User.create(user);
-      res.status(201).send(newUser);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-});
+router.post("/register", user_create_post);
 
-router.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  User.findOne({ where: { email } }).then((user) => {
-    if (!user)
-      return res.status(401).send({
-        message: "invalid credentials",
-      });
 
-    user.validatePassword(password).then((passwordMatches) => {
-      if (!passwordMatches)
-        return res.status(401).send({
-          message: "invalid credentials",
-        });
+/**
+* @openapi
+* /users/login:
+*    post:
+*      tags:
+*      - users
+*      summary: To login a user
+*  
+*      requestBody:
+*        content:
+*          application/json:
+*            schema:
+*              $ref: '#/components/schemas/bodyUsersLoginPost'
+*        required: true
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/bodyUsersLoginPost'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/
+router.post("/login", user_login_post);
 
-      const payload = {
-        email: user.email,
-        fullName: user.fullName,
-      };
-      const token = generateToken(payload);
-      res.cookie("token", token, { httpOnly: true });
-      res.send(payload);
-    });
-  });
-});
+router.post("/logout", user_logout_post);
 
-router.post("/logout", async (req, res, next) => {
-  res.clearCookie("token");
-  res.sendStatus(204);
-});
 
-router.get("/:email", async (req, res, next) => {
-  const { email } = req.params;
-  try {
-    const user = await User.findOne({ where: { email } });
-    res.status(200).send(user);
-  } catch (error) {
-    console.log(error);
-  }
-});
+/**
+* @openapi
+* /users/{email}:
+*    get:
+*      tags:
+*      - users
+*      summary: To get the information of a specific user
+*      parameters:
+*      - name: email
+*        in: path
+*        required: true
+*        schema:
+*          type: string  
+*  
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/Success'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/
+router.get("/:email", get_user_byEmail);
 
 // ----- ADMIN ------
 
-router.get("/", async (req, res, next) => {
-  try {
-    const users = await User.findAll();
-    res.status(200).send(users);
-  } catch (error) {
-    console.log(error);
-  }
-});
 
-router.put("/:email", async (req, res, next) => {
-  const { email } = req.params;
-  try {
-    const userUpdated = await User.update(req.body, {
-      where: { email },
-      returning: true,
-    });
-    res.status(200).send(userUpdated[1][0]);
-  } catch (error) {
-    console.log(error);
-  }
-});
+/**
+* @openapi
+* /users:
+*    get:
+*      tags:
+*      - users
+*      summary: To get all registered users
+*  
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/Success'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/
+router.get("/",get_all_user);
 
-router.delete("/:email", async (req, res, next) => {
-  const { email } = req.params;
-  try {
-    const userToDelete = await User.findOne({ where: { email } });
-    const userDeleted = await User.destroy({ where: { email } });
-    res.status(200).send(userToDelete);
-  } catch (error) {
-    console.log(error);
-  }
-});
+
+
+
+/**
+* @openapi
+* /users/{email}:
+*    put:
+*      tags:
+*      - users
+*      summary: To update one user
+*      parameters:
+*      - name: email
+*        in: path
+*        required: true
+*        schema:
+*          type: string 
+*  
+*      requestBody:
+*        content:
+*          application/json:
+*            schema:
+*              $ref: '#/components/schemas/bodyUsersUpdatePut'
+*        required: true
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/Success'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/
+router.put("/:email",put_user_byEmail);
+
+
+
+/**
+* @openapi
+* /users/{email}:
+*    delete:
+*      tags:
+*      - users
+*      summary: To update one user
+*      parameters:
+*      - name: email
+*        in: path
+*        required: true
+*        schema:
+*          type: string 
+*  
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/Success'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/
+router.delete("/:email", delete_user);
 
 export default router;
