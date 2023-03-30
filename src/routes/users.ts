@@ -1,7 +1,11 @@
 import { Router } from "express";
-import { generateToken } from "../config/token";
 import { User } from "../models";
-import {user_create_post} from "../controllers/user_controller"
+import {
+  user_create_post, user_login_post,
+  user_logout_post, get_user_byEmail,
+  get_all_user, put_user_byEmail,
+  delete_user,
+} from "../controllers/user_controller"
 
 const router = Router();
 
@@ -49,8 +53,7 @@ const router = Router();
  *          ServerError:
  *            description: Error en servidor
  */
-router.post("/register", user_create_post );
-
+router.post("/register", user_create_post);
 
 
 /**
@@ -96,38 +99,10 @@ router.post("/register", user_create_post );
 *            
 *          ServerError:
 *            description: Error en servidor
-*/ 
-router.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  User.findOne({ where: { email } }).then((user) => {
-    if (!user)
-      return res.status(401).send({
-        message: "invalid credentials",
-      });
+*/
+router.post("/login", user_login_post);
 
-    user.validatePassword(password).then((passwordMatches) => {
-      if (!passwordMatches)
-        return res.status(401).send({
-          message: "invalid credentials",
-        });
-
-      const payload = {
-        email: user.email,
-        fullName: user.fullName,
-      };
-      const token = generateToken(payload);
-      res.cookie("token", token, { httpOnly: true });
-      res.send(payload);
-    });
-  });
-});
-
-router.post("/logout", async (req, res, next) => {
-  res.clearCookie("token");
-  res.sendStatus(204);
-});
-
-
+router.post("/logout", user_logout_post);
 
 
 /**
@@ -173,16 +148,8 @@ router.post("/logout", async (req, res, next) => {
 *            
 *          ServerError:
 *            description: Error en servidor
-*/ 
-router.get("/:email", async (req, res, next) => {
-  const { email } = req.params;
-  try {
-    const user = await User.findOne({ where: { email } });
-    res.status(200).send(user);
-  } catch (error) {
-    console.log(error);
-  }
-});
+*/
+router.get("/:email", get_user_byEmail);
 
 // ----- ADMIN ------
 
@@ -224,15 +191,8 @@ router.get("/:email", async (req, res, next) => {
 *            
 *          ServerError:
 *            description: Error en servidor
-*/ 
-router.get("/", async (req, res, next) => {
-  try {
-    const users = await User.findAll();
-    res.status(200).send(users);
-  } catch (error) {
-    console.log(error);
-  }
-});
+*/
+router.get("/",get_all_user);
 
 
 
@@ -251,6 +211,12 @@ router.get("/", async (req, res, next) => {
 *        schema:
 *          type: string 
 *  
+*      requestBody:
+*        content:
+*          application/json:
+*            schema:
+*              $ref: '#/components/schemas/bodyUsersUpdatePut'
+*        required: true
 *      responses:
 *        200:
 *          description: (OK) Created
@@ -280,20 +246,8 @@ router.get("/", async (req, res, next) => {
 *            
 *          ServerError:
 *            description: Error en servidor
-*/ 
-router.put("/:email", async (req, res, next) => {
-  const { email } = req.params;
-  try {
-    const userUpdated = await User.update(req.body, {
-      where: { email },
-      returning: true,
-    });
-    res.status(200).send(userUpdated[1][0]);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
+*/
+router.put("/:email",put_user_byEmail);
 
 
 
@@ -340,16 +294,7 @@ router.put("/:email", async (req, res, next) => {
 *            
 *          ServerError:
 *            description: Error en servidor
-*/ 
-router.delete("/:email", async (req, res, next) => {
-  const { email } = req.params;
-  try {
-    const userToDelete = await User.findOne({ where: { email } });
-    const userDeleted = await User.destroy({ where: { email } });
-    res.status(200).send(userToDelete);
-  } catch (error) {
-    console.log(error);
-  }
-});
+*/
+router.delete("/:email", delete_user);
 
 export default router;

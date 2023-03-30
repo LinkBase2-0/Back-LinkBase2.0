@@ -37,6 +37,23 @@ export { Services, Provider, Review, User, Company, Categories };
 *                 type: string 
 *
 *
+*     bodyUsersUpdatePut:
+*       type: object
+*       properties:
+*             fullName:
+*                type: string
+*             email:
+*                type: string
+*             password:
+*                type: string
+*             rol:
+*                type: enum
+*             charge:
+*                type: string
+*             isPending: 
+*                type: boolean
+*
+*
 *     bodyUsersLoginPost:
 *       type: object
 *       properties:
