@@ -1,0 +1,278 @@
+{
+  "providers": [
+    {
+      "provider": {
+        "name": "ABRA PAMPA S.R.L.",
+        "email": "abrapampa@gmail.com",
+        "phone": 2346429328,
+        "web": "",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/13a_logo.jpg",
+        "isPending": true,
+        "time": "",
+        "address": "C 238, B7240 Lobos, Provincia de Buenos Aires",
+        "latitude": "35°10'53.2 S",
+        "longitude": "59°04'22.9 W"
+      },
+      "services": ["agroquimicos", "quimico industrial"],
+      "categories":["Insumos"]
+    },
+    {
+      "provider": {
+        "name": "PRONEXO S.R.L.",
+        "email": "contaduria@pro-nexo.com",
+        "phone": 5491131327433,
+        "web": "https://www.pro-nexo.com/",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/33_logo.jpg",
+        "isPending": false,
+        "time": "",
+        "address": "C. 18 1699-1601, Navarro, Provincia de Buenos Aires",
+        "latitude": "35°00'06.2 S ",
+        "longitude": "59°15'31.3 W"
+      },
+      "services": ["molienda", "harinas", "venta de maquinaria"],
+      "categories":["Insumos", "Maquinaria"]
+    },
+    {
+      "provider": {
+        "name": "INDIGAMA S.R.L.",
+        "email": "preventa-chivilcoy@hotmail.com",
+        "phone": 542346308483,
+        "web": "",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/05_logo.jpg",
+        "isPending": true,
+        "time": "",
+        "address": "Mercedes, Provincia de Buenos Aires",
+        "latitude": "34°39'55.3 S",
+        "longitude": "59°25'38.8 W"
+      },
+      "services": ["bebidas alcoholicas", "gaseosas"],
+      "categories":["Insumos"]
+    },
+    {
+      "provider": {
+        "name": "Chivil Oil S.R.L.",
+        "email": "chiviloil@hotmail.com",
+        "phone": 5493465655887,
+        "web": "https://www.chiviloil.com/",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/45_logo.jpg",
+        "isPending": false,
+        "time": "",
+        "address": "Calle 6 S3, Chivilcoy, Provincia de Buenos Aires",
+        "latitude": "34°55'39 S",
+        "longitude": "59°59'03. W"
+      },
+      "services": [
+        "produccion de expeller",
+        "produccion de aceite de soja",
+        "balanceado para animales"
+      ],
+      "categories":["Insumos"]
+    },
+    {
+      "provider": {
+        "name": "INPACK S.A",
+        "email": "inpack@inpack.com.ar",
+        "phone": 542346308422,
+        "web": "http://www.inpack.com.ar/",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/29_logo.jpg",
+        "isPending": false,
+        "time": "",
+        "address": "Belgrano, Rawson, Provincia de Buenos Aires",
+        "latitude": "34°36'23.6 S",
+        "longitude": " 60°03'42.4 W"
+      },
+      "services": [
+        "insumos para industrias alimetarias",
+        "gaseosas",
+        "bebidas alcoholicas",
+        "venta de maquinaria"
+      ],
+      "categories":["Insumos", "Repuestos", "Maquinaria"]
+    },
+    {
+      "provider": {
+        "name": "Distribuidora Libertad S.A",
+        "email": "distrilibertad@gmail.com",
+        "phone": 2346584600,
+        "web": "",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/51_logo.jpg",
+        "isPending": false,
+        "time": "Lunes a Viernes de 08 a 17 hs",
+        "address": "Junín, Provincia de Buenos Aires",
+        "latitude": "34°34'46.9 S",
+        "longitude": "60°58'40.5 W"
+      },
+      "services": [
+        "balanceado para animales",
+        "pet shop",
+        "forrajeria",
+        "veterinaria",
+        "accesorios para animales"
+      ],
+      "categories":["Insumos", "Repuestos"]
+    },
+    {
+      "provider": {
+        "name": "Arluchi S.A.",
+        "email": "andrei.lagranha@suelasids.com",
+        "phone": 5492346696172,
+        "web": "https://suelasids.com/",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/19_logo.jpg",
+        "isPending": true,
+        "time": "Lunes a Viernes de 08 a 17 hs",
+        "address": "Gral. Villegas, Provincia de Buenos Aires",
+        "latitude": "35°01'32.2 S",
+        "longitude": "63°00'08.5 W"
+      },
+      "services": ["suelas para calzado", "textil"],
+      "categories":["Insumos", "Repuestos"]
+    },
+    {
+      "provider": {
+        "name": "Aserradero El Polen S.A.",
+        "email": "aserraderoelpolen@hotmail.com",
+        "phone": 5492346689027,
+        "web": "",
+        "photoURL": "https://www.parqueindustrialchivilcoy.com/wp-content/uploads/2022/10/Logos_empresas.jpg",
+        "isPending": false,
+        "time": "Lunes a Viernes de 08 a 19 hs",
+        "address": "C. Int. Poretti 914, Villa María, Córdoba",
+        "latitude": "32°23'35.0 S",
+        "longitude": "63°14'10.8 W"
+      },
+      "services": ["pallets", "cajones", "tirantes", "parrillas"],
+      "categories":["Insumos", "Material de construccion"]
+    },
+    {
+      "provider": {
+        "name": "ANGEL MANUEL ALVAREZ SA",
+        "email": "administracion@angelalvarez.com.ar",
+        "phone": 3414628500,
+        "web": "www.angelalvarez.com.ar",
+        "photoURL": "https://hormigonelaborado.com/wp-content/uploads/2020/10/logo-angel-alvarez-2020-2.png",
+        "isPending": false,
+        "time": "",
+        "address": "S2001CGD Rosario, Santa Fe, Argentina",
+        "latitude": "32°58'26.2 S",
+        "longitude": "60°44'03.8 W"
+      },
+      "services": [
+        "corralon",
+        "losas",
+        "arena",
+        "cemento",
+        "hierros",
+        "ladrillos",
+        "refractarios",
+        "tanques de plasticos"
+      ],
+      "categories":[ "Material de construccion"]
+    },
+    {
+      "provider": {
+        "name": "DM DISTRIBUIDORA",
+        "email": "dmdistribuidora@gmail.com.ar",
+        "phone": 3414623481,
+        "web": "https://www.dmdistribuidora.com/",
+        "photoURL": "https://www.dmdistribuidora.com/v10/images/logo/logo.png",
+        "isPending": false,
+        "time": "",
+        "address": "Av. Presidente J.Perón (ex Godoy) 8459 (S2010ACI) Rosario, Santa Fe, Argentina",
+        "latitude": "32°68'36.2 S",
+        "longitude": "60°54'33.8 W"
+      },
+      "services": [
+        "importacion",
+        "exportacion",
+        "autopartes",
+        "accesorios de vehiculo"
+      ],
+      "categories":["Insumos", "Repuestos", "Maquinaria"]
+    },
+    {
+      "provider": {
+        "name": "CHAVEZ Y ASOCIADO",
+        "email": "chavez@gmail.com.ar",
+        "phone": 541143100100,
+        "web": "https://www.marval.com/",
+        "photoURL": "https://imgs.search.brave.com/WRYyt8u8u2xa32tkkbhED1qzqWlFEaKFxXocgZ1ZmxI/rs:fit:699:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5M/bWpZS056XzhuQjhm/cnN0ZlM4X1JnSGFG/QiZwaWQ9QXBp",
+        "isPending": false,
+        "time": "09 a 14 hs",
+        "address": "Dirección: 40 Dorrego 1325, Balcarce, Buenos Aires, Argentina",
+        "latitude": "34°35'12.8 S",
+        "longitude": "58°26'43.7 W"
+      },
+      "services": [
+        "consultas",
+        "litigios",
+        "derecho comercial",
+        "Tramites judiciales",
+        "Accidente de trabajo"
+      ],
+      "categories":["Servicios"]
+    },
+    {
+      "provider": {
+        "name": " EL CONDOR E.T.S.A",
+        "email": "condor@gmail.com.ar",
+        "phone": 541143156987,
+        "web": "https://condorestrella.com.ar/",
+        "photoURL": "https://condorestrella.com.ar/assets/img/logo.jpg",
+        "isPending": false,
+        "time": "00 a 24 hs",
+        "address": "B1902CJS, C. 4 453, B1902CJS La Plata, Provincia de Buenos Aires",
+        "latitude": "34°54'20.9 S",
+        "longitude": "57°57'14.4 W"
+      },
+      "services": [
+        "fletes",
+        "encomiendas",
+        "transporte de pasajeros"
+      ],
+      "categories":["Servicios"]
+    },
+    {
+      "provider": {
+        "name": "Unicad Solution",
+        "email": "unicad@gmail.com.ar",
+        "phone": 541143236987,
+        "web": "https://unicad-solutions.com/",
+        "photoURL": "https://unicad-solutions.com/imgs/cubo.png",
+        "isPending": false,
+        "time": "00 a 24 hs",
+        "address": "B1902CJS, C. 4 453, B1902CJS La Plata, Provincia de Buenos Aires",
+        "latitude": "34°54'20.9 S",
+        "longitude": "57°57'14.4 W"
+      },
+      "services": [
+        "ingenieros civiles",
+        "ingenieros mecanicos",
+        "ingenieros electromecanicos",
+        "calculos",
+        "diseño",
+        "planos"
+      ],
+      "categories":["Servicios", "Profesionales"]
+    },
+    {
+      "provider": {
+        "name": "Plataforma5",
+        "email": "contacto@plataforma5.la",
+        "phone": 541143231234,
+        "web": "https://www.plataforma5.la/",
+        "photoURL": "https://www.plataforma5.la/static/media/P5Desktop.d1842dd2bff00677295cd7d28a29e60c.svg",
+        "isPending": false,
+        "time": "00 a 24 hs",
+        "address": "Ciudad de Buenos aires",
+        "latitude": "34°54'20.9 S",
+        "longitude": "57°57'14.4 W"
+      },
+      "services": [
+        "developers",
+        "los mejores developers",
+        "personas copadas que resuelven problemas"
+      ],
+      "categories":[ "Profesionales"]
+    }
+  ]
+}

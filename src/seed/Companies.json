@@ -1,0 +1,76 @@
+{
+  "companies": [
+    {
+      "user": {
+        "email": "nico@gmail.com"
+      },
+      "company": {
+        "name": "Agrotv"
+      }
+    },
+    {
+      "user": {
+        "email": "marcos@gmail.com"
+      },
+      "company": {
+        "name": "Metalurgica Guemes"
+      }
+    },
+    {
+      "user": {
+        "email": "matias@gmail.com"
+      },
+      "company": {
+        "name": "Paqueta"
+      }
+    },
+    {
+      "user": {
+        "email": "julian@gmail.com"
+      },
+      "company": {
+        "name": "Testmic"
+      }
+    },
+    {
+      "user": {
+        "email": "pedro@gmail.com"
+      },
+      "company": {
+        "name": "Metalurgica Guemes"
+      }
+    },
+    {
+      "user": {
+        "email": "leandro@gmail.com"
+      },
+      "company": {
+        "name": "Agrotv"
+      }
+    },
+    {
+      "user": {
+        "email": "julieta@gmail.com"
+      },
+      "company": {
+        "name": "Paqueta"
+      }
+    },
+    {
+      "user": {
+        "email": "francisco@gmail.com"
+      },
+      "company": {
+        "name": "Testmic"
+      }
+    },
+    {
+      "user": {
+        "email": "martin@gmail.com"
+      },
+      "company": {
+        "name": "Testmic"
+      }
+    }
+  ]
+}

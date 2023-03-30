@@ -9,33 +9,39 @@ import {
 import bcrypt from "bcrypt";
 
 import DataBase from "../db";
+import Review from "./Reviews";
+import Company from "./Company";
 
 export default class User extends Model<
   InferAttributes<User>,
   InferCreationAttributes<User>
 > {
-  declare name: string;
   declare email: string;
   declare password: string;
   declare salt: string;
-  declare lastName: string;
   declare fullName: string;
-  declare adress: string;
-  declare isAdmin: boolean;
+  declare rol: boolean;
+  declare charge: string;
+  declare isPending: string;
   declare hash: (password: string, salt: string) => Promise<String>;
   declare validatePassword: (password: string) => Promise<Boolean>;
+
+  public static associate() {
+    User.hasMany(Review, { as: "reviews" });
+    User.belongsTo(Company);
+  }
+
+  public async addReview(review: Review): Promise<void> {
+    await (this as any).addReviews(review);
+  }
+
+  public async addCompany(company: Company): Promise<void> {
+    await (this as any).addCompanies(company);
+  }
 }
 
 User.init(
   {
-    name: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
-    },
-    lastName: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
-    },
     fullName: {
       type: new DataTypes.STRING(128),
       allowNull: true,
@@ -48,10 +54,6 @@ User.init(
         isEmail: true,
       },
     },
-    adress: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
-    },
     password: {
       type: new DataTypes.STRING(128),
       allowNull: false,
@@ -60,9 +62,17 @@ User.init(
       type: new DataTypes.STRING(128),
       allowNull: true,
     },
-    isAdmin: {
+    rol: {
+      type: new DataTypes.ENUM("admin", "client", "superAdmin"),
+      defaultValue: "client",
+    },
+    charge: {
+      type: new DataTypes.STRING(128),
+      allowNull: false,
+    },
+    isPending: {
       type: new DataTypes.BOOLEAN(),
-      defaultValue: false
+      defaultValue: true,
     },
   },
   { sequelize: DataBase, tableName: "users" }

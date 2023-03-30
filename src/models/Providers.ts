@@ -2,11 +2,13 @@ import {
   Model,
   InferCreationAttributes,
   InferAttributes,
-  CreationOptional,
   DataTypes,
 } from "sequelize";
 
 import DataBase from "../db";
+import Services from "./Services";
+import Categories from "./Categories";
+import Review from "./Reviews";
 
 export default class Provider extends Model<
   InferAttributes<Provider>,
@@ -14,10 +16,42 @@ export default class Provider extends Model<
 > {
   declare name: string;
   declare email: string;
-  declare adress: string;
-  declare latitude: number;
-  declare longitude: number;
-  declare cp: number;
+  declare phone: number;
+  declare web: string;
+  declare photoURL: string;
+  declare isPending: boolean;
+  declare time: string;
+  declare address: string;
+  declare latitude: string;
+  declare longitude: string;
+
+  public readonly services?: Services[];
+  public readonly categories?: Categories[];
+
+  public static associate() {
+    Provider.belongsToMany(Services, {
+      through: "ServiceProvider",
+      foreignKey: "ProviderId",
+      as: "services",
+    });
+    Provider.belongsToMany(Categories, {
+      through: "CategoryProvider",
+      foreignKey: "ProviderId",
+      as: "categories",
+    });
+    Provider.hasMany(Review, { as: "reviews" });
+  }
+
+  public async addService(service: Services): Promise<void> {
+    await (this as any).addServices(service);
+  }
+  public async addCategorie(category: Categories ): Promise<void> {
+    await (this as any).addCategories(category);
+  }
+
+  public async addReview(review: Review): Promise<void> {
+    await (this as any).addReviews(review);
+  }
 }
 
 Provider.init(
@@ -34,22 +68,39 @@ Provider.init(
         isEmail: true,
       },
     },
-    adress: {
+    phone: {
+      type: new DataTypes.BIGINT(),
+      allowNull: false,
+    },
+    web: {
+      type: new DataTypes.STRING(128),
+      allowNull: true,
+    },
+    photoURL: {
+      type: new DataTypes.STRING(128),
+      allowNull: true,
+    },
+    isPending: {
+      type: new DataTypes.BOOLEAN,
+      defaultValue:true,
+    },
+    time: {
+      type: new DataTypes.STRING(128),
+      allowNull: true,
+    },
+    address: {
       type: new DataTypes.STRING(128),
       allowNull: false,
     },
     latitude: {
-      type: new DataTypes.FLOAT(),
+      type: new DataTypes.STRING(128),
       allowNull: false,
     },
     longitude: {
-      type: new DataTypes.FLOAT(),
+      type: new DataTypes.STRING(128),
       allowNull: false,
     },
-    cp: {
-      type: new DataTypes.INTEGER(),
-      allowNull: false,
-    },
+  
   },
   { sequelize: DataBase, tableName: "providers" }
 );

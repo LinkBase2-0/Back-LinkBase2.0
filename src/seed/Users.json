@@ -1,0 +1,129 @@
+{
+  "users": [
+    {
+      "user": {
+        "fullName": "tomas",
+        "email": "tomas@gmail.com",
+        "password": "password123",
+        "rol": "superAdmin",
+        "charge": "admin",
+        "isPending": false
+      }
+    },
+    {
+      "user": {
+        "fullName": "marcos",
+        "email": "marcos@gmail.com",
+        "password": "password123",
+        "rol": "admin",
+        "charge": "developer",
+        "isPending": false
+      },
+      "company": {
+        "name": "Metalurgica Guemes"
+      }
+    },
+    {
+      "user": {
+        "fullName": "nico",
+        "email": "nico@gmail.com",
+        "adress": "address3",
+        "password": "password123",
+        "rol": "admin",
+        "charge": "limpieza",
+        "isPending": false
+      },
+      "company": {
+        "name": "Agrotv"
+      }
+    },
+    {
+      "user": {
+        "fullName": "matias",
+        "email": "matias@gmail.com",
+        "adress": "address4",
+        "password": "password123",
+        "charge": "tecnico",
+        "rol": "admin",
+        "isPending": false
+      },
+      "company": {
+        "name": "Paqueta"
+      }
+    },
+    {
+      "user": {
+        "fullName": "julian",
+        "email": "julian@gmail.com",
+        "adress": "address5",
+        "password": "password123",
+        "rol": "admin",
+        "charge": "administrativo",
+        "isPending": false
+      },
+      "company": {
+        "name": "Testmic"
+      }
+    },
+    {
+      "user": {
+        "fullName": "pedro",
+        "email": "pedro@gmail.com",
+        "password": "password123",
+        "charge": "consejero",
+        "isPending": false
+      },
+      "company": {
+        "name": "Metalurgica Guemes"
+      }
+    },
+    {
+      "user": {
+        "fullName": "leandro",
+        "email": "leandro@gmail.com",
+        "password": "password123",
+        "charge": "mantenimiento",
+        "isPending": false
+      },
+      "company": {
+        "name": "Agrotv"
+      }
+    },
+    {
+      "user": {
+        "fullName": "martin",
+        "email": "martin@gmail.com",
+        "password": "password123",
+        "charge": "administrativo",
+        "isPending": false
+      },
+      "company": {
+        "name": "Testmic"
+      }
+    },
+    {
+      "user": {
+        "fullName": "franciso",
+        "email": "francisco@gmail.com",
+        "password": "password123",
+        "charge": "limpieza",
+        "isPending": false
+      },
+      "company": {
+        "name": "Testmic"
+      }
+    },
+    {
+      "user": {
+        "fullName": "julieta",
+        "email": "julieta@gmail.com",
+        "password": "password123",
+        "charge": "developer",
+        "isPending": true
+      },
+      "company": {
+        "name": "Paqueta"
+      }
+    }
+  ]
+}

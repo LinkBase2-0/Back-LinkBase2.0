@@ -1,0 +1,179 @@
+{
+  "reviews": [
+    {
+      "review": {
+        "text": "No me gusto que hayan cambiado la formula sin avisar",
+        "stars": 2
+      },
+      "user": {
+        "email": "tomas@gmail.com"
+      },
+      "provider": {
+        "name": "ABRA PAMPA S.R.L."
+      }
+    },
+    {
+      "review": {
+        "text": "Excelente calidad",
+        "stars": 5
+      },
+      "user": {
+        "email": "marcos@gmail.com"
+      },
+      "provider": {
+        "name": "PRONEXO S.R.L."
+      }
+    },
+    {
+      "review": {
+        "text": "Muy buena la cerveza artesanal",
+        "stars": 4
+      },
+      "user": {
+        "email": "nico@gmail.com"
+      },
+      "provider": {
+        "name": "INDIGAMA S.R.L."
+      }
+    },
+    {
+      "review": {
+        "text": "Caro, pero lo vale",
+        "stars": 4
+      },
+      "user": {
+        "email": "matias@gmail.com"
+      },
+      "provider": {
+        "name": "Chivil Oil S.R.L."
+      }
+    },
+    {
+      "review": {
+        "text": "Malisimo servicio post venta",
+        "stars": 1
+      },
+      "user": {
+        "email": "julian@gmail.com"
+      },
+      "provider": {
+        "name": "INPACK S.A"
+      }
+    },
+    {
+      "review": {
+        "text": "Me salvaron el ganado",
+        "stars": 5
+      },
+      "user": {
+        "email": "pedro@gmail.com"
+      },
+      "provider": {
+        "name": "Distribuidora Libertad S.A"
+      }
+    },
+    {
+      "review": {
+        "text": "Safa.",
+        "stars": 3
+      },
+      "user": {
+        "email": "leandro@gmail.com"
+      },
+      "provider": {
+        "name": "Arluchi S.A."
+      }
+    },
+    {
+      "review": {
+        "text": "Excelente acompañamiento al pequeño emprendedor",
+        "stars": 5
+      },
+      "user": {
+        "email": "martin@gmail.com"
+      },
+      "provider": {
+        "name": "Aserradero El Polen S.A."
+      }
+    },
+    {
+      "review": {
+        "text": "Rapidos en la entrega del material",
+        "stars": 4
+      },
+      "user": {
+        "email": "francisco@gmail.com"
+      },
+      "provider": {
+        "name": "ANGEL MANUEL ALVAREZ SA"
+      }
+    },
+    {
+      "review": {
+        "text": "No tiene nada",
+        "stars": 1
+      },
+      "user": {
+        "email": "francisco@gmail.com"
+      },
+      "provider": {
+        "name": "DM DISTRIBUIDORA"
+      }
+    },
+    {
+      "review": {
+        "stars": 3
+      },
+      "user": {
+        "email": "francisco@gmail.com"
+      },
+      "provider": {
+        "name": "DM DISTRIBUIDORA"
+      }
+    },
+    {
+      "review": {
+        "stars": 2
+      },
+      "user": {
+        "email": "matias@gmail.com"
+      },
+      "provider": {
+        "name": "ANGEL MANUEL ALVAREZ SA"
+      }
+    },
+    {
+      "review": {
+        "stars": 3
+      },
+      "user": {
+        "email": "tomas@gmail.com"
+      },
+      "provider": {
+        "name": "Aserradero El Polen S.A."
+      }
+    },
+    {
+      "review": {
+        "stars": 4
+      },
+      "user": {
+        "email": "marcos@gmail.com"
+      },
+      "provider": {
+        "name": "Arluchi S.A."
+      }
+    },
+    {
+      "review": {
+        "stars": 1
+      },
+      "user": {
+        "email": "leandro@gmail.com"
+      },
+      "provider": {
+        "name": "Distribuidora Libertad S.A"
+      }
+    }
+  ]
+}
