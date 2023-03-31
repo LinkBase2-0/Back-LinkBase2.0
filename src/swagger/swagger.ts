@@ -17,7 +17,7 @@ const options: swaggerJSDoc.Options = {
 
 const swaggerSpec = swaggerJSDoc(options);
 
-function swaggerDocs(app: Express, port: number) {
+function swaggerDocs(app: Express, port?: string) {
   app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   app.get("/docs.json", (req: Request, res: Response) => {

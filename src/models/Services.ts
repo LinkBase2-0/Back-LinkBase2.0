@@ -18,9 +18,9 @@ export default class Services extends Model<
 
   public static associate() {
     Services.belongsToMany(Provider, {
-      through: 'ServiceProvider',
-      foreignKey: 'ServiceId',
-      as: 'providers',
+      through: "ServiceProvider",
+      foreignKey: "ServiceId",
+      as: "providers",
     });
   }
 
