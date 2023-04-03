@@ -1,13 +1,7 @@
 import { Request, Response } from "express";
-import {
-  createUser,
-  loggedUser,
-  getUserByEmail,
-  findAllUser,
-  updateUserEmail,
-  deleteUser,
-} from "../services/user_service";
-
+import { createUser, loggedUser,getUserByEmail,
+    findAllUser,updateUserEmail, deleteUser } from "../services/user_service"
+import { validateToken } from "../config/token";
 export const user_create_post = async (req: Request, res: Response) => {
   const user = req.body.user;
   const name = req.body.company?.name;
@@ -31,6 +25,7 @@ export const user_logout_post = async (req: Request, res: Response) => {
   res.sendStatus(204);
 };
 
+
 export const get_user_byEmail = async (req: Request, res: Response) => {
   const { email } = req.params;
   const getUser = await getUserByEmail(email);
@@ -51,15 +46,19 @@ export const get_all_user = async (req: Request, res: Response) => {
 };
 
 export const put_user_byEmail = async (req: Request, res: Response) => {
-  const { email } = req.params;
-  const body = req.body;
-  const obj = {
-    where: { email },
-    returning: true,
-  };
-  const userUpdated = await updateUserEmail(body, obj);
-  res.status(200).send(userUpdated);
-};
+    //const { email } = req.params;
+    const { token } = req.cookies;
+    const { user } = validateToken(token);
+    const email= user.email
+    const body = req.body
+    const obj = {
+        where: { email },
+        returning: true,
+      }
+    const userUpdated = await updateUserEmail(body, obj )
+    res.status(200).send(userUpdated)
+}
+
 
 export const delete_user = async (req: Request, res: Response) => {
   const { email } = req.params;

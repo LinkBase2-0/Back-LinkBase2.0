@@ -65,15 +65,6 @@ export const getProvider = async (name: string) => {
   }
 };
 
-export const getProviders = async () => {
-  try {
-    const providers = await Provider.findAll();
-    return providers;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const filterByCategorie = async (name: string) => {
   try {
     const providers = await Categories.findOne({
@@ -98,6 +89,15 @@ export const filterByService = async (name: string) => {
   }
 };
 
+export const getProviders = async () => {
+  try {
+    const providers = await Provider.findAll();
+    return providers;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getProvidersF = async () => {
   try {
     const providers = await Provider.findAll({ where: { isPending: false } });
@@ -110,6 +110,7 @@ export const getProvidersF = async () => {
 export const getProvidersT = async () => {
   try {
     const providers = await Provider.findAll({ where: { isPending: true } });
+
     return providers;
   } catch (error) {
     console.log(error);

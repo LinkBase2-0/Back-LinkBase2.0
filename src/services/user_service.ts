@@ -18,20 +18,21 @@ export const createUser = async (user: any, name: string) => {
 };
 
 export const loggedUser = async (email: string, password: string) => {
-  const user = await User.findOne({ where: { email } });
-  if (!user) return { message: "invalid credentials" };
-  const passwordMatches = await user.validatePassword(password);
-  if (!passwordMatches) return { message: "invalid credentials" };
-  const payload = {
-    email: user.email,
-    fullName: user.fullName,
-  };
-  const token = generateToken(payload);
-  return {
-    token: token,
-    payload: payload,
-  };
-};
+    const user = await User.findOne({ where: { email } })
+    if (!user) return {message: "invalid credentials"}
+    const passwordMatches = await user.validatePassword(password)
+    if (!passwordMatches) return{message: "invalid credentials"}
+    const payload = {
+        email: user.email,
+        fullName: user.fullName,
+        rol: user.rol
+    };
+    const token = generateToken(payload);
+    return {
+        token: token,
+        payload: payload,
+    }
+}
 
 export const getUserByEmail = async (email: string) => {
   try {
