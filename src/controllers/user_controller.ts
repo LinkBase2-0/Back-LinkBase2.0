@@ -3,11 +3,11 @@ import { createUser, loggedUser,getUserByEmail,
     findAllUser,updateUserEmail, deleteUser } from "../services/user_service"
 import { validateToken } from "../config/token";
 export const user_create_post = async (req: Request, res: Response) => {
-  const user = req.body.user;
-  const name = req.body.company?.name;
-  const newUser = await createUser(user, name);
-  return res.status(201).send(newUser);
-};
+    const user = req.body.user;
+    const name = req.body.company?.name
+    const newUser = await createUser(user, name)
+    return res.status(201).send(newUser)
+}
 
 export const user_login_post = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -59,7 +59,6 @@ export const put_user_byEmail = async (req: Request, res: Response) => {
     res.status(200).send(userUpdated)
 }
 
-
 export const delete_user = async (req: Request, res: Response) => {
   const { email } = req.params;
   try {
@@ -69,4 +68,5 @@ export const delete_user = async (req: Request, res: Response) => {
   } catch (error) {
     console.log(error);
   }
-};
+}
+

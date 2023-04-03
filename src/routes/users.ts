@@ -4,9 +4,9 @@ import {
   user_create_post, user_login_post,
   user_logout_post, get_user_byEmail,
   get_all_user, put_user_byEmail,
-  delete_user,
+  delete_user
 } from "../controllers/user_controller"
-import { validateAuth,validateRolSuperAdmin,validateRolChecker } from "../middleware/auth";
+import { validateAuth,validateRolSuperAdmin } from "../middleware/auth";
 
 const router = Router();
 
@@ -234,9 +234,6 @@ router.get("/:email",validateAuth, get_user_byEmail);
 */
 router.get("/",validateAuth,validateRolSuperAdmin ,get_all_user);
 
-
-
-
 /**
 * @openapi
 * /users/{email}:
@@ -288,9 +285,6 @@ router.get("/",validateAuth,validateRolSuperAdmin ,get_all_user);
 *            description: Error en servidor
 */
 router.put("/:email",validateAuth, put_user_byEmail);
-
-
-
 
 
 /**

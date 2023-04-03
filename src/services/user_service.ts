@@ -65,3 +65,4 @@ export const deleteUser = async (email: string) => {
   const user = User.destroy({ where: { email } });
   return user;
 };
+
