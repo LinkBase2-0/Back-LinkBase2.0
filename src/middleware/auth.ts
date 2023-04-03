@@ -37,6 +37,20 @@ export function validateRolAdminProviders(
   }
 }
 
+export function validateRolAdminReviews(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const { token } = req.cookies;
+  const { user } = validateToken(token);
+
+  if (user.rol === 'adminReviews' || user.rol === 'superAdmin') next()
+  else{
+    return res.status(401).send(`el usuario no tiene credenciales valida `)
+  }
+}
+
 export function validateRolChecker(
   req: Request,
   res: Response,
@@ -44,10 +58,10 @@ export function validateRolChecker(
 ) {
   const { token } = req.cookies;
   const { user } = validateToken(token);
-  try {
-    if (user.rol === 'checker' || user.rol === 'superAdmin') next()
-  } catch {
-    console.log("el usuario no tiene rol correspondiente");
+
+  if (user.rol === 'checker' || user.rol === 'superAdmin') next()
+  else{
+    return res.status(401).send(`el usuario no tiene credenciales valida `)
   }
 }
 
@@ -58,10 +72,10 @@ export function validateRolSuperAdmin(
 ) {
   const { token } = req.cookies;
   const { user } = validateToken(token);
-  try {
-    if (user.rol === 'admin') next()
-  } catch {
-    console.log("el usuario no tiene rol correspondiente");
+
+  if (user.rol === 'superAdmin') next()
+  else{
+    return res.status(401).send(`el usuario no tiene credenciales valida `)
   }
 }
 

@@ -2,6 +2,7 @@ import { Router } from "express";
 import { company_create, company_get_all, company_get_users_of_company } from "../controllers/company_controller";
 
 import { Company, User } from "../models";
+import { validateAuth,validateRolChecker,validateRolSuperAdmin } from "../middleware/auth";
 
 const router = Router();
 
@@ -50,7 +51,7 @@ const router = Router();
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.post("/", company_create)
+router.post("/",validateAuth,validateRolSuperAdmin, company_create)
 
 
 /**
@@ -97,7 +98,7 @@ router.post("/", company_create)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/:name", company_get_users_of_company)
+router.get("/:name",validateAuth,validateRolChecker, company_get_users_of_company)
 
 
 /**

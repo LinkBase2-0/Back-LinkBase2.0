@@ -10,8 +10,6 @@ export const user_create_post = async (req: Request, res: Response) => {
     return res.status(201).send(newUser)
 }
 
-
-
 export const user_login_post = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const logUser = await loggedUser(email, password)
@@ -27,8 +25,6 @@ export const user_logout_post = async (req: Request, res: Response) => {
     return res.status(204).clearCookie("token", {httpOnly: true}).send('cookie cleared').end()
 }
 
-
-
 export const get_user_byEmail = async (req: Request, res: Response) => {
     const { email } = req.params;
     const getUser = await getUserByEmail(email)
@@ -38,8 +34,6 @@ export const get_user_byEmail = async (req: Request, res: Response) => {
         res.status(404)}
 }
 
-
-
 export const get_all_user = async (req: Request, res: Response) => {
     const users = await findAllUser()
     if(users.all)res.status(200).send(users.all)
@@ -47,8 +41,6 @@ export const get_all_user = async (req: Request, res: Response) => {
         console.error(users.error) 
         res.status(404)}
 }
-
-
 
 export const put_user_byEmail = async (req: Request, res: Response) => {
     //const { email } = req.params;
@@ -63,11 +55,6 @@ export const put_user_byEmail = async (req: Request, res: Response) => {
     const userUpdated = await updateUserEmail(body, obj )
     res.status(200).send(userUpdated)
 }
-
-
-
-
-
 
 export const delete_user = async (req: Request, res: Response) => {
     const { email } = req.params;

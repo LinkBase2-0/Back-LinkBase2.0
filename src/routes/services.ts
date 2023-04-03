@@ -3,6 +3,7 @@ import { service_create, service_delete, service_get_all, service_update } from 
 
 import { Services } from "../models";
 import User from "../models/Users";
+import { validateAuth } from "../middleware/auth";
 
 const router = Router();
 
@@ -51,7 +52,7 @@ const router = Router();
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.post("/", service_create)
+router.post("/",validateAuth, service_create)
 
 
 /**
