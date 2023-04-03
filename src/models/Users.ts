@@ -30,8 +30,8 @@ export default class User extends Model<
   public static associate() {
     User.hasMany(Review, { as: "reviews" });
     User.belongsTo(Company);
-    User.belongsTo(Provider)
-    User.belongsTo(Provider)
+    User.belongsTo(Provider);
+    User.belongsTo(Provider);
   }
 
   public async addReview(review: Review): Promise<void> {
