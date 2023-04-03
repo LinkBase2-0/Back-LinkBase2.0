@@ -6,7 +6,37 @@
         "email": "tomas@gmail.com",
         "password": "password123",
         "rol": "superAdmin",
-        "charge": "admin",
+        "charge": "superAdmin",
+        "isPending": false
+      }
+    },
+    {
+      "user": {
+        "fullName": "abacob",
+        "email": "abacob@gmail.com",
+        "password": "password123",
+        "rol": "adminProviders",
+        "charge": "superAdmin",
+        "isPending": false
+      }
+    },
+    {
+      "user": {
+        "fullName": "marcelo",
+        "email": "marcelo@gmail.com",
+        "password": "password123",
+        "rol": "adminReviews",
+        "charge": "superAdmin",
+        "isPending": false
+      }
+    },
+    {
+      "user": {
+        "fullName": "fabio",
+        "email": "fabio@gmail.com",
+        "password": "password123",
+        "rol": "adminReviews",
+        "charge": "superAdmin",
         "isPending": false
       }
     },
@@ -15,7 +45,7 @@
         "fullName": "marcos",
         "email": "marcos@gmail.com",
         "password": "password123",
-        "rol": "admin",
+        "rol": "checker",
         "charge": "developer",
         "isPending": false
       },
@@ -29,7 +59,7 @@
         "email": "nico@gmail.com",
         "adress": "address3",
         "password": "password123",
-        "rol": "admin",
+        "rol": "checker",
         "charge": "limpieza",
         "isPending": false
       },
@@ -44,7 +74,7 @@
         "adress": "address4",
         "password": "password123",
         "charge": "tecnico",
-        "rol": "admin",
+        "rol": "checker",
         "isPending": false
       },
       "company": {
@@ -57,8 +87,8 @@
         "email": "julian@gmail.com",
         "adress": "address5",
         "password": "password123",
-        "rol": "admin",
-        "charge": "administrativo",
+        "rol": "adminReviews",
+        "charge": "checker",
         "isPending": false
       },
       "company": {

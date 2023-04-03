@@ -25,6 +25,7 @@ export const loggedUser = async (email: string, password: string) => {
     const payload = {
         email: user.email,
         fullName: user.fullName,
+        rol: user.rol
     };
     const token = generateToken(payload);
     return {

@@ -66,7 +66,7 @@ User.init(
       allowNull: true,
     },
     rol: {
-      type: new DataTypes.ENUM("admin", "client", "superAdmin"),
+      type: new DataTypes.ENUM("adminProviders", "client", "superAdmin",'adminReviews','checker'),
       defaultValue: "client",
     },
     charge: {

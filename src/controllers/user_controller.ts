@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { createUser, loggedUser,getUserByEmail,
     findAllUser,updateUserEmail, deleteUser } from "../services/user_service"
-
+import { validateToken } from "../config/token";
 
 export const user_create_post = async (req: Request, res: Response) => {
     const user = req.body.user;
@@ -24,8 +24,7 @@ export const user_login_post = async (req: Request, res: Response) => {
 }
 
 export const user_logout_post = async (req: Request, res: Response) => {
-    res.clearCookie("token");
-    res.sendStatus(204);
+    return res.status(204).clearCookie("token", {httpOnly: true}).send('cookie cleared').end()
 }
 
 
@@ -52,7 +51,10 @@ export const get_all_user = async (req: Request, res: Response) => {
 
 
 export const put_user_byEmail = async (req: Request, res: Response) => {
-    const { email } = req.params;
+    //const { email } = req.params;
+    const { token } = req.cookies;
+    const { user } = validateToken(token);
+    const email= user.email
     const body = req.body
     const obj = {
         where: { email },

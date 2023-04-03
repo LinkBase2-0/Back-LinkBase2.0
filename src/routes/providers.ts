@@ -4,6 +4,8 @@ import { Services, Provider,Categories, User } from "../models";
 
 import {provider_create_post, provider_update, provider_delete, provider_get_one, provider_get_all, provider_filter_by_categorie, provider_filter_by_service, provider_pending_false, provider_pending_true} from "../controllers/provider_controller"
 
+import { validateRolAdminProviders, validateAuth } from "../middleware/auth";
+
 const router = Router();
 
 
@@ -98,7 +100,7 @@ router.post("/", provider_create_post )
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.put("/:name", provider_update)
+router.put("/:name", validateAuth,validateRolAdminProviders, provider_update)
 
 
 /**
@@ -150,7 +152,7 @@ router.delete("/:name", provider_delete)
 
 /**
 * @openapi
-* /providers/{name}:
+* /providers/find/{name}:
 *    get:
 *      tags:
 *      - providers
@@ -192,7 +194,7 @@ router.delete("/:name", provider_delete)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/:name", provider_get_one)
+router.get("/find/:name", provider_get_one)
 
 
 /**
@@ -275,7 +277,7 @@ router.get("/", provider_get_all)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/pendingF", provider_pending_false)
+router.get("/pendingF",validateAuth, validateRolAdminProviders, provider_pending_false)
 
 
 /**
@@ -316,7 +318,7 @@ router.get("/pendingF", provider_pending_false)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/pendingT", provider_pending_true)
+router.get("/pendingT",validateAuth,validateRolAdminProviders, provider_pending_true)
 
 /**
 * @openapi
