@@ -6,6 +6,8 @@ import {provider_create_post, provider_update, provider_delete, provider_get_one
     provider_filter_by_categorie, provider_filter_by_service, 
     provider_pending_false, provider_pending_true} from "../controllers/provider_controller"
 
+import { validateRolAdminProviders, validateAuth, validateRolSuperAdmin } from "../middleware/auth";
+
 const router = Router();
 
 
@@ -53,7 +55,7 @@ const router = Router();
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.post("/", provider_create_post )
+router.post("/",validateAuth, provider_create_post )
 
 
 /**
@@ -100,7 +102,7 @@ router.post("/", provider_create_post )
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.put("/:name", provider_update)
+router.put("/:name", validateAuth,validateRolAdminProviders, provider_update)
 
 
 /**
@@ -147,12 +149,12 @@ router.put("/:name", provider_update)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.delete("/:name", provider_delete)
+router.delete("/:name",validateAuth,validateRolSuperAdmin, provider_delete)
 
 
 /**
 * @openapi
-* /providers/{name}:
+* /providers/find/{name}:
 *    get:
 *      tags:
 *      - providers
@@ -194,7 +196,7 @@ router.delete("/:name", provider_delete)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("find/:name", provider_get_one)
+router.get("/find/:name",validateAuth, provider_get_one)
 
 
 /**
@@ -235,7 +237,7 @@ router.get("find/:name", provider_get_one)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/", provider_get_all)
+router.get("/",validateAuth,validateRolAdminProviders, provider_get_all)
 
 
 
@@ -277,7 +279,7 @@ router.get("/", provider_get_all)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/pendingF", provider_pending_false)
+router.get("/pendingF",validateAuth, provider_pending_false)
 
 
 /**
@@ -318,7 +320,7 @@ router.get("/pendingF", provider_pending_false)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/pendingT", provider_pending_true)
+router.get("/pendingT",validateAuth,validateRolAdminProviders, provider_pending_true)
 
 /**
 * @openapi
@@ -364,7 +366,7 @@ router.get("/pendingT", provider_pending_true)
 *          ServerError:
 *            description: Error en servidor
 */   
-router.get("/filterByCategorie/:categorieName", provider_filter_by_categorie)
+router.get("/filterByCategorie/:categorieName",validateAuth, provider_filter_by_categorie)
 
 
 /**
@@ -411,6 +413,6 @@ router.get("/filterByCategorie/:categorieName", provider_filter_by_categorie)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/filterByService/:serviceName", provider_filter_by_service)
+router.get("/filterByService/:serviceName",validateAuth, provider_filter_by_service)
 
 export default router;

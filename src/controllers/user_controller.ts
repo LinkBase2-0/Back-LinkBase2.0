@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { validateToken } from "../config/token";
 import {
   createUser,
   loggedUser,
@@ -30,7 +31,6 @@ export const user_logout_post = async (req: Request, res: Response) => {
   res.clearCookie("token");
   res.sendStatus(204);
 };
-
 export const get_user_byEmail = async (
   req: Request,
   res: Response,
@@ -59,15 +59,18 @@ export const get_all_user = async (req: Request, res: Response) => {
 };
 
 export const put_user_byEmail = async (req: Request, res: Response) => {
-  const { email } = req.params;
-  const body = req.body;
-  const obj = {
-    where: { email },
-    returning: true,
-  };
-  const userUpdated = await updateUserEmail(body, obj);
-  res.status(200).send(userUpdated);
-};
+    //const { email } = req.params;
+    const { token } = req.cookies;
+    const { user } = validateToken(token);
+    const email= user.email
+    const body = req.body
+    const obj = {
+        where: { email },
+        returning: true,
+      }
+    const userUpdated = await updateUserEmail(body, obj )
+    res.status(200).send(userUpdated)
+}
 
 export const delete_user = async (req: Request, res: Response) => {
   const { email } = req.params;
@@ -78,4 +81,5 @@ export const delete_user = async (req: Request, res: Response) => {
   } catch (error) {
     console.log(error);
   }
-};
+}
+

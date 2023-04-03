@@ -8,6 +8,8 @@ import DataBase from "./db";
 
 import router from "./routes";
 
+import { port, secret, db_Name, db_Password, db_Username } from "./dotenv";
+
 import { Services, User, Review, Provider, Company } from "./models/index";
 import { Optional } from "sequelize";
 import swaggerDocs from "./swagger/swagger";
@@ -19,7 +21,7 @@ Review.associate();
 Company.associate();
 
 const app = express();
-const PORT = 3001;
+const PORT = port;
 
 app.use(express.json());
 app.use(morgan("tiny"));

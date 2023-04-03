@@ -43,11 +43,6 @@ export const provider_get_one = async (req: Request, res: Response) => {
   return res.status(200).send(provider);
 };
 
-export const provider_get_all = async (req: Request, res: Response) => {
-  const providers = await getProviders();
-  return res.status(200).send(providers);
-};
-
 export const provider_filter_by_categorie = async (
   req: Request,
   res: Response
@@ -63,6 +58,10 @@ export const provider_filter_by_service = async (
 ) => {
   const name = req.params.serviceName;
   const providers = await filterByService(name);
+  return res.status(200).send(providers);
+};
+export const provider_get_all = async (req: Request, res: Response) => {
+  const providers = await getProviders();
   return res.status(200).send(providers);
 };
 

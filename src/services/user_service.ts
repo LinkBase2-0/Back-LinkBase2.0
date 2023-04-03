@@ -56,6 +56,7 @@ export const updateUserEmail = async (body: object, obj: any) => {
   } catch (error) {
     console.log(error);
   }
+
 };
 
 export const deleteUser = async (email: string) => {
