@@ -19,7 +19,6 @@ export function validateAuth(
 
   const { user } = validateToken(token);
   if (!user) res.sendStatus(401);
-  console.log("userrrrrr ---->", user);
 
   req.user = user;
   next();

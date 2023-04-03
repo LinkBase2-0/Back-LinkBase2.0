@@ -2,7 +2,9 @@ import { Router } from "express";
 
 import { Services, Provider,Categories, User } from "../models";
 
-import {provider_create_post, provider_update, provider_delete, provider_get_one, provider_get_all, provider_filter_by_categorie, provider_filter_by_service, provider_pending_false, provider_pending_true} from "../controllers/provider_controller"
+import {provider_create_post, provider_update, provider_delete, provider_get_one, provider_get_all, 
+    provider_filter_by_categorie, provider_filter_by_service, 
+    provider_pending_false, provider_pending_true} from "../controllers/provider_controller"
 
 const router = Router();
 
@@ -192,7 +194,7 @@ router.delete("/:name", provider_delete)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/:name", provider_get_one)
+router.get("find/:name", provider_get_one)
 
 
 /**
