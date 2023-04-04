@@ -237,7 +237,7 @@ router.get("/find/:name",validateAuth, provider_get_one)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/",validateAuth, provider_get_all)
+router.get("/", provider_get_all)
 
 
 
@@ -279,7 +279,7 @@ router.get("/",validateAuth, provider_get_all)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/pendingF",validateAuth, provider_pending_false)
+router.get("/pendingF",provider_pending_false)
 
 
 /**
