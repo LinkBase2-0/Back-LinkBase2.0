@@ -237,7 +237,7 @@ router.get("/find/:name",validateAuth, provider_get_one)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/",validateAuth,validateRolAdminProviders, provider_get_all)
+router.get("/",validateAuth, provider_get_all)
 
 
 
