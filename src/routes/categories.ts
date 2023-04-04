@@ -52,7 +52,7 @@ const router = Router();
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.post("/",validateAuth,validateRolSuperAdmin, categorie_create)
+router.post("/", categorie_create)
 
 
 
