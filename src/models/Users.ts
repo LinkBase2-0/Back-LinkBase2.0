@@ -30,8 +30,8 @@ export default class User extends Model<
   public static associate() {
     User.hasMany(Review, { as: "reviews" });
     User.belongsTo(Company);
-    User.belongsTo(Provider)
-    User.belongsTo(Provider)
+    User.belongsTo(Provider);
+    User.belongsTo(Provider);
   }
 
   public async addReview(review: Review): Promise<void> {
@@ -66,7 +66,7 @@ User.init(
       allowNull: true,
     },
     rol: {
-      type: new DataTypes.ENUM("admin", "client", "superAdmin"),
+      type: new DataTypes.ENUM("adminProviders", "client", "superAdmin",'adminReviews','checker'),
       defaultValue: "client",
     },
     charge: {

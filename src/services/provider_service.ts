@@ -6,9 +6,9 @@ export const createProvider = async (
   categories: any,
   user: any
 ) => {
-  try {
-    const newProvider = await Provider.create(provider);
+  const newProvider = await Provider.create(provider);
 
+  if (newProvider) {
     services.map((service: string) => {
       Services.findOrCreate({
         where: { name: service },
@@ -29,89 +29,61 @@ export const createProvider = async (
     );
 
     return newProvider;
-  } catch (error) {
-    console.log(error);
-  }
+  } else throw new Error("Error loading form data");
 };
 
 export const updateProvider = async (body: any, name: any) => {
-  try {
-    const providerUpdated = await Provider.update(body, {
-      where: { name },
-      returning: true,
-    });
-    return providerUpdated[1][0];
-  } catch (error) {
-    console.log(error);
-  }
+  const providerUpdated = await Provider.update(body, {
+    where: { name },
+    returning: true,
+  });
+  if (providerUpdated) return providerUpdated[1][0];
+  else throw new Error("Invalid fields");
 };
 
 export const deleteProvider = async (name: string) => {
-  try {
-    const providerToDelete = await Provider.findOne({ where: { name } });
-    const providerDeleted = await Provider.destroy({ where: { name } });
-    return providerToDelete;
-  } catch (error) {
-    console.log(error);
-  }
+  return Provider.destroy({ where: { name } });
 };
 
 export const getProvider = async (name: string) => {
-  try {
-    const provider = await Provider.findOne({ where: { name } });
-    return provider;
-  } catch (error) {
-    console.log(error);
-  }
+  const provider = await Provider.findOne({ where: { name } });
+  if (provider) return provider;
+  else throw new Error("there is no user with that name");
 };
 
 export const getProviders = async () => {
-  try {
-    const providers = await Provider.findAll();
-    return providers;
-  } catch (error) {
-    console.log(error);
-  }
+  const providers = await Provider.findAll();
+  if (providers) return providers;
+  else throw new Error("Not found");
 };
 
 export const filterByCategorie = async (name: string) => {
-  try {
-    const providers = await Categories.findOne({
-      where: { name },
-      include: { model: Provider, as: "providers" },
-    });
-    return providers?.providers;
-  } catch (error) {
-    console.log(error);
-  }
+  const providers = await Categories.findOne({
+    where: { name },
+    include: { model: Provider, as: "providers" },
+  });
+  if (providers?.providers) return providers?.providers;
+  else throw new Error("there is no category with that name");
 };
 
 export const filterByService = async (name: string) => {
-  try {
-    const providers = await Services.findOne({
-      where: { name },
-      include: { model: Provider, as: "providers" },
-    });
-    return providers?.providers;
-  } catch (error) {
-    console.log(error);
-  }
+  const providers = await Services.findOne({
+    where: { name },
+    include: { model: Provider, as: "providers" },
+  });
+  if (providers?.providers) return providers?.providers;
+  else throw new Error("there is no service with that name");
+
 };
 
 export const getProvidersF = async () => {
-  try {
-    const providers = await Provider.findAll({ where: { isPending: false } });
-    return providers;
-  } catch (error) {
-    console.log(error);
-  }
+  const providers = await Provider.findAll({ where: { isPending: false } });
+  if (providers) return providers;
+  else throw new Error("Not found");
 };
 
 export const getProvidersT = async () => {
-  try {
-    const providers = await Provider.findAll({ where: { isPending: true } });
-    return providers;
-  } catch (error) {
-    console.log(error);
-  }
+  const providers = await Provider.findAll({ where: { isPending: true } });
+  if (providers) return providers;
+  else throw new Error("Not found");
 };

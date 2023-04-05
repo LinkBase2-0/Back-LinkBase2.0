@@ -2,6 +2,7 @@ import { Router } from "express";
 import { review_create, review_delete, review_get_all, review_get_of_provider, review_get_of_user, review_get_one } from "../controllers/review_controller";
 
 import { Provider, Review, User } from "../models";
+import { validateAuth, validateRolAdminReviews } from "../middleware/auth";
 
 const router = Router();
 

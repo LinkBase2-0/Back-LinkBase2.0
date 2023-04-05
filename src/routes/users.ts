@@ -4,8 +4,9 @@ import {
   user_create_post, user_login_post,
   user_logout_post, get_user_byEmail,
   get_all_user, put_user_byEmail,
-  delete_user,
+  delete_user
 } from "../controllers/user_controller"
+import { validateAuth,validateRolSuperAdmin } from "../middleware/auth";
 
 const router = Router();
 
@@ -15,7 +16,7 @@ const router = Router();
  *    post:
  *      tags:
  *      - users
- *      summary: Create new user on te db
+ *      summary: Create new user on the db
  *
  *      requestBody:
  *        content:
@@ -102,6 +103,45 @@ router.post("/register", user_create_post);
 */
 router.post("/login", user_login_post);
 
+
+/**
+* @openapi
+* /users/logout:
+*    post:
+*      tags:
+*      - users
+*      summary: To logout a user
+*  
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/bodyUsersLoginPost'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/
 router.post("/logout", user_logout_post);
 
 
@@ -149,7 +189,7 @@ router.post("/logout", user_logout_post);
 *          ServerError:
 *            description: Error en servidor
 */
-router.get("/:email", get_user_byEmail);
+router.get("/:email",validateAuth, get_user_byEmail);
 
 // ----- ADMIN ------
 
@@ -192,10 +232,7 @@ router.get("/:email", get_user_byEmail);
 *          ServerError:
 *            description: Error en servidor
 */
-router.get("/",get_all_user);
-
-
-
+router.get("/",validateAuth,validateRolSuperAdmin ,get_all_user);
 
 /**
 * @openapi
@@ -247,8 +284,7 @@ router.get("/",get_all_user);
 *          ServerError:
 *            description: Error en servidor
 */
-router.put("/:email",put_user_byEmail);
-
+router.put("/:email",validateAuth, put_user_byEmail);
 
 
 /**
@@ -295,6 +331,6 @@ router.put("/:email",put_user_byEmail);
 *          ServerError:
 *            description: Error en servidor
 */
-router.delete("/:email", delete_user);
+router.delete("/:email",validateAuth,validateRolSuperAdmin, delete_user);
 
 export default router;

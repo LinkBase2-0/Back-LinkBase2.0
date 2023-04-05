@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { categorie_create, categorie_get_all } from "../controllers/categorie_controller";
 import { Categories, Provider } from "../models";
+import { validateAuth, validateRolSuperAdmin } from "../middleware/auth";
 
 
 const router = Router();

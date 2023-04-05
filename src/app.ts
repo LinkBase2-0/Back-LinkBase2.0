@@ -1,4 +1,5 @@
 import express from "express";
+import { Request, Response, NextFunction } from "express";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import cors from "cors";
@@ -7,8 +8,9 @@ import DataBase from "./db";
 
 import router from "./routes";
 
+import { port} from "./dotenv";
+
 import { Services, User, Review, Provider, Company } from "./models/index";
-import { Optional } from "sequelize";
 import swaggerDocs from "./swagger/swagger";
 
 Provider.associate();
@@ -18,7 +20,7 @@ Review.associate();
 Company.associate();
 
 const app = express();
-const PORT = 3001;
+const PORT = port;
 
 app.use(express.json());
 app.use(morgan("tiny"));
@@ -27,10 +29,15 @@ app.use(cors());
 
 app.use("/", router);
 
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err);
+  res.status(500).send(`Some custom error: ${err.message}`);
+});
+
 DataBase.sync({ force: true }).then(() => {
   console.log("db connected");
   app.listen(PORT, () => {
     console.log(`Server listening at port ${PORT}`);
-    swaggerDocs(app,PORT)
+    swaggerDocs(app, PORT);
   });
-}); 
+});

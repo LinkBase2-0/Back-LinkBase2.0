@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 import {
   createReview,
@@ -9,39 +9,88 @@ import {
   getReviews,
 } from "../services/review_service";
 
-export const review_create = async (req: Request, res: Response) => {
+export const review_create = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { review } = req.body;
   const { email } = req.body.user;
   const { name } = req.body.provider;
-  const newReview = await createReview(review, email, name);
-  return res.status(201).send(newReview);
+  try {
+    const newReview = await createReview(review, email, name);
+    return res.status(201).send(newReview);
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const review_get_of_user = async (req: Request, res: Response) => {
+export const review_get_of_user = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { email } = req.params;
-  const userReviews = await getUserReviews(email);
-  return res.status(200).send(userReviews);
+  try {
+    const userReviews = await getUserReviews(email);
+    return res.status(200).send(userReviews);
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const review_get_of_provider = async (req: Request, res: Response) => {
+export const review_get_of_provider = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { name } = req.params;
-  const providerReviews = await getProviderReviews(name);
-  return res.status(200).send(providerReviews);
+  try {
+    const providerReviews = await getProviderReviews(name);
+    return res.status(200).send(providerReviews);
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const review_delete = async (req: Request, res: Response) => {
+export const review_delete = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const id = req.params.reviewId;
-  const reviewToDelete = await deleteReview(id);
-  return res.status(200).send(reviewToDelete);
+  try {
+    const reviewDeleted = await getReview(id);
+    await deleteReview(id);
+    return res.status(200).send(reviewDeleted);
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const review_get_one = async (req: Request, res: Response) => {
+export const review_get_one = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const id = req.params.reviewId;
-  const review = await getReview(id);
-  return res.status(200).send(review);
+  try {
+    const review = await getReview(id);
+    return res.status(200).send(review);
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const review_get_all = async (req: Request, res: Response) => {
-  const reviews = await getReviews();
-  return res.status(200).send(reviews);
+export const review_get_all = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const reviews = await getReviews();
+    return res.status(200).send(reviews);
+  } catch (error) {
+    next(error);
+  }
 };
