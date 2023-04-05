@@ -1,41 +1,30 @@
 import { Services } from "../models";
 
 export const createService = async (body: any) => {
-  try {
-    const newService = await Services.create(body);
-    return newService;
-  } catch (error) {
-    console.log(error);
-  }
+  const newService = await Services.create(body);
+  if (newService) return newService;
+  else throw new Error("Error loading form data");
 };
 
 export const deleteService = async (name: string) => {
-  try {
-    const serviceToDelete = await Services.findOne({ where: { name } });
+  const serviceToDelete = await Services.findOne({ where: { name } });
+  if (serviceToDelete) {
     const serviceDeleted = await Services.destroy({ where: { name } });
     return serviceToDelete;
-  } catch (error) {
-    console.log(error);
-  }
+  } else throw new Error("there is no service with that name");
 };
 
 export const updateService = async (body: any, name: string) => {
-  try {
-    const serviceUpdated = await Services.update(body, {
-      where: { name },
-      returning: true,
-    });
-    return serviceUpdated[1][0];
-  } catch (error) {
-    console.log(error);
-  }
+  const serviceUpdated = await Services.update(body, {
+    where: { name },
+    returning: true,
+  });
+  if (serviceUpdated[1][0]) return serviceUpdated[1][0];
+  else throw new Error("Invalid fields");
 };
 
 export const getServices = async () => {
-  try {
-    const services = await Services.findAll();
-    return services;
-  } catch (error) {
-    console.log(error);
-  }
+  const services = await Services.findAll();
+  if (services) return services;
+  else throw new Error("Not found");
 };

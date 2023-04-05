@@ -16,7 +16,7 @@ const router = Router();
  *    post:
  *      tags:
  *      - users
- *      summary: Create new user on te db
+ *      summary: Create new user on the db
  *
  *      requestBody:
  *        content:

@@ -1,33 +1,25 @@
 import { Company, User } from "../models";
 
 export const createCompany = async (email: string, name: string) => {
-  try {
-    const newCompany = await Company.findOrCreate({ where: { name } });
+  const newCompany = await Company.findOrCreate({ where: { name } });
+  if (newCompany) {
     const user: any = await User.findOne({ where: { email } });
     await newCompany[0].addUser(user);
     return newCompany[0];
-  } catch (error) {
-    console.log(error);
-  }
+  } else throw new Error("Error loading form data");
 };
 
 export const getUsers = async (name: string) => {
-  try {
-    const users = await Company.findOne({
-      where: { name },
-      include: { model: User, as: "users" },
-    });
-    return users;
-  } catch (error) {
-    console.log(error);
-  }
+  const users = await Company.findOne({
+    where: { name },
+    include: { model: User, as: "users" },
+  });
+  if (users) return users;
+  else throw new Error("there is no company with that name");
 };
 
 export const getCompanies = async () => {
-  try {
-    const companies = await Company.findAll();
-    return companies;
-  } catch (error) {
-    console.log(error);
-  }
+  const companies = await Company.findAll();
+  if (companies) return companies;
+  else throw new Error("Not found");
 };

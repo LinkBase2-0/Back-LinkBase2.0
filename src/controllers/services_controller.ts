@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import {
   createService,
   deleteService,
@@ -6,24 +6,56 @@ import {
   updateService,
 } from "../services/services_service";
 
-export const service_create = async (req: Request, res: Response) => {
-  const newService = await createService(req.body);
-  return res.status(201).send(newService);
+export const service_create = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const newService = await createService(req.body);
+    return res.status(201).send(newService);
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const service_delete = async (req: Request, res: Response) => {
+export const service_delete = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { name } = req.params;
-  const serviceToDelete = await deleteService(name);
-  return res.status(200).send(serviceToDelete);
+  try {
+    const serviceToDelete = await deleteService(name);
+    return res.status(200).send(serviceToDelete);
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const service_update = async (req: Request, res: Response) => {
+export const service_update = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { name } = req.params;
-  const serviceUpdated = await updateService(req.body, name);
-  return res.status(200).send(serviceUpdated);
+  try {
+    const serviceUpdated = await updateService(req.body, name);
+    return res.status(200).send(serviceUpdated);
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const service_get_all = async (req: Request, res: Response) => {
-  const services = await getServices();
-  return res.status(200).send(services);
+export const service_get_all = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const services = await getServices();
+    return res.status(200).send(services);
+  } catch (error) {
+    next(error);
+  }
 };
