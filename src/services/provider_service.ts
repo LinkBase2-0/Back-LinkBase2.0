@@ -17,11 +17,12 @@ export const createProvider = async (
       });
     });
 
-    categories.map(async (categoryName: string) => {
-      const category = await Categories.findOne({
+    categories.map((categoryName: string) => {
+      Categories.findOrCreate({
         where: { name: categoryName },
+      }).then((category) => {
+        newProvider.addCategorie(category[0]);
       });
-      category && (await newProvider.addCategorie(category));
     });
 
     User.findOne({ where: { email: user.email } }).then(
@@ -73,7 +74,6 @@ export const filterByService = async (name: string) => {
   });
   if (providers?.providers) return providers?.providers;
   else throw new Error("there is no service with that name");
-
 };
 
 export const getProvidersF = async () => {
