@@ -32,6 +32,7 @@ app.use("/", router);
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err);
+  //funcionTraductora(err)
   res.status(500).send(`Error: ${err.errors[0].message}`);
 });
 
