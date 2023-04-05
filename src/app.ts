@@ -10,7 +10,7 @@ import router from "./routes";
 
 import { port} from "./dotenv";
 
-import { Services, User, Review, Provider, Company } from "./models/index";
+import { Services, User, Review, Provider, Company, Categories } from "./models/index";
 import swaggerDocs from "./swagger/swagger";
 
 Provider.associate();
@@ -18,6 +18,7 @@ Services.associate();
 User.associate();
 Review.associate();
 Company.associate();
+Categories.associate()
 
 const app = express();
 const PORT = port;

@@ -17,12 +17,12 @@ export const createProvider = async (
       });
     });
 
-    categories.map(async (categoryName: string) => {
-      const category = await Categories.findOne({
+    categories.map((categoryName: string) => {
+      Categories.findOrCreate({
         where: { name: categoryName },
+      }).then((category) => {
+        newProvider.addCategorie(category[0]);
       });
-      category && (await newProvider.addCategorie(category));
-      
     });
 
     User.findOne({ where: { email: user.email } }).then(
@@ -53,9 +53,7 @@ export const getProvider = async (name: string) => {
 };
 
 export const getProviders = async () => {
-  const providers = await Provider.findAll({
-    include: { model: Categories, as: "categories" },
-  });
+  const providers = await Provider.findAll();
   if (providers) return providers;
   else throw new Error("Not found");
 };
@@ -65,7 +63,6 @@ export const filterByCategorie = async (name: string) => {
     where: { name },
     include: { model: Provider, as: "providers" },
   });
-  console.log(providers)
   if (providers?.providers) return providers?.providers;
   else throw new Error("there is no category with that name");
 };
@@ -77,7 +74,6 @@ export const filterByService = async (name: string) => {
   });
   if (providers?.providers) return providers?.providers;
   else throw new Error("there is no service with that name");
-
 };
 
 export const getProvidersF = async () => {

@@ -84,7 +84,7 @@ Provider.init(
       allowNull: true,
     },
     photoURL: {
-      type: new DataTypes.STRING(128),
+      type: new DataTypes.STRING(256),
       allowNull: true,
     },
     isPending: {
