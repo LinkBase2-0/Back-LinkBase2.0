@@ -19,6 +19,7 @@ export default class User extends Model<
 > {
   declare email: string;
   declare password: string;
+  declare id: number;
   declare salt: string;
   declare fullName: string;
   declare rol: boolean;
@@ -49,6 +50,12 @@ User.init(
     fullName: {
       type: new DataTypes.STRING(128),
       allowNull: true,
+    },
+    id: {
+      type: new DataTypes.INTEGER(),
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
     },
     email: {
       type: new DataTypes.STRING(128),

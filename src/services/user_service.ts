@@ -31,8 +31,8 @@ export const loggedUser = async (email: string, password: string) => {
   };
 };
 
-export const getUserByEmail = async (email: string) => {
-  const user = await User.findOne({ where: { email } });
+export const getUserByEmail = async (id: number) => {
+  const user = await User.findOne({ where: { id } });
   if (user) return { user: user };
   else throw new Error("there is no user with that email");
 };

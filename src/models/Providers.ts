@@ -25,6 +25,7 @@ export default class Provider extends Model<
   declare address: string;
   declare latitude: string;
   declare longitude: string;
+  declare id: number;
 
   public readonly services?: Services[];
   public readonly categories?: Categories[];
@@ -66,6 +67,12 @@ Provider.init(
     name: {
       type: new DataTypes.STRING(128),
       allowNull: false,
+    },
+    id: {
+      type: new DataTypes.INTEGER(),
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
     },
     email: {
       type: new DataTypes.STRING(128),

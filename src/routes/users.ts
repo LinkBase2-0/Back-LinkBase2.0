@@ -189,7 +189,7 @@ router.post("/logout", user_logout_post);
 *          ServerError:
 *            description: Error en servidor
 */
-router.get("/:email",validateAuth, get_user_byEmail);
+router.get("/:id", get_user_byEmail);
 
 // ----- ADMIN ------
 
@@ -232,7 +232,7 @@ router.get("/:email",validateAuth, get_user_byEmail);
 *          ServerError:
 *            description: Error en servidor
 */
-router.get("/",validateAuth,validateRolSuperAdmin ,get_all_user);
+router.get("/",get_all_user);
 
 /**
 * @openapi
@@ -284,7 +284,7 @@ router.get("/",validateAuth,validateRolSuperAdmin ,get_all_user);
 *          ServerError:
 *            description: Error en servidor
 */
-router.put("/:email",validateAuth, put_user_byEmail);
+router.put("/:email", put_user_byEmail);
 
 
 /**

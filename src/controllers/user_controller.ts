@@ -39,14 +39,15 @@ export const user_logout_post = async (req: Request, res: Response) => {
   res.clearCookie("token");
   res.sendStatus(204);
 };
+
 export const get_user_byEmail = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { email } = req.params;
+  const { id } = req.params;
   try {
-    const getUser = await getUserByEmail(email);
+    const getUser = await getUserByEmail(parseInt(id));
     if (getUser.user) return res.status(200).send(getUser.user);
   } catch (error) {
     next(error);
@@ -90,10 +91,10 @@ export const delete_user = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { email } = req.params;
+  const { id } = req.params;
   try {
-    const userToDelete = await getUserByEmail(email);
-    await deleteUser(email);
+    const userToDelete = await getUserByEmail(parseInt(id));
+    await deleteUser(id);
     return res.status(200).send(userToDelete);
   } 
   catch (error) {

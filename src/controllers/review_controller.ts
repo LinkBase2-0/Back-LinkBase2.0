@@ -44,9 +44,9 @@ export const review_get_of_provider = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { name } = req.params;
+  const { id } = req.params;
   try {
-    const providerReviews = await getProviderReviews(name);
+    const providerReviews = await getProviderReviews(parseInt(id));
     return res.status(200).send(providerReviews);
   } catch (error) {
     next(error);

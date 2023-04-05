@@ -146,7 +146,7 @@ router.get("/userReviews/:email", review_get_of_user)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/providerReviews/:name", review_get_of_provider)
+router.get("/providerReviews/:id", review_get_of_provider)
 
 
 /**

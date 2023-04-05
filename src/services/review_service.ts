@@ -26,9 +26,9 @@ export const getUserReviews = async (email: string) => {
   else throw new Error("there is no user with that email");
 };
 
-export const getProviderReviews = async (name: string) => {
+export const getProviderReviews = async (id: number) => {
   const providerReviews = await Provider.findOne({
-    where: { name },
+    where: { id },
     include: { model: Review, as: "reviews" },
   });
   if (providerReviews) return providerReviews;
