@@ -54,6 +54,5 @@ const setCategory = () => {
 
 
 setUsers()
-  .then((res) => setCategory())
   .then((res) => setProviders())
   .then((res) => setReview());

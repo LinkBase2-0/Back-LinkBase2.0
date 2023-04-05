@@ -25,14 +25,9 @@ export default class Categories extends Model<
   }
 
   public async addProvider(provider: Provider): Promise<void> {
-    await (this as any).addProviders(provider);
+    await (this as any).addProvider(provider);
   }
 
-  // public async addProviders(providers: Provider[]): Promise<void> {
-  //   for (const provider of providers) {
-  //     await this.addProvider(provider);
-  //   }
-  // }
 }
 
 Categories.init(
