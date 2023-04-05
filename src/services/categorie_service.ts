@@ -1,19 +1,13 @@
 import { Categories } from "../models";
 
 export const createCategorie = async (body: any) => {
-  try {
-    const newCategory = await Categories.create(body);
-    return newCategory;
-  } catch (error) {
-    console.log(error);
-  }
+  const newCategory = await Categories.create(body);
+  if (newCategory) return newCategory;
+  else throw new Error("Error loading form data");
 };
 
 export const getCategories = async () => {
-  try {
-    const categories = await Categories.findAll();
-    return categories;
-  } catch (error) {
-    console.log(error);
-  }
+  const categories = await Categories.findAll();
+  if (categories) return categories;
+  else throw new Error("Not found");
 };

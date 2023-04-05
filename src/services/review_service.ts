@@ -5,8 +5,8 @@ export const createReview = async (
   email: string,
   name: string
 ) => {
-  try {
-    const newReview = await Review.create(review);
+  const newReview = await Review.create(review);
+  if (newReview) {
     const user = await User.findOne({ where: { email } });
     const provider = await Provider.findOne({ where: { name } });
 
@@ -14,61 +14,41 @@ export const createReview = async (
     await provider?.addReview(newReview);
 
     return newReview;
-  } catch (error) {
-    console.log(error);
-  }
+  } else throw new Error("Error loading form data");
 };
 
 export const getUserReviews = async (email: string) => {
-  try {
-    const userReviews = await User.findOne({
-      where: { email },
-      include: { model: Review, as: "reviews" },
-    });
-    return userReviews;
-  } catch (error) {
-    console.log(error);
-  }
+  const userReviews = await User.findOne({
+    where: { email },
+    include: { model: Review, as: "reviews" },
+  });
+  if (userReviews) return userReviews;
+  else throw new Error("there is no user with that email");
 };
 
 export const getProviderReviews = async (name: string) => {
-  try {
-    const providerReviews = await Provider.findOne({
-      where: { name },
-      include: { model: Review, as: "reviews" },
-    });
-    return providerReviews;
-  } catch (error) {
-    console.log(error);
-  }
+  const providerReviews = await Provider.findOne({
+    where: { name },
+    include: { model: Review, as: "reviews" },
+  });
+  if (providerReviews) return providerReviews;
+  else throw Error("there is no provider with that name");
 };
 
 export const deleteReview = async (id: any) => {
-  try {
-    const reviewToDelete = await Review.findByPk(id);
-    const reviewDeleted = await Review.destroy({
-      where: { text: reviewToDelete?.text },
-    });
-    return reviewToDelete;
-  } catch (error) {
-    console.log(error);
-  }
+  return Review.destroy({
+    where: { id },
+  });
 };
 
 export const getReview = async (id: any) => {
-  try {
-    const review = await Review.findByPk(id);
-    return review;
-  } catch (error) {
-    console.log(error);
-  }
+  const review = await Review.findByPk(id);
+  if (review) return review;
+  else throw new Error("there is no review with that id");
 };
 
 export const getReviews = async () => {
-  try {
-    const reviews = await Review.findAll();
-    return reviews;
-  } catch (error) {
-    console.log(error);
-  }
+  const reviews = await Review.findAll();
+  if (reviews) return reviews;
+  else throw new Error("Not found");
 };

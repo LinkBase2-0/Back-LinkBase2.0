@@ -2,18 +2,15 @@ import { Company, User } from "../models";
 import { generateToken } from "../config/token";
 
 export const createUser = async (user: any, name: string) => {
-  try {
-    if (name) {
-      const newCompany = await Company.findOrCreate({ where: { name } });
-      const newUser = await User.create(user);
-      await newCompany[0].addUser(newUser);
-      return newUser;
-    } else {
-      const newUser = await User.create(user);
-      return newUser;
-    }
-  } catch (error) {
-    console.log(error);
+  if (name) {
+    const newCompany = await Company.findOrCreate({ where: { name } });
+    const newUser = await User.create(user);
+    await newCompany[0].addUser(newUser);
+    return newUser;
+  } else {
+    const newUser = await User.create(user);
+    if (newUser) return newUser;
+    else throw new Error("Error loading form data");
   }
 };
 
@@ -34,31 +31,23 @@ export const loggedUser = async (email: string, password: string) => {
 };
 
 export const getUserByEmail = async (email: string) => {
-    
-    const user = await User.findOne({ where: { email } });
-    if(user) return { user: user };
-    else throw new Error("no existe usuario con ese email");
+  const user = await User.findOne({ where: { email } });
+  if (user) return { user: user };
+  else throw new Error("there is no user with that email");
 };
 
 export const findAllUser = async () => {
-  try {
-    const users = await User.findAll();
-    return { all: users };
-  } catch (error) {
-    return { error: "No se pudo encontrar usuarios" };
-  }
+  const users = await User.findAll();
+  if (users) return { all: users };
+  else throw new Error("No users could be found");
 };
 
 export const updateUserEmail = async (body: object, obj: any) => {
-  try {
-    const userUpdated = await User.update(body, obj);
-    return userUpdated[1][0];
-  } catch (error) {
-    console.log(error);
-  }
+  const userUpdated = await User.update(body, obj);
+  if(userUpdated[1][0]) return userUpdated[1][0];
+  else throw new Error("Invalid fields")
 };
 
 export const deleteUser = async (email: string) => {
-  const user = User.destroy({ where: { email } });
-  return user;
+  return User.destroy({ where: { email } });
 };

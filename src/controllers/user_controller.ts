@@ -8,11 +8,19 @@ import {
   deleteUser,
 } from "../services/user_service";
 
-export const user_create_post = async (req: Request, res: Response) => {
+export const user_create_post = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const user = req.body.user;
   const name = req.body.company?.name;
-  const newUser = await createUser(user, name);
-  return res.status(201).send(newUser);
+  try {
+    const newUser = await createUser(user, name);
+    return res.status(201).send(newUser);
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const user_login_post = async (req: Request, res: Response) => {
@@ -39,43 +47,56 @@ export const get_user_byEmail = async (
   const { email } = req.params;
   try {
     const getUser = await getUserByEmail(email);
-    if (getUser.user) res.status(200).send(getUser.user);
-  } 
-  catch (error) {
-    // console.error(getUser.error)
-    // res.status(404).send(getUser.error)
+    if (getUser.user) return res.status(200).send(getUser.user);
+  } catch (error) {
     next(error);
-    //throw new Error(getUser.error)
   }
 };
 
-export const get_all_user = async (req: Request, res: Response) => {
-  const users = await findAllUser();
-  if (users.all) res.status(200).send(users.all);
-  else {
-    console.error(users.error);
-    res.status(404);
+export const get_all_user = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const users = await findAllUser();
+    if (users.all) return res.status(200).send(users.all);
+  } catch (error) {
+    next(error);
   }
 };
 
-export const put_user_byEmail = async (req: Request, res: Response) => {
+export const put_user_byEmail = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { email } = req.params;
   const body = req.body;
   const obj = {
     where: { email },
     returning: true,
   };
-  const userUpdated = await updateUserEmail(body, obj);
-  res.status(200).send(userUpdated);
+  try {
+    const userUpdated = await updateUserEmail(body, obj);
+    return res.status(200).send(userUpdated);
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const delete_user = async (req: Request, res: Response) => {
+export const delete_user = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { email } = req.params;
   try {
     const userToDelete = await getUserByEmail(email);
-    const userDeleted = await deleteUser(email);
-    res.status(200).send(userToDelete);
-  } catch (error) {
-    console.log(error);
+    await deleteUser(email);
+    return res.status(200).send(userToDelete);
+  } 
+  catch (error) {
+    next(error);
   }
 };

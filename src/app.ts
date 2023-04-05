@@ -32,7 +32,7 @@ app.use("/", router);
 // Este último Middleware detecta los errores y los coloca en dicho parámetro
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err);
-  res.status(500).send("Some custom error!!");
+  res.status(500).send(`Some custom error: ${err.message}`);
 });
 
 DataBase.sync({ force: true }).then(() => {

@@ -152,7 +152,7 @@ router.delete("/:name", provider_delete)
 
 /**
 * @openapi
-* /providers/{name}:
+* /providers/find/{name}:
 *    get:
 *      tags:
 *      - providers
@@ -194,7 +194,7 @@ router.delete("/:name", provider_delete)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("find/:name", provider_get_one)
+router.get("/find/:name", provider_get_one)
 
 
 /**
