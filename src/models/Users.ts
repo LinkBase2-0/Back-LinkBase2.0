@@ -24,6 +24,7 @@ export default class User extends Model<
   declare rol: boolean;
   declare charge: string;
   declare isPending: string;
+  declare photoURL: string;
   declare hash: (password: string, salt: string) => Promise<String>;
   declare validatePassword: (password: string) => Promise<Boolean>;
 
@@ -76,6 +77,10 @@ User.init(
     isPending: {
       type: new DataTypes.BOOLEAN(),
       defaultValue: true,
+    },
+    photoURL: {
+      type: new DataTypes.STRING(256),
+      allowNull: true,
     },
   },
   { sequelize: DataBase, tableName: "users" }

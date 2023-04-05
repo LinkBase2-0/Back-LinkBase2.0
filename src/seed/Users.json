@@ -7,7 +7,8 @@
         "password": "password123",
         "rol": "superAdmin",
         "charge": "superAdmin",
-        "isPending": false
+        "isPending": false,
+        "photoURL": "https://images-ext-1.discordapp.net/external/bOgWlEZbAuRA9YHgfBeV4kYBRR9UL9c5syYQC2kfi8g/https/i.ibb.co/m51pLc4/Nueva-imagen-de-mapa-de-bits.png"
       }
     },
     {
@@ -17,7 +18,8 @@
         "password": "password123",
         "rol": "adminProviders",
         "charge": "superAdmin",
-        "isPending": false
+        "isPending": false,
+        "photoURL": "https://images-ext-1.discordapp.net/external/FU9IcH7tprwfHECW67zF6a16fygSAFB8CtZg0WmzSg4/https/i.ibb.co/bPMbbst/Nueva-imagen-de-mapa-de-bits.png"
       }
     },
     {
@@ -27,7 +29,8 @@
         "password": "password123",
         "rol": "adminReviews",
         "charge": "superAdmin",
-        "isPending": false
+        "isPending": false,
+        "photoURL": "https://images-ext-1.discordapp.net/external/02yh0JpCQ72O-ZvFjXRPg7zKQJaOY_A7uIMROqEzt4Q/https/i.ibb.co/ThJG0z5/Nueva-imagen-de-mapa-de-bits.png"
       }
     },
     {
@@ -37,7 +40,8 @@
         "password": "password123",
         "rol": "adminReviews",
         "charge": "superAdmin",
-        "isPending": false
+        "isPending": false,
+        "photoURL": "https://images-ext-2.discordapp.net/external/lSMB_JkV57AsbO85XUkY9o54sQIosvj2S_qXF-ZEBLg/https/i.ibb.co/pRVjmBj/Nueva-imagen-de-mapa-de-bits.png"
       }
     },
     {
@@ -47,7 +51,8 @@
         "password": "password123",
         "rol": "checker",
         "charge": "developer",
-        "isPending": false
+        "isPending": false,
+        "photoURL": "https://images-ext-1.discordapp.net/external/8WJLkrXqzVS6iocp-CYsV1Kx1svhIbNcMVgh0iyAazM/https/i.ibb.co/jD0nTcK/Nueva-imagen-de-mapa-de-bits.png"
       },
       "company": {
         "name": "Metalurgica Guemes"
@@ -61,7 +66,8 @@
         "password": "password123",
         "rol": "checker",
         "charge": "limpieza",
-        "isPending": false
+        "isPending": false,
+        "photoURL": "https://media.licdn.com/dms/image/D5603AQHkepKPTkGTWw/profile-displayphoto-shrink_800_800/0/1674070138632?e=1686182400&v=beta&t=fO-b69A_cs3bmuJJl3DGd9famR9lVS0Y5KS_HMgKSrw"
       },
       "company": {
         "name": "Agrotv"
@@ -75,7 +81,8 @@
         "password": "password123",
         "charge": "tecnico",
         "rol": "checker",
-        "isPending": false
+        "isPending": false,
+        "photoURL": "https://images-ext-1.discordapp.net/external/1DdJrcwYHp6lJjKWYi4Bt_JspIxBjVDDfOIPvVt3iq8/https/i.ibb.co/sFB4dw2/Nueva-imagen-de-mapa-de-bits.png"
       },
       "company": {
         "name": "Paqueta"
@@ -89,7 +96,8 @@
         "password": "password123",
         "rol": "adminReviews",
         "charge": "checker",
-        "isPending": false
+        "isPending": false,
+        "photoURL": "https://images-ext-1.discordapp.net/external/lpTQLzHk7RxP1z_2h_Lvog_CKAoQS6Z3VZfjiJAmlJQ/https/i.ibb.co/PwrSN9L/Nueva-imagen-de-mapa-de-bits.png"
       },
       "company": {
         "name": "Testmic"
@@ -101,7 +109,8 @@
         "email": "pedro@gmail.com",
         "password": "password123",
         "charge": "consejero",
-        "isPending": false
+        "isPending": false,
+        "photoURL": "https://media.licdn.com/dms/image/D4D03AQFgomyTUrXE0w/profile-displayphoto-shrink_800_800/0/1667419747202?e=1686182400&v=beta&t=5-acGKwirT_ojNd2JiF2lX3IhExslESIdd_syzc3S6k"
       },
       "company": {
         "name": "Metalurgica Guemes"
@@ -113,7 +122,8 @@
         "email": "leandro@gmail.com",
         "password": "password123",
         "charge": "mantenimiento",
-        "isPending": false
+        "isPending": false,
+        "photoURL": "https://media.licdn.com/dms/image/C5603AQGZ_xVLu8R8Uw/profile-displayphoto-shrink_800_800/0/1618844106240?e=1686182400&v=beta&t=XslIMKU8b8_eVfY4rDu-ricbZ_iDh_lljOUO130XVBo"
       },
       "company": {
         "name": "Agrotv"
@@ -125,7 +135,8 @@
         "email": "martin@gmail.com",
         "password": "password123",
         "charge": "administrativo",
-        "isPending": false
+        "isPending": false,
+        "photoURL": "https://media.licdn.com/dms/image/D4D35AQFsMUc_3dgUNQ/profile-framedphoto-shrink_800_800/0/1651522726300?e=1681329600&v=beta&t=Oi9wMFPIov8x3rf2MpDtIcxCnT60Y600gWaO4NvHOqA"
       },
       "company": {
         "name": "Testmic"
@@ -137,7 +148,8 @@
         "email": "francisco@gmail.com",
         "password": "password123",
         "charge": "limpieza",
-        "isPending": false
+        "isPending": false,
+        "photoURL": "https://media.licdn.com/dms/image/D4D03AQFAbpvXm7AfYg/profile-displayphoto-shrink_800_800/0/1673275784982?e=1686182400&v=beta&t=KCZ1v--dG0Vp_3g5uPMSXHNK2GgSgJ3-gW4na8yRutU"
       },
       "company": {
         "name": "Testmic"
@@ -149,7 +161,8 @@
         "email": "julieta@gmail.com",
         "password": "password123",
         "charge": "developer",
-        "isPending": true
+        "isPending": true,
+        "photoURL": "https://media.licdn.com/dms/image/D4E03AQFImA7hzZn8eA/profile-displayphoto-shrink_800_800/0/1674687013206?e=1686182400&v=beta&t=knI1mpy-w1SdlQoqJDU74C2LYd1rjpet5lAnME5y3Jk"
       },
       "company": {
         "name": "Paqueta"
