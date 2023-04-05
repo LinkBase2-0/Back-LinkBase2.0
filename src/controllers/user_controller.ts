@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { validateToken } from "../config/token";
 import {
   createUser,
   loggedUser,
@@ -38,7 +39,6 @@ export const user_logout_post = async (req: Request, res: Response) => {
   res.clearCookie("token");
   res.sendStatus(204);
 };
-
 export const get_user_byEmail = async (
   req: Request,
   res: Response,
@@ -99,4 +99,5 @@ export const delete_user = async (
   catch (error) {
     next(error);
   }
-};
+}
+

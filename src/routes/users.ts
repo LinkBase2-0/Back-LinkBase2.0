@@ -4,9 +4,9 @@ import {
   user_create_post, user_login_post,
   user_logout_post, get_user_byEmail,
   get_all_user, put_user_byEmail,
-  delete_user,
+  delete_user
 } from "../controllers/user_controller"
-import { validateAuth } from "../middleware/auth";
+import { validateAuth,validateRolSuperAdmin } from "../middleware/auth";
 
 const router = Router();
 
@@ -104,7 +104,6 @@ router.post("/register", user_create_post);
 router.post("/login", user_login_post);
 
 
-
 /**
 * @openapi
 * /users/logout:
@@ -190,7 +189,7 @@ router.post("/logout", user_logout_post);
 *          ServerError:
 *            description: Error en servidor
 */
-router.get("/:email", get_user_byEmail);
+router.get("/:email",validateAuth, get_user_byEmail);
 
 // ----- ADMIN ------
 
@@ -233,10 +232,7 @@ router.get("/:email", get_user_byEmail);
 *          ServerError:
 *            description: Error en servidor
 */
-router.get("/",validateAuth ,get_all_user);
-
-
-
+router.get("/",validateAuth,validateRolSuperAdmin ,get_all_user);
 
 /**
 * @openapi
@@ -288,8 +284,7 @@ router.get("/",validateAuth ,get_all_user);
 *          ServerError:
 *            description: Error en servidor
 */
-router.put("/:email",put_user_byEmail);
-
+router.put("/:email",validateAuth, put_user_byEmail);
 
 
 /**
@@ -336,6 +331,6 @@ router.put("/:email",put_user_byEmail);
 *          ServerError:
 *            description: Error en servidor
 */
-router.delete("/:email", delete_user);
+router.delete("/:email",validateAuth,validateRolSuperAdmin, delete_user);
 
 export default router;

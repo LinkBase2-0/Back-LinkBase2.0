@@ -1,10 +1,10 @@
 import { Router } from "express";
 
-import { Services, Provider,Categories, User } from "../models";
-
 import {provider_create_post, provider_update, provider_delete, provider_get_one, provider_get_all, 
     provider_filter_by_categorie, provider_filter_by_service, 
     provider_pending_false, provider_pending_true} from "../controllers/provider_controller"
+
+import { validateRolAdminProviders, validateAuth, validateRolSuperAdmin } from "../middleware/auth";
 
 const router = Router();
 
@@ -100,7 +100,7 @@ router.post("/", provider_create_post )
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.put("/:name", provider_update)
+router.put("/:name",provider_update)
 
 
 /**
@@ -277,7 +277,7 @@ router.get("/", provider_get_all)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/pendingF", provider_pending_false)
+router.get("/pendingF",provider_pending_false)
 
 
 /**

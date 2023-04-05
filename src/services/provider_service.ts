@@ -73,6 +73,7 @@ export const filterByService = async (name: string) => {
   });
   if (providers?.providers) return providers?.providers;
   else throw new Error("there is no service with that name");
+
 };
 
 export const getProvidersF = async () => {
