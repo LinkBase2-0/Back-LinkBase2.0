@@ -51,7 +51,7 @@ const router = Router();
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.post("/",validateAuth, review_create)
+router.post("/", review_create)
 
 
 
@@ -99,7 +99,7 @@ router.post("/",validateAuth, review_create)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/userReviews/:email",validateAuth, review_get_of_user)
+router.get("/userReviews/:email", review_get_of_user)
 
 
 /**
@@ -146,7 +146,7 @@ router.get("/userReviews/:email",validateAuth, review_get_of_user)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/providerReviews/:name",validateAuth, review_get_of_provider)
+router.get("/providerReviews/:name", review_get_of_provider)
 
 
 /**
@@ -193,7 +193,7 @@ router.get("/providerReviews/:name",validateAuth, review_get_of_provider)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.delete("/:reviewId",validateAuth,validateRolAdminReviews, review_delete)
+router.delete("/:reviewId", review_delete)
 
 
 /**
@@ -240,7 +240,7 @@ router.delete("/:reviewId",validateAuth,validateRolAdminReviews, review_delete)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/:reviewId", validateAuth, review_get_one)
+router.get("/:reviewId", review_get_one)
 
 
 /**
@@ -281,6 +281,6 @@ router.get("/:reviewId", validateAuth, review_get_one)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/",validateAuth,validateRolAdminReviews, review_get_all)
+router.get("/", review_get_all)
 
 export default router;

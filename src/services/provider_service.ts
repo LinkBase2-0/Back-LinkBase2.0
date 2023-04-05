@@ -67,25 +67,29 @@ export const getProvider = async (name: string) => {
 
 export const filterByCategorie = async (name: string) => {
   try {
-    const providers = await Categories.findOne({
+    const categories = await Categories.findAll({
       where: { name },
       include: { model: Provider, as: "providers" },
     });
-    return providers?.providers;
+    const providers = categories?.[0]?.providers;
+    return providers || [];
   } catch (error) {
     console.log(error);
+    return [];
   }
 };
 
 export const filterByService = async (name: string) => {
   try {
-    const providers = await Services.findOne({
+    const categories = await Categories.findAll({
       where: { name },
       include: { model: Provider, as: "providers" },
     });
-    return providers?.providers;
+    const providers = categories?.[0]?.providers;
+    return providers || [];
   } catch (error) {
     console.log(error);
+    return [];
   }
 };
 
