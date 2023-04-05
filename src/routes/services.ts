@@ -1,8 +1,6 @@
 import { Router } from "express";
 import { service_create, service_delete, service_get_all, service_update } from "../controllers/services_controller";
 
-import { Services } from "../models";
-import User from "../models/Users";
 import { validateAuth } from "../middleware/auth";
 
 const router = Router();

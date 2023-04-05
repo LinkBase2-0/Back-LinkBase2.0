@@ -29,9 +29,9 @@ app.use(cors());
 
 app.use("/", router);
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err);
-  res.status(500).send(`Some custom error: ${err.message}`);
+  res.status(500).send(`Error: ${err.errors[0].message}`);
 });
 
 DataBase.sync({ force: true }).then(() => {

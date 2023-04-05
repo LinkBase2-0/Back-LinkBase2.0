@@ -22,6 +22,7 @@ export const createProvider = async (
         where: { name: categoryName },
       });
       category && (await newProvider.addCategorie(category));
+      
     });
 
     User.findOne({ where: { email: user.email } }).then(
@@ -52,7 +53,9 @@ export const getProvider = async (name: string) => {
 };
 
 export const getProviders = async () => {
-  const providers = await Provider.findAll();
+  const providers = await Provider.findAll({
+    include: { model: Categories, as: "categories" },
+  });
   if (providers) return providers;
   else throw new Error("Not found");
 };
@@ -62,6 +65,7 @@ export const filterByCategorie = async (name: string) => {
     where: { name },
     include: { model: Provider, as: "providers" },
   });
+  console.log(providers)
   if (providers?.providers) return providers?.providers;
   else throw new Error("there is no category with that name");
 };
