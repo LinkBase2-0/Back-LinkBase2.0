@@ -8,6 +8,18 @@ import {
 import DataBase from "../db";
 import Provider from "./Providers";
 
+interface Scopes {
+  attributes: {
+    exclude: string[]
+  }
+}
+
+const defaultScope: Scopes = {
+  attributes: {
+    exclude: ["createdAt", "updatedAt"],
+  },
+};
+
 export default class Categories extends Model<
   InferAttributes<Categories>,
   InferCreationAttributes<Categories>
@@ -27,7 +39,6 @@ export default class Categories extends Model<
   public async addProvider(provider: Provider): Promise<void> {
     await (this as any).addProvider(provider);
   }
-
 }
 
 Categories.init(
@@ -37,5 +48,5 @@ Categories.init(
       allowNull: false,
     },
   },
-  { sequelize: DataBase, tableName: "Categories" }
+  { sequelize: DataBase, tableName: "Categories", defaultScope }
 );

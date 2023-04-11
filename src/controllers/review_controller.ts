@@ -8,6 +8,7 @@ import {
   getReview,
   getReviews,
 } from "../services/review_service";
+import { sendEmail } from "../config/emailConfig";
 
 export const review_create = async (
   req: Request,
@@ -19,6 +20,7 @@ export const review_create = async (
   const { name } = req.body.provider;
   try {
     const newReview = await createReview(review, email, name);
+    await sendEmail("superAdmin", newReview);
     return res.status(201).send(newReview);
   } catch (error) {
     next(error);

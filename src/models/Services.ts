@@ -8,6 +8,18 @@ import {
 import DataBase from "../db";
 import Provider from "./Providers";
 
+interface Scopes {
+  attributes: {
+    exclude: string[]
+  }
+}
+
+const defaultScope: Scopes = {
+  attributes: {
+    exclude: ["createdAt", "updatedAt"],
+  },
+};
+
 export default class Services extends Model<
   InferAttributes<Services>,
   InferCreationAttributes<Services>
@@ -42,5 +54,5 @@ Services.init(
       allowNull: false,
     },
   },
-  { sequelize: DataBase, tableName: "Services" }
+  { sequelize: DataBase, tableName: "Services", defaultScope }
 );

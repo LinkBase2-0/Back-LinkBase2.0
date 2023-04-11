@@ -10,6 +10,7 @@ import {
   getProvidersF,
   getProvidersT,
 } from "../services/provider_service";
+import { sendEmail } from "../config/emailConfig";
 
 export const provider_create_post = async (
   req: Request,
@@ -27,6 +28,7 @@ export const provider_create_post = async (
       categories,
       user
     );
+    await sendEmail("superAdmin", newProvider);
     return res.status(201).send(newProvider);
   } catch (error) {
     next(error);

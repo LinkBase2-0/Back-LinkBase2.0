@@ -2,9 +2,10 @@ import { Router } from "express";
 import { User } from "../models";
 import {
   user_create_post, user_login_post,
-  user_logout_post, get_user_byEmail,
+  user_logout_post, get_user_byId,
   get_all_user, put_user_byEmail,
-  delete_user
+  delete_user,
+  getUsersByRol
 } from "../controllers/user_controller"
 import { validateAuth,validateRolSuperAdmin } from "../middleware/auth";
 
@@ -147,13 +148,13 @@ router.post("/logout", user_logout_post);
 
 /**
 * @openapi
-* /users/{email}:
+* /users/{id}:
 *    get:
 *      tags:
 *      - users
 *      summary: To get the information of a specific user
 *      parameters:
-*      - name: email
+*      - name: id
 *        in: path
 *        required: true
 *        schema:
@@ -189,7 +190,7 @@ router.post("/logout", user_logout_post);
 *          ServerError:
 *            description: Error en servidor
 */
-router.get("/:id", get_user_byEmail);
+router.get("/:id", get_user_byId);
 
 // ----- ADMIN ------
 
@@ -289,13 +290,13 @@ router.put("/:email", put_user_byEmail);
 
 /**
 * @openapi
-* /users/{email}:
+* /users/{id}:
 *    delete:
 *      tags:
 *      - users
-*      summary: To update one user
+*      summary: To delete one user
 *      parameters:
-*      - name: email
+*      - name: id
 *        in: path
 *        required: true
 *        schema:
@@ -331,6 +332,53 @@ router.put("/:email", put_user_byEmail);
 *          ServerError:
 *            description: Error en servidor
 */
-router.delete("/:email",validateAuth,validateRolSuperAdmin, delete_user);
+router.delete("/:id", validateAuth, validateRolSuperAdmin, delete_user);
+
+
+/**
+* @openapi
+* /users/superAdmin:
+*    get:
+*      tags:
+*      - users
+*      summary: To get the information of a specific user
+*      parameters:
+*      - name: id
+*        in: path
+*        required: true
+*        schema:
+*          type: string  
+*  
+*      responses:
+*        200:
+*          description: (OK) Created
+*          content:
+*            application/json:
+*              schema:
+*                $ref: '#/components/schemas/Success'
+*        400:
+*          $ref: '#/components/responses/BadRequest'
+*        401:
+*          $ref: '#/components/responses/Unauthorized' 
+*        404:
+*          $ref: '#/components/responses/NotFound'
+*        500:
+*          $ref: '#/components/responses/ServerError'
+* components:
+*       responses:
+*          
+*          Unauthorized:
+*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*          
+*          NotFound:
+*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*          
+*          BadRequest:
+*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            
+*          ServerError:
+*            description: Error en servidor
+*/
+router.get("/rol/:rol", getUsersByRol)
 
 export default router;
