@@ -14,7 +14,7 @@ export function validateAuth(
   res: Response,
   next: NextFunction
 ) {
-  const { token } = req.cookies;
+  const { token } = req.body;
   if (!token) res.sendStatus(401);
 
   const { user } = validateToken(token);
@@ -28,7 +28,7 @@ export function validateRolAdminProviders(
   res: Response,
   next: NextFunction
 ) {
-  const { token } = req.cookies;
+  const { token } = req.body;
   const { user } = validateToken(token);
 
   if (user.rol === 'adminProviders' || user.rol === 'superAdmin') next()
@@ -42,7 +42,7 @@ export function validateRolAdminReviews(
   res: Response,
   next: NextFunction
 ) {
-  const { token } = req.cookies;
+  const { token } = req.body;
   const { user } = validateToken(token);
 
   if (user.rol === 'adminReviews' || user.rol === 'superAdmin') next()
@@ -56,7 +56,7 @@ export function validateRolChecker(
   res: Response,
   next: NextFunction
 ) {
-  const { token } = req.cookies;
+  const { token } = req.body;
   const { user } = validateToken(token);
 
   if (user.rol === 'checker' || user.rol === 'superAdmin') next()
@@ -70,7 +70,7 @@ export function validateRolSuperAdmin(
   res: Response,
   next: NextFunction
 ) {
-  const { token } = req.cookies;
+  const { token } = req.body;
   const { user } = validateToken(token);
 
   if (user.rol === 'superAdmin') next()
