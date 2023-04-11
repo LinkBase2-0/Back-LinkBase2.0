@@ -1,22 +1,29 @@
 {
   "categories": [
     {
-      "name": "Material de construccion"
+      "name": "Material de construccion",
+      "iconURL": "https://i.postimg.cc/8krRvyJ1/Material-de-construccion.png"
     },
     {
-      "name": "Profesionales"
+      "name": "Profesionales",
+      "iconURL": "https://i.postimg.cc/3J5gFgm2/Profesionales.png"
     },
     {
-      "name": "Insumos"
+      "name": "Insumos",
+      "iconURL": "https://i.postimg.cc/SKNLzk85/Insumos.png"
     },
     {
-      "name": "Maquinaria"
+      "name": "Maquinaria",
+      "iconURL": "https://i.postimg.cc/qqn2dRVt/Maquinaria.png"
     },
     {
-      "name": "Repuestos"
+      "name": "Repuestos",
+      "iconURL": "https://i.postimg.cc/15GDCfr2/Repuestos.png"
     },
     {
-      "name": "Servicios"
+      "name": "Servicios",
+      "iconURL":
+      "https://img.freepik.com/vector-premium/vector-icono-servicio-al-cliente-servicio-integral-atencion-al-cliente-mano-personas-ilustracion-vectorial_399089-2810.jpg"
     }
   ]
 }

@@ -30,8 +30,9 @@ export const user_login_post = async (req: Request, res: Response) => {
   if (logUser.message) {
     return res.status(401).send(logUser.message);
   } else {
-    res.cookie("token", logUser.token, { httpOnly: true });
-    return res.send(logUser.payload);
+    //res.cookie("token", logUser.token, { httpOnly: true });
+    //logUser es un objeto con payload y token que se envia al front
+    return res.send(logUser);
   }
 };
 

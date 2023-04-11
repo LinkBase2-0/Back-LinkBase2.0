@@ -13,6 +13,7 @@ export default class Categories extends Model<
   InferCreationAttributes<Categories>
 > {
   declare name: string;
+  declare iconURL: string;
 
   public readonly providers?: Provider[];
 
@@ -35,6 +36,10 @@ Categories.init(
     name: {
       type: new DataTypes.STRING(128),
       allowNull: false,
+    },
+    iconURL: {
+      type: new DataTypes.STRING(256),
+      allowNull: true,
     },
   },
   { sequelize: DataBase, tableName: "Categories" }
