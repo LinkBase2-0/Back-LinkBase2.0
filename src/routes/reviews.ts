@@ -53,6 +53,7 @@ const router = Router();
 */ 
 router.post("/",validateAuth, review_create)
 
+router.post("/seed", review_create)
 
 
 /**

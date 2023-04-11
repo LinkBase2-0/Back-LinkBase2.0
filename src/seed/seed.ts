@@ -9,7 +9,7 @@ const setReview = () => {
   return new Promise((resolve, rej) => {
     reviews
       .reduce(
-        (p, x) => p.then(() => axios.post("http://localhost:3001/reviews/", x)),
+        (p, x) => p.then(() => axios.post("http://localhost:3001/reviews/seed", x)),
         Promise.resolve()
       )
       .then((res) => resolve(res));
