@@ -19,7 +19,7 @@ export function validateAuth(
 
   const { user } = validateToken(token);
   if (!user) res.sendStatus(401);
-  req.user = user;
+  req.body.user = user;
   next();
 }
 
