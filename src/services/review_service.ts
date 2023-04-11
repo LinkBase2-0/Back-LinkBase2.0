@@ -29,7 +29,12 @@ export const getUserReviews = async (email: string) => {
 export const getProviderReviews = async (id: number) => {
   const providerReviews = await Provider.findOne({
     where: { id },
-    include: { model: Review, as: "reviews" },
+    include: { model: Review,
+      include: [
+        {
+          model: User
+        }
+      ], as: "reviews" },
   });
   if (providerReviews) return providerReviews;
   else throw Error("there is no provider with that name");
