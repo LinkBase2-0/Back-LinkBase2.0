@@ -51,7 +51,7 @@ const router = Router();
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.post("/", review_create)
+router.post("/",validateAuth, review_create)
 
 
 
