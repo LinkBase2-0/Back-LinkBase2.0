@@ -2,12 +2,12 @@ import { Provider, Review, User } from "../models";
 
 export const createReview = async (
   review: any,
-  email: string,
+  id: string,
   name: string
 ) => {
   const newReview = await Review.create(review);
   if (newReview) {
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { id } });
     const provider = await Provider.findOne({ where: { name } });
 
     await user?.addReview(newReview);
