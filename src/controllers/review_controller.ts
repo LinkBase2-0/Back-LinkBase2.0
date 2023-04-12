@@ -10,6 +10,22 @@ import {
 } from "../services/review_service";
 import { sendEmail } from "../config/emailConfig";
 
+export const review_seed = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { review } = req.body;
+  const { email } = req.body.user;
+  const { name } = req.body.provider;
+  try {
+    const newReview = await createReview(review, email, name);
+    return res.status(201).send(newReview);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const review_create = async (
   req: Request,
   res: Response,
@@ -20,7 +36,10 @@ export const review_create = async (
   const { name } = req.body.provider;
   try {
     const newReview = await createReview(review, email, name);
-    await sendEmail("superAdmin", newReview);
+
+    await sendEmail("superAdmin", newReview, "A new review has been published");
+    await sendEmail("adminReviews", newReview, "A new review has been published");
+    
     return res.status(201).send(newReview);
   } catch (error) {
     next(error);
@@ -32,9 +51,9 @@ export const review_get_of_user = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { email } = req.params;
+  const id = req.params.userId
   try {
-    const userReviews = await getUserReviews(email);
+    const userReviews = await getUserReviews(parseInt(id));
     return res.status(200).send(userReviews);
   } catch (error) {
     next(error);
@@ -46,7 +65,7 @@ export const review_get_of_provider = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { id } = req.params;
+  const id = req.params.providerId
   try {
     const providerReviews = await getProviderReviews(parseInt(id));
     return res.status(200).send(providerReviews);

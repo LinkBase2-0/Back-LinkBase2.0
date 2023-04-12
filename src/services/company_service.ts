@@ -9,9 +9,9 @@ export const createCompany = async (email: string, name: string) => {
   } else throw new Error("Error loading form data");
 };
 
-export const getUsers = async (name: string) => {
+export const getUsers = async (id: number) => {
   const users = await Company.findOne({
-    where: { name },
+    where: { id },
     include: { model: User, as: "users" },
   });
   if (users) return users;

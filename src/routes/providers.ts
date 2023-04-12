@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import {provider_create_post, provider_update, provider_delete, provider_get_one, provider_get_all, 
     provider_filter_by_categorie, provider_filter_by_service, 
-    provider_pending_false, provider_pending_true} from "../controllers/provider_controller"
+    provider_pending_false, provider_pending_true, provider_seed} from "../controllers/provider_controller"
 
 import { validateRolAdminProviders, validateAuth, validateRolSuperAdmin } from "../middleware/auth";
 
@@ -53,18 +53,21 @@ const router = Router();
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.post("/", provider_create_post )
+router.post("/", provider_create_post)
+
+router.post("/seed", provider_seed)
+
 
 
 /**
 * @openapi
-* /providers/{name}:
+* /providers/{id}:
 *    put:
 *      tags:
 *      - providers
 *      summary: To update a provider
 *      parameters:
-*      - name: name
+*      - name: id
 *        in: path
 *        required: true
 *        schema:
@@ -100,18 +103,18 @@ router.post("/", provider_create_post )
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.put("/:name",provider_update)
+router.put("/:id",provider_update)
 
 
 /**
 * @openapi
-* /providers/{name}:
+* /providers/{id}:
 *    delete:
 *      tags:
 *      - providers
 *      summary: To delete a provider
 *      parameters:
-*      - name: name
+*      - name: id
 *        in: path
 *        required: true
 *        schema:
@@ -147,18 +150,18 @@ router.put("/:name",provider_update)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.delete("/:name", provider_delete)
+router.delete("/:id", provider_delete)
 
 
 /**
 * @openapi
-* /providers/find/{name}:
+* /providers/find/{id}:
 *    get:
 *      tags:
 *      - providers
 *      summary: To get one provider
 *      parameters:
-*      - name: name
+*      - name: id
 *        in: path
 *        required: true
 *        schema:
@@ -194,7 +197,7 @@ router.delete("/:name", provider_delete)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/find/:name", provider_get_one)
+router.get("/find/:id", provider_get_one)
 
 
 /**
@@ -322,13 +325,13 @@ router.get("/pendingT", provider_pending_true)
 
 /**
 * @openapi
-* /providers/filterByCategorie/{categorieName}:
+* /providers/filterByCategorie/{categoryId}:
 *    get:
 *      tags:
 *      - providers
 *      summary: To get all the providers of a certain categorie
 *      parameters:
-*      - name: categorieName
+*      - name: categoryId
 *        in: path
 *        required: true
 *        schema:
@@ -364,18 +367,18 @@ router.get("/pendingT", provider_pending_true)
 *          ServerError:
 *            description: Error en servidor
 */   
-router.get("/filterByCategorie/:categorieName", provider_filter_by_categorie)
+router.get("/filterByCategorie/:categoryId", provider_filter_by_categorie)
 
 
 /**
 * @openapi
-* /providers/filterByService/{serviceName}:
+* /providers/filterByService/{serviceId}:
 *    get:
 *      tags:
 *      - providers
 *      summary: To get all the providers of a certain service
 *      parameters:
-*      - name: serviceName
+*      - name: serviceId
 *        in: path
 *        required: true
 *        schema:
@@ -411,6 +414,6 @@ router.get("/filterByCategorie/:categorieName", provider_filter_by_categorie)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/filterByService/:serviceName", provider_filter_by_service)
+router.get("/filterByService/:serviceId", provider_filter_by_service)
 
 export default router;

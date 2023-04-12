@@ -12,6 +12,28 @@ import {
 } from "../services/provider_service";
 import { sendEmail } from "../config/emailConfig";
 
+export const provider_seed = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { provider } = req.body;
+  const { services } = req.body;
+  const { categories } = req.body;
+  const { user } = req.body;
+  try {
+    const newProvider = await createProvider(
+      provider,
+      services,
+      categories,
+      user
+    );
+    return res.status(201).send(newProvider);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const provider_create_post = async (
   req: Request,
   res: Response,
@@ -28,7 +50,10 @@ export const provider_create_post = async (
       categories,
       user
     );
-    await sendEmail("superAdmin", newProvider);
+
+    await sendEmail("superAdmin", newProvider, "A new provider has been registered");
+    await sendEmail("adminProviders", newProvider, "A new provider has been registered");
+
     return res.status(201).send(newProvider);
   } catch (error) {
     next(error);
@@ -40,9 +65,9 @@ export const provider_update = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { name } = req.params;
+  const { id } = req.params;
   try {
-    const providerUpdated = await updateProvider(req.body, name);
+    const providerUpdated = await updateProvider(req.body, parseInt(id));
     return res.status(200).send(providerUpdated);
   } catch (error) {
     next(error);
@@ -54,10 +79,10 @@ export const provider_delete = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { name } = req.params;
+  const { id } = req.params;
   try {
-    const providerToDelete = await getProvider(name);
-    await deleteProvider(name);
+    const providerToDelete = await getProvider(parseInt(id));
+    await deleteProvider(id);
     return res.status(200).send(providerToDelete);
   } catch (error) {
     next(error);
@@ -69,9 +94,9 @@ export const provider_get_one = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { name } = req.params;
+  const { id } = req.params;
   try {
-    const provider = await getProvider(name);
+    const provider = await getProvider(parseInt(id));
     return res.status(200).send(provider);
   } catch (error) {
     next(error);
@@ -96,9 +121,9 @@ export const provider_filter_by_categorie = async (
   res: Response,
   next: NextFunction
 ) => {
-  const name = req.params.categorieName;
+  const id = req.params.categoryId;
   try {
-    const providers = await filterByCategorie(name);
+    const providers = await filterByCategorie(parseInt(id));
     return res.status(200).send(providers);
   } catch (error) {
     next(error);
@@ -110,9 +135,9 @@ export const provider_filter_by_service = async (
   res: Response,
   next: NextFunction
 ) => {
-  const name = req.params.serviceName;
+  const id = req.params.serviceId;
   try {
-    const providers = await filterByService(name);
+    const providers = await filterByService(parseInt(id));
     return res.status(200).send(providers);
   } catch (error) {
     next(error);

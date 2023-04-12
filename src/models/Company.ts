@@ -25,6 +25,7 @@ export default class Company extends Model<
   InferCreationAttributes<Company>
 > {
   declare name: string;
+  declare id: number;
 
   public readonly user?: User[];
 
@@ -39,6 +40,12 @@ export default class Company extends Model<
 
 Company.init(
   {
+    id: {
+      type: new DataTypes.INTEGER(),
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     name: {
       type: new DataTypes.STRING(128),
       allowNull: false,

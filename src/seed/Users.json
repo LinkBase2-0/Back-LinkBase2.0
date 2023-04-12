@@ -3,7 +3,7 @@
     {
       "user": {
         "fullName": "tomas",
-        "email": "tomas@gmail.com",
+        "email": "mekabaj544@ippals.com",
         "password": "password123",
         "rol": "superAdmin",
         "charge": "superAdmin",
@@ -14,10 +14,10 @@
     {
       "user": {
         "fullName": "abacob",
-        "email": "abacob@gmail.com",
+        "email": "abacop@gmail.com",
         "password": "password123",
         "rol": "adminProviders",
-        "charge": "superAdmin",
+        "charge": "admin parque",
         "isPending": false,
         "photoURL": "https://images-ext-1.discordapp.net/external/FU9IcH7tprwfHECW67zF6a16fygSAFB8CtZg0WmzSg4/https/i.ibb.co/bPMbbst/Nueva-imagen-de-mapa-de-bits.png"
       }

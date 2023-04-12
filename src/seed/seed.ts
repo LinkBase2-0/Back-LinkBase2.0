@@ -9,7 +9,7 @@ const setReview = () => {
   return new Promise((resolve, rej) => {
     reviews
       .reduce(
-        (p, x) => p.then(() => axios.post("http://localhost:3001/reviews/", x)),
+        (p, x) => p.then(() => axios.post("http://localhost:3001/reviews/seed", x)),
         Promise.resolve()
       )
       .then((res) => resolve(res));
@@ -21,7 +21,7 @@ const setProviders = () => {
     providers
       .reduce(
         (p, x) =>
-          p.then(() => axios.post("http://localhost:3001/providers/", x)),
+          p.then(() => axios.post("http://localhost:3001/providers/seed", x)),
         Promise.resolve()
       )
       .then((res) => resolve(res));
@@ -33,7 +33,7 @@ const setUsers = () => {
     users
       .reduce(
         (p, x) =>
-          p.then(() => axios.post("http://localhost:3001/users/register/", x)),
+          p.then(() => axios.post("http://localhost:3001/users/seed/", x)),
         Promise.resolve()
       )
       .then((res) => resolve(res));

@@ -25,6 +25,7 @@ export default class Services extends Model<
   InferCreationAttributes<Services>
 > {
   declare name: string;
+  declare id: number;
 
   public readonly providers?: Provider[];
 
@@ -49,6 +50,12 @@ export default class Services extends Model<
 
 Services.init(
   {
+    id: {
+      type: new DataTypes.INTEGER(),
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     name: {
       type: new DataTypes.STRING(128),
       allowNull: false,

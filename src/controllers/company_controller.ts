@@ -25,9 +25,9 @@ export const company_get_users_of_company = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { name } = req.params;
+  const { id } = req.params;
   try {
-    const users = await getUsers(name);
+    const users = await getUsers(parseInt(id));
     return res.status(200).send(users);
   } catch (error) {
     next(error);

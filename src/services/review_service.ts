@@ -17,9 +17,9 @@ export const createReview = async (
   } else throw new Error("Error loading form data");
 };
 
-export const getUserReviews = async (email: string) => {
+export const getUserReviews = async (id: number) => {
   const userReviews = await User.findOne({
-    where: { email },
+    where: { id },
     include: { model: Review, as: "reviews" },
   });
   if (userReviews) return userReviews;

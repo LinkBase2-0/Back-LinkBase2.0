@@ -33,9 +33,9 @@ export const createProvider = async (
   } else throw new Error("Error loading form data");
 };
 
-export const updateProvider = async (body: any, name: any) => {
+export const updateProvider = async (body: any, id: number) => {
   const providerUpdated = await Provider.update(body, {
-    where: { name },
+    where: { id },
     returning: true,
   });
   if (providerUpdated) return providerUpdated[1][0];
@@ -46,8 +46,8 @@ export const deleteProvider = async (name: string) => {
   return Provider.destroy({ where: { name } });
 };
 
-export const getProvider = async (name: string) => {
-  const provider = await Provider.findOne({ where: { name } });
+export const getProvider = async (id: number) => {
+  const provider = await Provider.findByPk(id);
   if (provider) return provider;
   else throw new Error("there is no user with that name");
 };
@@ -58,18 +58,18 @@ export const getProviders = async () => {
   else throw new Error("Not found");
 };
 
-export const filterByCategorie = async (name: string) => {
+export const filterByCategorie = async (id: number) => {
   const providers = await Categories.findOne({
-    where: { name },
+    where: { id },
     include: { model: Provider, as: "providers" },
   });
   if (providers?.providers) return providers?.providers;
   else throw new Error("there is no category with that name");
 };
 
-export const filterByService = async (name: string) => {
+export const filterByService = async (id: number) => {
   const providers = await Services.findOne({
-    where: { name },
+    where: { id },
     include: { model: Provider, as: "providers" },
   });
   if (providers?.providers) return providers?.providers;
