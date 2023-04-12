@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { review_create, review_delete, review_get_all, review_get_of_provider, review_get_of_user, review_get_one } from "../controllers/review_controller";
+import { review_create, review_delete, review_get_all, review_get_of_provider, review_get_of_user, review_get_one, review_seed } from "../controllers/review_controller";
 
 import { Provider, Review, User } from "../models";
 import { validateAuth, validateRolAdminReviews } from "../middleware/auth";
@@ -53,18 +53,17 @@ const router = Router();
 */ 
 router.post("/",validateAuth, review_create)
 
-router.post("/seed", review_create)
-
+router.post("/seed", review_seed)
 
 /**
 * @openapi
-* /reviews/userReviews/{email}:
+* /reviews/userReviews/{userId}:
 *    get:
 *      tags:
 *      - reviews
 *      summary: To get the reviews of a specific user
 *      parameters:
-*      - name: email
+*      - name: userId
 *        in: path
 *        required: true
 *        schema:
@@ -100,18 +99,18 @@ router.post("/seed", review_create)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/userReviews/:email", review_get_of_user)
+router.get("/userReviews/:userId", review_get_of_user)
 
 
 /**
 * @openapi
-* /reviews/providerReviews/{name}:
+* /reviews/providerReviews/{providerId}:
 *    get:
 *      tags:
 *      - reviews
 *      summary: To get the reviews of a specific provider
 *      parameters:
-*      - name: name
+*      - name: providerId
 *        in: path
 *        required: true
 *        schema:
@@ -147,7 +146,7 @@ router.get("/userReviews/:email", review_get_of_user)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/providerReviews/:id", review_get_of_provider)
+router.get("/providerReviews/:providerId", review_get_of_provider)
 
 
 /**

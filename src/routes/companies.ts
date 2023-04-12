@@ -52,13 +52,13 @@ router.post("/", company_create)
 
 /**
 * @openapi
-* /companies/{name}:
+* /companies/{id}:
 *    get:
 *      tags:
 *      - companies
 *      summary: To get all users from one companie
 *      parameters:
-*      - name: name
+*      - name: id
 *        in: path
 *        required: true
 *        schema:
@@ -94,7 +94,7 @@ router.post("/", company_create)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/:name", company_get_users_of_company)
+router.get("/:id", company_get_users_of_company)
 
 
 /**

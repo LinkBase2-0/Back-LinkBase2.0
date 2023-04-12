@@ -31,10 +31,10 @@ export const loggedUser = async (email: string, password: string) => {
   };
 };
 
-export const getUserByEmail = async (id: number) => {
-  const user = await User.findOne({ where: { id } });
+export const getUserById = async (id: number) => {
+  const user = await User.findByPk(id);
   if (user) return { user: user };
-  else throw new Error("there is no user with that email");
+  else throw new Error("There is no user with that id");
 };
 
 export const findAllUser = async () => {
@@ -45,10 +45,16 @@ export const findAllUser = async () => {
 
 export const updateUserEmail = async (body: object, obj: any) => {
   const userUpdated = await User.update(body, obj);
-  if(userUpdated[1][0]) return userUpdated[1][0];
-  else throw new Error("Invalid fields")
+  if (userUpdated[1][0]) return userUpdated[1][0];
+  else throw new Error("Invalid fields");
 };
 
+export const deleteUser = async (id: number) => {
+  return User.destroy({ where: { id } });
+};
+
+export const getUsers = async (rol: string) => {
+  return User.findAll({ where: { rol } });
 
 export const updateUserPassword = async (body: any, obj: any) => {
  // Buscar al usuario por su id
@@ -66,9 +72,4 @@ export const updateUserPassword = async (body: any, obj: any) => {
     return userUpdated[1][0];
   }else {throw new Error("Invalid password")}
 };
-
-
-
-export const deleteUser = async (email: string) => {
-  return User.destroy({ where: { email } });
 };

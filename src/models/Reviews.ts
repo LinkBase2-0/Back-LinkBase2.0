@@ -9,6 +9,18 @@ import DataBase from "../db";
 import Provider from "./Providers";
 import User from "./Users";
 
+interface Scopes {
+  attributes: {
+    exclude: string[]
+  }
+}
+
+const defaultScope: Scopes = {
+  attributes: {
+    exclude: ["createdAt", "updatedAt"],
+  },
+};
+
 export default class Review extends Model<
   InferAttributes<Review>,
   InferCreationAttributes<Review>
@@ -49,5 +61,5 @@ Review.init(
       },
     },
   },
-  { sequelize: DataBase, tableName: "reviews" }
+  { sequelize: DataBase, tableName: "reviews", defaultScope }
 );

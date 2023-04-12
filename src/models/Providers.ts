@@ -11,6 +11,18 @@ import Categories from "./Categories";
 import Review from "./Reviews";
 import User from "./Users";
 
+interface Scopes {
+  attributes: {
+    exclude: string[]
+  }
+}
+
+const defaultScope: Scopes = {
+  attributes: {
+    exclude: ["createdAt", "updatedAt"],
+  },
+};
+
 export default class Provider extends Model<
   InferAttributes<Provider>,
   InferCreationAttributes<Provider>
@@ -42,7 +54,7 @@ export default class Provider extends Model<
       as: "categories",
     });
     Provider.hasMany(Review, { as: "reviews" });
-    Provider.belongsTo(User)
+    Provider.belongsTo(User);
   }
 
   public async addService(service: Services): Promise<void> {
@@ -53,7 +65,7 @@ export default class Provider extends Model<
     await (this as any).setUser(user);
   }
 
-  public async addCategorie(category: Categories ): Promise<void> {
+  public async addCategorie(category: Categories): Promise<void> {
     await (this as any).addCategories(category);
   }
 
@@ -95,8 +107,8 @@ Provider.init(
       allowNull: true,
     },
     isPending: {
-      type: new DataTypes.BOOLEAN,
-      defaultValue:true,
+      type: new DataTypes.BOOLEAN(),
+      defaultValue: true,
     },
     time: {
       type: new DataTypes.STRING(128),
@@ -114,7 +126,6 @@ Provider.init(
       type: new DataTypes.STRING(128),
       allowNull: false,
     },
-  
   },
-  { sequelize: DataBase, tableName: "providers" }
+  { sequelize: DataBase, tableName: "providers", defaultScope }
 );

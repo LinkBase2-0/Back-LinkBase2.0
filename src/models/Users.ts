@@ -13,6 +13,18 @@ import Review from "./Reviews";
 import Company from "./Company";
 import Provider from "./Providers";
 
+interface Scopes {
+  attributes: {
+    exclude: string[]
+  }
+}
+
+const defaultScope: Scopes = {
+  attributes: {
+    exclude: ["password", "salt", "createdAt", "updatedAt"],
+  },
+};
+
 export default class User extends Model<
   InferAttributes<User>,
   InferCreationAttributes<User>
@@ -74,7 +86,13 @@ User.init(
       allowNull: true,
     },
     rol: {
-      type: new DataTypes.ENUM("adminProviders", "client", "superAdmin",'adminReviews','checker'),
+      type: new DataTypes.ENUM(
+        "adminProviders",
+        "client",
+        "superAdmin",
+        "adminReviews",
+        "checker"
+      ),
       defaultValue: "client",
     },
     charge: {
@@ -90,7 +108,7 @@ User.init(
       allowNull: true,
     },
   },
-  { sequelize: DataBase, tableName: "users" }
+  { sequelize: DataBase, tableName: "users", defaultScope }
 );
 
 User.beforeCreate(async (user) => {

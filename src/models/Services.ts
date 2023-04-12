@@ -8,11 +8,24 @@ import {
 import DataBase from "../db";
 import Provider from "./Providers";
 
+interface Scopes {
+  attributes: {
+    exclude: string[]
+  }
+}
+
+const defaultScope: Scopes = {
+  attributes: {
+    exclude: ["createdAt", "updatedAt"],
+  },
+};
+
 export default class Services extends Model<
   InferAttributes<Services>,
   InferCreationAttributes<Services>
 > {
   declare name: string;
+  declare id: number;
 
   public readonly providers?: Provider[];
 
@@ -37,10 +50,16 @@ export default class Services extends Model<
 
 Services.init(
   {
+    id: {
+      type: new DataTypes.INTEGER(),
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     name: {
       type: new DataTypes.STRING(128),
       allowNull: false,
     },
   },
-  { sequelize: DataBase, tableName: "Services" }
+  { sequelize: DataBase, tableName: "Services", defaultScope }
 );

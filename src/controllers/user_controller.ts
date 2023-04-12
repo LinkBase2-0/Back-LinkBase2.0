@@ -3,12 +3,29 @@ import { validateToken } from "../config/token";
 import {
   createUser,
   loggedUser,
-  getUserByEmail,
+  getUserById,
   findAllUser,
   updateUserEmail,
   deleteUser,
+  getUsers,
   updateUserPassword,
 } from "../services/user_service";
+import { sendEmail } from "../config/emailConfig";
+
+export const user_seed = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const user = req.body.user;
+  const name = req.body.company?.name;
+  try {
+    const newUser = await createUser(user, name);
+    return res.status(201).send(newUser);
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const user_create_post = async (
   req: Request,
@@ -19,6 +36,10 @@ export const user_create_post = async (
   const name = req.body.company?.name;
   try {
     const newUser = await createUser(user, name);
+
+    await sendEmail("superAdmin", user, "A new user has registered");
+    await sendEmail("checker", user, "A new user has registered");
+
     return res.status(201).send(newUser);
   } catch (error) {
     next(error);
@@ -42,14 +63,14 @@ export const user_logout_post = async (req: Request, res: Response) => {
   res.sendStatus(204);
 };
 
-export const get_user_byEmail = async (
+export const get_user_byId = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   const { id } = req.params;
   try {
-    const getUser = await getUserByEmail(parseInt(id));
+    const getUser = await getUserById(parseInt(id));
     if (getUser.user) return res.status(200).send(getUser.user);
   } catch (error) {
     next(error);
@@ -69,7 +90,7 @@ export const get_all_user = async (
   }
 };
 
-export const put_user_byEmail = async (
+export const put_user_byId = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -109,12 +130,6 @@ export const put_user_password_byId = async (
 };
 
 
-
-
-
-
-
-
 export const delete_user = async (
   req: Request,
   res: Response,
@@ -122,12 +137,24 @@ export const delete_user = async (
 ) => {
   const { id } = req.params;
   try {
-    const userToDelete = await getUserByEmail(parseInt(id));
-    await deleteUser(id);
+    const userToDelete = await getUserById(parseInt(id));
+    await deleteUser(parseInt(id));
     return res.status(200).send(userToDelete);
-  } 
-  catch (error) {
+  } catch (error) {
     next(error);
   }
-}
+};
 
+export const getUsersByRol = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { rol } = req.params;
+  try {
+    const userSuperAdmin = await getUsers(rol);
+    return res.status(200).send(userSuperAdmin);
+  } catch (error) {
+    next(error);
+  }
+};

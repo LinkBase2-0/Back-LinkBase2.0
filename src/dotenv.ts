@@ -15,10 +15,8 @@ declare global {
 }
 
 const requiredEnvs = [
-  "SECRET",
-  "PORT",
-  "DB_NAME",
-  "DB_USERNAME",
+  "SECRET", "PORT",
+  "DB_NAME", "DB_USERNAME", 
   "DB_PASSWORD",
 ];
 
