@@ -1,5 +1,6 @@
 import { Company, User } from "../models";
 import { generateToken } from "../config/token";
+import bcrypt from "bcrypt";
 
 export const createUser = async (user: any, name: string) => {
   if (name) {
@@ -47,6 +48,26 @@ export const updateUserEmail = async (body: object, obj: any) => {
   if(userUpdated[1][0]) return userUpdated[1][0];
   else throw new Error("Invalid fields")
 };
+
+
+export const updateUserPassword = async (body: any, obj: any) => {
+ // Buscar al usuario por su id
+  const user = await User.findOne(obj);
+  if (!user) {
+    return "Usuario no encontrado";
+  }
+  // Confirmo password vieja
+  const oldHash = await  bcrypt.hash(body.oldPassword, user.salt);
+
+  if(oldHash === user.password){
+     // Actualizar la contraseña del usuario
+    const hash = await bcrypt.hash(body.newPassword, user.salt);
+    const userUpdated = await User.update({password: hash}, obj);
+    return userUpdated[1][0];
+  }else {throw new Error("Invalid password")}
+};
+
+
 
 export const deleteUser = async (email: string) => {
   return User.destroy({ where: { email } });

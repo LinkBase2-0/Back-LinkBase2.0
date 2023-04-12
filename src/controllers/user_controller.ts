@@ -7,6 +7,7 @@ import {
   findAllUser,
   updateUserEmail,
   deleteUser,
+  updateUserPassword,
 } from "../services/user_service";
 
 export const user_create_post = async (
@@ -30,7 +31,7 @@ export const user_login_post = async (req: Request, res: Response) => {
   if (logUser.message) {
     return res.status(401).send(logUser.message);
   } else {
-    //res.cookie("token", logUser.token, { httpOnly: true });
+    res.cookie("token", logUser.token, { httpOnly: true });
     //logUser es un objeto con payload y token que se envia al front
     return res.send(logUser);
   }
@@ -86,6 +87,33 @@ export const put_user_byEmail = async (
     next(error);
   }
 };
+
+
+export const put_user_password_byId = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { id } = req.params;
+  const body = req.body;
+  const obj = {
+    where: { id },
+    returning: true,
+  };
+  try {
+    const userUpdated = await updateUserPassword(body, obj);
+    return res.status(200).send(userUpdated);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
+
+
+
 
 export const delete_user = async (
   req: Request,

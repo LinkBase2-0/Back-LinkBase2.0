@@ -4,7 +4,7 @@ import {
   user_create_post, user_login_post,
   user_logout_post, get_user_byEmail,
   get_all_user, put_user_byEmail,
-  delete_user
+  delete_user,put_user_password_byId
 } from "../controllers/user_controller"
 import { validateAuth,validateRolSuperAdmin } from "../middleware/auth";
 
@@ -285,6 +285,8 @@ router.get("/",get_all_user);
 *            description: Error en servidor
 */
 router.put("/:email", put_user_byEmail);
+
+router.put("/password/:id", put_user_password_byId);
 
 
 /**
