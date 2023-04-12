@@ -20,8 +20,7 @@ export const loggedUser = async (email: string, password: string) => {
   const passwordMatches = await user.validatePassword(password);
   if (!passwordMatches) return { message: "invalid credentials" };
   const payload = {
-    email: user.email,
-    fullName: user.fullName,
+    id: user.id,
     rol: user.rol,
   };
   const token = generateToken(payload);
