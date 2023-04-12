@@ -10,6 +10,7 @@ import {
   getUsersByRol,
   user_seed,
   put_user_byId,
+  put_user_password_byId
 } from "../controllers/user_controller";
 import { validateAuth, validateRolSuperAdmin } from "../middleware/auth";
 
@@ -334,6 +335,8 @@ router.put("/:id", put_user_byId);
  *            description: Error en servidor
  */
 router.delete("/:id", validateAuth, validateRolSuperAdmin, delete_user);
+
+router.put("/password/:id", put_user_password_byId);
 
 /**
  * @openapi

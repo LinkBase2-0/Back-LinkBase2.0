@@ -2,7 +2,6 @@ import {
   Model,
   InferCreationAttributes,
   InferAttributes,
-  CreationOptional,
   DataTypes,
 } from "sequelize";
 
@@ -34,6 +33,11 @@ export default class Review extends Model<
     Review.belongsTo(User);
     Review.belongsTo(Provider);
   }
+  /*
+  public get userFullName(): string | undefined {
+    return this.User?.fullName;
+  }
+  */
 }
 
 Review.init(

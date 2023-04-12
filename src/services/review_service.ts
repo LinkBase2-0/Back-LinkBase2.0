@@ -2,12 +2,12 @@ import { Provider, Review, User } from "../models";
 
 export const createReview = async (
   review: any,
-  email: string,
+  id: string,
   name: string
 ) => {
   const newReview = await Review.create(review);
   if (newReview) {
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { id } });
     const provider = await Provider.findOne({ where: { name } });
 
     await user?.addReview(newReview);
@@ -29,7 +29,12 @@ export const getUserReviews = async (id: number) => {
 export const getProviderReviews = async (id: number) => {
   const providerReviews = await Provider.findOne({
     where: { id },
-    include: { model: Review, as: "reviews" },
+    include: { model: Review,
+      include: [
+        {
+          model: User
+        }
+      ], as: "reviews" },
   });
   if (providerReviews) return providerReviews;
   else throw Error("there is no provider with that name");

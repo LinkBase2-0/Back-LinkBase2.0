@@ -51,11 +51,9 @@ const router = Router();
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.post("/", review_create)
+router.post("/",validateAuth, review_create)
 
 router.post("/seed", review_seed)
-
-
 
 /**
 * @openapi

@@ -16,10 +16,10 @@ export const review_seed = async (
   next: NextFunction
 ) => {
   const { review } = req.body;
-  const { email } = req.body.user;
+  const { id } = req.body.user;
   const { name } = req.body.provider;
   try {
-    const newReview = await createReview(review, email, name);
+    const newReview = await createReview(review, id, name);
     return res.status(201).send(newReview);
   } catch (error) {
     next(error);

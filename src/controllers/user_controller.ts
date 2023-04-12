@@ -8,6 +8,7 @@ import {
   updateUserEmail,
   deleteUser,
   getUsers,
+  updateUserPassword,
 } from "../services/user_service";
 import { sendEmail } from "../config/emailConfig";
 
@@ -52,7 +53,8 @@ export const user_login_post = async (req: Request, res: Response) => {
     return res.status(401).send(logUser.message);
   } else {
     res.cookie("token", logUser.token, { httpOnly: true });
-    return res.send(logUser.payload);
+    //logUser es un objeto con payload y token que se envia al front
+    return res.send(logUser);
   }
 };
 
@@ -106,6 +108,27 @@ export const put_user_byId = async (
     next(error);
   }
 };
+
+
+export const put_user_password_byId = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { id } = req.params;
+  const body = req.body;
+  const obj = {
+    where: { id },
+    returning: true,
+  };
+  try {
+    const userUpdated = await updateUserPassword(body, obj);
+    return res.status(200).send(userUpdated);
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 export const delete_user = async (
   req: Request,

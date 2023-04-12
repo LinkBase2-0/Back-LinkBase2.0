@@ -96,7 +96,7 @@ Provider.init(
     },
     phone: {
       type: new DataTypes.BIGINT(),
-      allowNull: false,
+      allowNull: true,
     },
     web: {
       type: new DataTypes.STRING(128),
