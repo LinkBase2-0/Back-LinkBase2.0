@@ -18,7 +18,7 @@ const router = Router();
 *              $ref: '#/components/schemas/bodyCategoriesPost'
 *        required: true
 *      responses:
-*        200:
+*        201:
 *          description: (OK) Created
 *          content:
 *            application/json:
@@ -36,16 +36,16 @@ const router = Router();
 *       responses:
 *          
 *          Unauthorized:
-*            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+*            description: (Unauthorized) 
 *          
 *          NotFound:
-*            description: (NotFound) No se encontrÃ³ informaciÃ³n 
+*            description: (NotFound)
 *          
 *          BadRequest:
-*            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+*            description: (Bad Request) 
 *            
 *          ServerError:
-*            description: Error en servidor
+*            description: (Server Error)
 */ 
 router.post("/", categorie_create)
 
@@ -61,7 +61,7 @@ router.post("/", categorie_create)
 *  
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:

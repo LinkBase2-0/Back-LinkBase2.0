@@ -9,8 +9,8 @@ import {
   delete_user,
   getUsersByRol,
   user_seed,
-  put_user_byEmail,
-  put_user_password_byId
+  put_user_password_byId,
+  put_user_byId
 } from "../controllers/user_controller";
 import { validateAuth, validateRolSuperAdmin } from "../middleware/auth";
 
@@ -31,7 +31,7 @@ const router = Router();
  *              $ref: '#/components/schemas/bodyUsersRegisterPost'
  *        required: true
  *      responses:
- *        200:
+ *        201:
  *          description: (OK) Created
  *          content:
  *            application/json:
@@ -80,7 +80,7 @@ router.post("/seed", user_seed);
  *        required: true
  *      responses:
  *        200:
- *          description: (OK) Created
+ *          description: (OK) 
  *          content:
  *            application/json:
  *              schema:
@@ -120,7 +120,7 @@ router.post("/login", user_login_post);
  *
  *      responses:
  *        200:
- *          description: (OK) Created
+ *          description: (OK) 
  *          content:
  *            application/json:
  *              schema:
@@ -166,7 +166,7 @@ router.post("/logout", user_logout_post);
  *
  *      responses:
  *        200:
- *          description: (OK) Created
+ *          description: (OK) 
  *          content:
  *            application/json:
  *              schema:
@@ -208,7 +208,7 @@ router.get("/:id", get_user_byId);
  *
  *      responses:
  *        200:
- *          description: (OK) Created
+ *          description: (OK) 
  *          content:
  *            application/json:
  *              schema:
@@ -260,7 +260,7 @@ router.get("/", get_all_user);
  *        required: true
  *      responses:
  *        200:
- *          description: (OK) Created
+ *          description: (OK) Updated
  *          content:
  *            application/json:
  *              schema:
@@ -288,7 +288,7 @@ router.get("/", get_all_user);
  *          ServerError:
  *            description: Error en servidor
  */
-router.put("/:email", put_user_byEmail);
+router.put("/:id", put_user_byId);
 
 /**
  * @openapi
@@ -306,7 +306,7 @@ router.put("/:email", put_user_byEmail);
  *
  *      responses:
  *        200:
- *          description: (OK) Created
+ *          description: (OK) Deleted
  *          content:
  *            application/json:
  *              schema:
@@ -354,7 +354,7 @@ router.put("/password/:id", put_user_password_byId);
  *
  *      responses:
  *        200:
- *          description: (OK) Created
+ *          description: (OK) 
  *          content:
  *            application/json:
  *              schema:

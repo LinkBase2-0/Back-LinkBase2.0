@@ -10,8 +10,8 @@ import Provider from "./Providers";
 
 interface Scopes {
   attributes: {
-    exclude: string[]
-  }
+    exclude: string[];
+  };
 }
 
 const defaultScope: Scopes = {
@@ -54,6 +54,9 @@ Categories.init(
     name: {
       type: new DataTypes.STRING(128),
       allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
     },
     iconURL: {
       type: new DataTypes.STRING(256),

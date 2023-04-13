@@ -18,7 +18,7 @@ const router = Router();
 *              $ref: '#/components/schemas/bodyCompanyPost'
 *        required: true
 *      responses:
-*        200:
+*        201:
 *          description: (OK) Created
 *          content:
 *            application/json:
@@ -66,7 +66,7 @@ router.post("/", company_create)
 *
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:
@@ -107,7 +107,7 @@ router.get("/:id", company_get_users_of_company)
 *  
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:

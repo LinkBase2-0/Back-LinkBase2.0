@@ -5,10 +5,10 @@ import {
   loggedUser,
   getUserById,
   findAllUser,
-  updateUserEmail,
   deleteUser,
   getUsers,
   updateUserPassword,
+  updateUserById,
 } from "../services/user_service";
 import { sendEmail } from "../config/emailConfig";
 
@@ -92,19 +92,19 @@ export const get_all_user = async (
   }
 };
 
-export const put_user_byEmail = async (
+export const put_user_byId = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { email } = req.params;
+  const { id } = req.params;
   const body = req.body;
   const obj = {
-    where: { email },
+    where: { id },
     returning: true,
   };
   try {
-    const userUpdated = await updateUserEmail(body, obj);
+    const userUpdated = await updateUserById(body, obj);
     return res.status(200).send(userUpdated);
   } catch (error) {
     next(error);

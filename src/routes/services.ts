@@ -21,7 +21,7 @@ const router = Router();
 *              $ref: '#/components/schemas/bodyServicesPost'
 *        required: true
 *      responses:
-*        200:
+*        201:
 *          description: (OK) Created
 *          content:
 *            application/json:
@@ -69,7 +69,7 @@ router.post("/",validateAuth, service_create)
 *
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) deleted
 *          content:
 *            application/json:
 *              schema:
@@ -116,7 +116,7 @@ router.delete("/:name", service_delete)
 *
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) Updated
 *          content:
 *            application/json:
 *              schema:
@@ -157,7 +157,7 @@ router.put("/:name", service_update)
 *
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:

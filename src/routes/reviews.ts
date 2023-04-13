@@ -22,7 +22,7 @@ const router = Router();
 *              $ref: '#/components/schemas/bodyReviewsPost'
 *        required: true
 *      responses:
-*        200:
+*        201:
 *          description: (OK) Created
 *          content:
 *            application/json:
@@ -71,7 +71,7 @@ router.post("/seed", review_seed)
 *
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:
@@ -118,7 +118,7 @@ router.get("/userReviews/:userId", review_get_of_user)
 *
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:
@@ -165,7 +165,7 @@ router.get("/providerReviews/:providerId", review_get_of_provider)
 *
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) Deleted
 *          content:
 *            application/json:
 *              schema:
@@ -212,7 +212,7 @@ router.delete("/:reviewId", review_delete)
 *
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:
@@ -253,7 +253,7 @@ router.get("/:reviewId", review_get_one)
 *  
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:

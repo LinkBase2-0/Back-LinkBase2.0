@@ -44,7 +44,7 @@ export const findAllUser = async () => {
   else throw new Error("No users could be found");
 };
 
-export const updateUserEmail = async (body: object, obj: any) => {
+export const updateUserById = async (body: object, obj: any) => {
   const userUpdated = await User.update(body, obj);
   if (userUpdated[1][0]) return userUpdated[1][0];
   else throw new Error("Invalid fields");

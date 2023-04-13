@@ -24,7 +24,7 @@ const router = Router();
 *              $ref: '#/components/schemas/bodyProvidersPost'
 *        required: true
 *      responses:
-*        200:
+*        201:
 *          description: (OK) Created
 *          content:
 *            application/json:
@@ -75,7 +75,7 @@ router.post("/seed", provider_seed)
 *  
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) Updated
 *          content:
 *            application/json:
 *              schema:
@@ -122,7 +122,7 @@ router.put("/:id",provider_update)
 *  
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) Deleted
 *          content:
 *            application/json:
 *              schema:
@@ -169,7 +169,7 @@ router.delete("/:id", provider_delete)
 *  
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:
@@ -212,7 +212,7 @@ router.get("/find/:name", provider_get_one_name)
 *  
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:
@@ -254,7 +254,7 @@ router.get("/", provider_get_all)
 *  
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:
@@ -295,7 +295,7 @@ router.get("/pendingF",provider_pending_false)
 *  
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:
@@ -341,7 +341,7 @@ router.get("/pendingT", provider_pending_true)
 *
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:
@@ -388,7 +388,7 @@ router.get("/filterByCategorie/:categoryName", provider_filter_by_categorieName)
 *  
 *      responses:
 *        200:
-*          description: (OK) Created
+*          description: (OK) 
 *          content:
 *            application/json:
 *              schema:
