@@ -67,6 +67,17 @@ export const filterByCategorie = async (id: number) => {
   else throw new Error("there is no category with that name");
 };
 
+export const filterByCategorieName = async (name: string) => {
+  const providers = await Categories.findOne({
+    where: { name },
+    include: { model: Provider, as: "providers" },
+  });
+  if (providers?.providers) return providers?.providers;
+  else throw new Error("there is no category with that name");
+};
+
+
+
 export const filterByService = async (id: number) => {
   const providers = await Services.findOne({
     where: { id },

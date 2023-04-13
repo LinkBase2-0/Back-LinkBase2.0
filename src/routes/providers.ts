@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import {provider_create_post, provider_update, provider_delete, provider_get_one, provider_get_all, 
-    provider_filter_by_categorie, provider_filter_by_service, 
+    provider_filter_by_categorie, provider_filter_by_service, provider_filter_by_categorieName,
     provider_pending_false, provider_pending_true, provider_seed} from "../controllers/provider_controller"
 
 import { validateRolAdminProviders, validateAuth, validateRolSuperAdmin } from "../middleware/auth";
@@ -367,9 +367,9 @@ router.get("/pendingT", provider_pending_true)
 *          ServerError:
 *            description: Error en servidor
 */   
-router.get("/filterByCategorie/:categoryId", provider_filter_by_categorie)
+router.get("/filterByCategorieId/:categoryId", provider_filter_by_categorie)
 
-
+router.get("/filterByCategorie/:categoryName", provider_filter_by_categorieName)
 /**
 * @openapi
 * /providers/filterByService/{serviceId}:

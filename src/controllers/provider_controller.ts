@@ -9,6 +9,7 @@ import {
   filterByService,
   getProvidersF,
   getProvidersT,
+  filterByCategorieName,
 } from "../services/provider_service";
 import { sendEmail } from "../config/emailConfig";
 
@@ -129,6 +130,23 @@ export const provider_filter_by_categorie = async (
     next(error);
   }
 };
+
+
+export const provider_filter_by_categorieName = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const name = req.params.categoryName;
+  try {
+    const providers = await filterByCategorieName(name);
+    return res.status(200).send(providers);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 
 export const provider_filter_by_service = async (
   req: Request,
