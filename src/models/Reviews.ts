@@ -17,7 +17,7 @@ interface Scopes {
 
 const defaultScope: Scopes = {
   attributes: {
-    exclude: ["createdAt", "updatedAt"],
+    exclude: [/*"createdAt",*/"updatedAt"],
   },
 };
 
