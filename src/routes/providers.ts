@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import {provider_create_post, provider_update, provider_delete, provider_get_one, provider_get_all, 
-    provider_filter_by_categorie, provider_filter_by_service, provider_filter_by_categorieName,
+    provider_filter_by_categorie, provider_filter_by_service, provider_filter_by_categorieName, provider_get_one_name,
     provider_pending_false, provider_pending_true, provider_seed} from "../controllers/provider_controller"
 
 import { validateRolAdminProviders, validateAuth, validateRolSuperAdmin } from "../middleware/auth";
@@ -197,7 +197,9 @@ router.delete("/:id", provider_delete)
 *          ServerError:
 *            description: Error en servidor
 */ 
-router.get("/find/:id", provider_get_one)
+router.get("/findId/:id", provider_get_one)
+
+router.get("/find/:name", provider_get_one_name)
 
 
 /**

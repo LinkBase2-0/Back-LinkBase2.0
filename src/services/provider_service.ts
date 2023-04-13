@@ -52,6 +52,16 @@ export const getProvider = async (id: number) => {
   else throw new Error("there is no user with that name");
 };
 
+
+export const getProviderByName = async (name: string) => {
+  const provider = await Provider.findOne({
+    where: { name },
+  });
+  if (provider) return provider;
+  else throw new Error("there is no user with that name");
+};
+
+
 export const getProviders = async () => {
   const providers = await Provider.findAll();
   if (providers) return providers;
