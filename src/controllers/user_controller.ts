@@ -92,7 +92,7 @@ export const get_all_user = async (
   }
 };
 
-export const put_user_byId = async (
+export const put_user_byEmail = async (
   req: Request,
   res: Response,
   next: NextFunction

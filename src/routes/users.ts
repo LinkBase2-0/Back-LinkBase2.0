@@ -9,7 +9,7 @@ import {
   delete_user,
   getUsersByRol,
   user_seed,
-  put_user_byId,
+  put_user_byEmail,
   put_user_password_byId
 } from "../controllers/user_controller";
 import { validateAuth, validateRolSuperAdmin } from "../middleware/auth";
@@ -288,7 +288,7 @@ router.get("/", get_all_user);
  *          ServerError:
  *            description: Error en servidor
  */
-router.put("/:id", put_user_byId);
+router.put("/:email", put_user_byEmail);
 
 /**
  * @openapi
