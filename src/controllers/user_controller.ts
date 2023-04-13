@@ -51,6 +51,8 @@ export const user_login_post = async (req: Request, res: Response) => {
   const logUser = await loggedUser(email, password);
   if (logUser.message) {
     return res.status(401).send(logUser.message);
+  } else if (!logUser.token) {
+    return res.status(500).send("Error: No se pudo generar el token de autenticación");
   } else {
     res.cookie("token", logUser.token, { httpOnly: true });
     //logUser es un objeto con payload y token que se envia al front

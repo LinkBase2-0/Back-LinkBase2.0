@@ -55,6 +55,8 @@ export const deleteUser = async (id: number) => {
 
 export const getUsers = async (rol: string) => {
   return User.findAll({ where: { rol } });
+};
+
 
 export const updateUserPassword = async (body: any, obj: any) => {
  // Buscar al usuario por su id
@@ -72,4 +74,4 @@ export const updateUserPassword = async (body: any, obj: any) => {
     return userUpdated[1][0];
   }else {throw new Error("Invalid password")}
 };
-};
+
