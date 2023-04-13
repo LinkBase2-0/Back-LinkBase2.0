@@ -13,8 +13,8 @@ import User from "./Users";
 
 interface Scopes {
   attributes: {
-    exclude: string[]
-  }
+    exclude: string[];
+  };
 }
 
 const defaultScope: Scopes = {
@@ -79,6 +79,9 @@ Provider.init(
     name: {
       type: new DataTypes.STRING(128),
       allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
     },
     id: {
       type: new DataTypes.INTEGER(),

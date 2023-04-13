@@ -15,13 +15,13 @@ import Provider from "./Providers";
 
 interface Scopes {
   attributes: {
-    exclude: string[]
-  }
+    exclude: string[];
+  };
 }
 
 const defaultScope: Scopes = {
   attributes: {
-    exclude: [/*"password", "salt",*/ "createdAt", "updatedAt"],
+    exclude: ["createdAt", "updatedAt"],
   },
 };
 
@@ -62,6 +62,9 @@ User.init(
     fullName: {
       type: new DataTypes.STRING(128),
       allowNull: true,
+      validate: {
+        notEmpty: true,
+      },
     },
     id: {
       type: new DataTypes.INTEGER(),

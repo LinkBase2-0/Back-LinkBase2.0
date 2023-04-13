@@ -10,8 +10,8 @@ import Provider from "./Providers";
 
 interface Scopes {
   attributes: {
-    exclude: string[]
-  }
+    exclude: string[];
+  };
 }
 
 const defaultScope: Scopes = {
@@ -59,6 +59,9 @@ Services.init(
     name: {
       type: new DataTypes.STRING(128),
       allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
     },
   },
   { sequelize: DataBase, tableName: "Services", defaultScope }
