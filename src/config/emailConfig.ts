@@ -6,6 +6,8 @@ const transporter = async (
   data: any,
   subject: string
 ): Promise<void> => {
+  const dataSent = JSON.stringify(data)
+  
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
@@ -21,7 +23,7 @@ const transporter = async (
       from: "thelinkbaseofficial@gmail.com",
       to: email,
       subject: subject,
-      text: `${{ data }}`,
+      text: `${dataSent}`,
     });
     console.log("Email sent successfully");
   } catch (error) {
