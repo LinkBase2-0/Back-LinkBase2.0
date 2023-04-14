@@ -12,7 +12,7 @@ import {
   put_user_password_byId,
   put_user_byId
 } from "../controllers/user_controller";
-import { validateAuth, validateRolSuperAdmin } from "../middleware/auth";
+import { validateAuth, validateRolChecker } from "../middleware/auth";
 
 const router = Router();
 
@@ -334,7 +334,7 @@ router.put("/:id", put_user_byId);
  *          ServerError:
  *            description: Error en servidor
  */
-router.delete("/:id", validateAuth, validateRolSuperAdmin, delete_user);
+router.delete("/:id", validateAuth, validateRolChecker, delete_user);
 
 router.put("/password/:id", put_user_password_byId);
 
